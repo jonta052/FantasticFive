@@ -29,6 +29,9 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+//Adds the required data to the database
+await Seeder.Seed(app);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
