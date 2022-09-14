@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewsApp.Data;
 
@@ -11,9 +12,10 @@ using NewsApp.Data;
 namespace NewsApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220914090859_added-models")]
+    partial class addedmodels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,9 +263,6 @@ namespace NewsApp.Data.Migrations
                     b.Property<DateTime>("Expires")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("KlarnaOrder")
                         .HasColumnType("bit");
 
@@ -276,14 +275,9 @@ namespace NewsApp.Data.Migrations
                     b.Property<int?>("SubscriptionTypeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("SubscriptionTypeId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Subscriptions");
                 });
@@ -367,6 +361,9 @@ namespace NewsApp.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SubscriptionId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -383,6 +380,9 @@ namespace NewsApp.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("SubscriptionId")
+                        .IsUnique();
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -470,13 +470,18 @@ namespace NewsApp.Data.Migrations
                         .WithMany()
                         .HasForeignKey("SubscriptionTypeId");
 
-                    b.HasOne("NewsApp.Models.User", "User")
-                        .WithMany("Subscription")
-                        .HasForeignKey("UserId");
-
                     b.Navigation("SubscriptionType");
+                });
 
-                    b.Navigation("User");
+            modelBuilder.Entity("NewsApp.Models.User", b =>
+                {
+                    b.HasOne("NewsApp.Models.Subscription", "Subscription")
+                        .WithOne("User")
+                        .HasForeignKey("NewsApp.Models.User", "SubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Subscription");
                 });
 
             modelBuilder.Entity("NewsApp.Models.Article", b =>
@@ -486,11 +491,14 @@ namespace NewsApp.Data.Migrations
                     b.Navigation("Comments");
                 });
 
+            modelBuilder.Entity("NewsApp.Models.Subscription", b =>
+                {
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("NewsApp.Models.User", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Subscription");
                 });
 #pragma warning restore 612, 618
         }

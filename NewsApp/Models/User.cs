@@ -14,14 +14,18 @@ namespace NewsApp.Models
         [StringLength(20, MinimumLength = 2)]
         public string LastName { get; set; }
 
+        [PersonalData]
+        public string DOB { get; set; }
+        public virtual ICollection<Subscription> Subscription { get; set; }
+      
+        public DateTime CreatedAt { get; protected set; } = DateTime.Now;
+
+        public virtual ICollection<Comment> Comments { get; set; }
+
         public string GetFullName()
         {
             return $"{FirstName} {LastName}";
         }
-
-        public DateTime CreatedAt { get; protected set; } = DateTime.Now;
-
-        public virtual ICollection<Comment> Comments { get; set; }
 
 
     }
