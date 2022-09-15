@@ -14,7 +14,6 @@ namespace NewsApp.Data
 
                 var userManager = scope.ServiceProvider
                     .GetRequiredService<UserManager<User>>();
-
                 await SeedRoles(roleManager);
                 await SeedUsers(userManager);
             }
