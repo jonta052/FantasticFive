@@ -33,6 +33,14 @@ var app = builder.Build();
 //Adds the required data to the database
 await Seeder.Seed(app);
 
+//Initializes seeding data from project models
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -20,6 +20,7 @@ namespace NewsApp.Services
             return article;
         }
 
+      
         public void DeleteArticle(int id)
         {
             var article = GetArticle(id);

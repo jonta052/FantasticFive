@@ -1,10 +1,12 @@
 ﻿using NewsApp.Models;
 using Microsoft.AspNetCore.Identity;
+using NewsApp.Services;
 
 namespace NewsApp.Data
 {
     public static class Seeder
     {
+
         public static async Task Seed(WebApplication app)
         {
             using (var scope = app.Services.CreateScope())
