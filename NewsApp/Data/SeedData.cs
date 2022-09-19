@@ -22,13 +22,33 @@ namespace NewsApp.Models
                 {
                     return;   // DB has been seeded
                 }
-                Category categoryLocal = new Category
-                {
-                    Name = "Local"
-                };
                 Category categoryWorld = new Category
                 {
                     Name = "World"
+                };
+                Category categorySweden = new Category
+                {
+                    Name = "Sweden"
+                };
+                Category categoryArt = new Category
+                {
+                    Name = "Art"
+                };
+                Category categorySports = new Category
+                {
+                    Name = "Sports"
+                };
+                Category categoryHealth = new Category
+                {
+                    Name = "Health"
+                };
+                Category categoryBusiness = new Category
+                {
+                    Name = "Business"
+                };
+                Category categoryCulture = new Category
+                {
+                    Name = "Culture"
                 };
                 //context.Categories.AddRange(
                 //    categoryLocal,
@@ -81,20 +101,38 @@ namespace NewsApp.Models
                         ContentSummary = "Add a different dimension to your enjoyment of the UEFA Champions League by predicting the scorelines of every match with the official Predictor game.",
                         ImageLink = "https://editorial.uefa.com/resources/0278-15ff4d8cf718-e24c7a4e2a65-1000/format/wide1/ucl_20220830172142.jpg",
                         Category = categorySports
-                    }
+                    },
 
-                    //new Article
-                    //{
-                        
-                    //    Title = "World Article",
-                    //    LinkText = "",
-                    //    Content = "",
-                    //    ContentSummary = "Romantic Comedy",
-                    //    ImageLink = "http....",
-                    //    Category = categoryLocal
-                    //}
+                   new Article
+                   {
+                       Title = "New malaria vaccine is world-changing, say scientists",
+                       LinkText = "New malaria vaccine is world-changing, say scientists",
+                       Content = "The team expect it to be rolled out next year after trials showed up to 80% protection against the deadly disease.Crucially, say the scientists, their vaccine is cheap and they already have a deal to manufacture more than 100 million doses a year.The charity Malaria No More said recent progress meant children dying from malaria could end in our lifetimes.It has taken more than a century to develop effective vaccines as the malaria parasite, which is spread by mosquitoes, is spectacularly complex and elusive. It is a constantly moving target, shifting forms inside the body, which make it hard to immunise against.Trial results from 409 children in Nanoro, Burkina Faso, have been published in the Lancet Infectious Diseases. It shows three initial doses followed by a booster a year later gives up to 80% protection.Malaria has been one of the biggest scourges on humanity for millennia and mostly kills babies and infants. The disease still kills more than 400,000 people a year even after dramatic progress with bed nets, insecticides and drugs.",
+                       ContentSummary = "A malaria vaccine with world-changing potential has been developed by scientists at the University of Oxford.",
+                       ImageLink = "https://th-thumbnailer.cdn-si-edu.com/rtG-9OlkiCC9hfOO7L3SWR-fK0M=/fit-in/1600x0/filters:focal(800x602:801x603)/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/6f/5d/6f5d7475-6831-4e03-a0d3-794909be6aa5/gettyimages-1140249297_web.jpg",
+                       Category = categoryHealth
+                   },
+
+                    new Article
+                    {
+                        Title = "iPhone 14 and 14 Pro Review: Go Pro or Go Home",
+                        LinkText = "iPhone 14 and 14 Pro Review: Go Pro or Go Home",
+                        Content = "I hear you. “Wait, wait, wait. In a 12 months when every part prices extra, together with precise apples, you need me to offer $2.5 trillion.Blame the “dynamic island,” a display compromise Apple has became a sensible multitasking trick on the iPhone 14 Pro and Pro Max. Also blame their always-on show and massive cameras.After spending practically per week testing the brand new telephones, I can say the extra “affordable” fashions are good selections, too. But this 12 months—greater than up to now—Apple’s top-of-the-line telephones do extra to justify their $200 worth bump.Plus, a pricier telephone may very well be inside attain now that mobile carriers have gone completely bananas with offers that may knock off lots of. (Yes, I’m conscious banana costs are up, too.) Before I clarify my reasoning, you need to perceive the 2 important iPhone 14 teams:• iPhone 14 ($799 and up) and iPhone 14 Plus ($899 and up): Herein referred to as the “regulars,” these have two cameras and colourful designs. (Gone is the smalr, cheaper Mini possibility.) The 14 has a 6.1-inch display and the Plus has a 6.7-inch display—in any other case, they’re equivalent in design.I plan to assessment the iPhone 14 Plus, due out Oct. 7, at a later date. The different telephones can be found on Sept. 16.",
+                        ContentSummary = "Forgive me buddies for what I’m about to say: You ought to simply purchase this 12 months’s $999-and-up iPhone Pros",
+                        ImageLink = "https://i.gadgets360cdn.com/large/iphone_14_apple_india_1662629536375.jpg",
+                        Category = categoryBusiness
+                    },
+
+                    new Article
+                    {
+                        Title = "Discover Maya history along Mexico’s first thru-hike",
+                        LinkText = "Discover Maya history along Mexico’s first thru-hike",
+                        Content = "West of Cancún’s tourist-filled beaches, a network of ancient walking paths and disused railway lines has been transformed into the Camino del Mayab (the Maya Way), Mexico’s first long-distance trail.Developed with Maya locals, the trail tells the story of Mexico’s Indigenous peoples and aims to lift the 14 communities that live along its 68-mile route from a history of colonial exploitation and cultural erosion.A three-day bike ride or a five-day hike takes visitors into the heart of the Maya world in Yucatán, from Dzoyaxché, a small community built around the faded yellow walls of a 19th-century hacienda some 15 miles south of Mérida, to the excavated temples of Mayapán, one of the last great Maya capital cities.”After the Spanish conquest of Yucatán in the 16th century, the Maya were left at the bottom of a racial caste system imposed by the European colonizers. The Maya language came second to Spanish, while Maya temples were knocked down and the stones used to build Christian churches.Almost 3,000 years ago, the first Maya cities were carved from forests like the ones in Dzoyaxché, where I join a small group cycling the Camino del Mayab. By the seventh century A.D. Maya civilization had expanded across Central America and southern Mexico, building monumental temples such as those at Chichen Itza in Mexico and Tikal in Guatemala.",
+                        ContentSummary = "Three years in the making, the 68-mile hiking and cycling trail visits almost forgotten Maya cultural sites.",
+                        ImageLink = "https://i.natgeofe.com/n/ce44d8a8-0a52-436a-8926-145e4792de2a/resized-Hacienda_Yaxcopoil_4x3.jpg",
+                        Category = categoryCulture
+                    }
                 );
-               
                 context.SaveChanges();
             }
         }

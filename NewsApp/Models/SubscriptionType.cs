@@ -9,5 +9,6 @@ namespace NewsApp.Models
         public string TypeName { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public virtual Subscription Subscription { get; set; }
     }
 }
