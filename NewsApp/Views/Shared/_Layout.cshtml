@@ -20,10 +20,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                   <p>Date/Time: <span id="datetime"></span></p>
 
-                    <script>
-                        var dt = new Date();
-                        document.getElementById("datetime").innerHTML = (("0" + (dt.getMonth() + 1)).slice(-2)) + "/" + (("0" + dt.getDate()).slice(-2)) + "/" + (dt.getFullYear()) + " " + (("0" + dt.getHours() + 1).slice(-2)) + ":" + (("0" + dt.getMinutes() + 1).slice(-2));
-                    </script>
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +"."+ (("0"+(dt.getMonth()+1)).slice(-2)) +"."+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+</script>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -33,14 +33,14 @@
           <div>
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Fourth navbar example" style="margin-bottom:30px">
                   <div class="container-fluid">
-                      <a class="navbar-brand text-warning" href="#">News </a>
+                      <a class="navbar-link navbar-brand text-warning" asp-controller="Article" asp-action="Index">News </a>
                       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                           <span class="navbar-toggler-icon"></span>
                        </button>
                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                <li class="nav-item">
-                                   <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-Id="2">World</a>
+                                   <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryId="2">World</a>
                                </li>
                                <li class="nav-item">
                                    <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryId="3">Sweden</a>
