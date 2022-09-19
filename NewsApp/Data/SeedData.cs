@@ -47,10 +47,10 @@ namespace NewsApp.Models
                     {
                         
                         Title = "Local article",
-                        LinkText = "Another title",
+                        LinkText = "Linlk url title",
                         Content = "",
                         ContentSummary = "Romantic Comedy",
-                        ImageLink = "http....",
+                        ImageLink = "https://m.media-amazon.com/images/M/MV5BYjc2YzNmZTEtYzU0Yy00MzE2LWFjNTEtNWI4ODVlOWEyNzFhXkEyXkFqcGdeQXVyMTQzMjU1NjE@._V1_.jpg",
                         Category = categoryLocal
                         
                     },
@@ -63,7 +63,7 @@ namespace NewsApp.Models
                         Content = "",
                         ContentSummary = "Romantic Comedy",
                         ImageLink = "http....",
-                        Category = categoryLocal
+                        Category = categoryWorld
                     }
                 );
                
