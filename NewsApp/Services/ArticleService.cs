@@ -1,6 +1,5 @@
 ﻿using NewsApp.Data;
 using NewsApp.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace NewsApp.Services
 {

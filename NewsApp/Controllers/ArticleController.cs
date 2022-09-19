@@ -24,15 +24,15 @@ namespace NewsApp.Controllers
         // GET: ArticleController/Details/5
         public IActionResult Details(int id)
         {
-            var article = _articleService.GetArticle(id);
-            return View(article);
+            var articles = _articleService.GetArticle(id);
+            return View(articles);
         }
 
         // GET: ArticleController/Create
         public IActionResult Create()
         {
-            var article = new Article();
-            return View(article);
+            
+            return View();
         }
 
         // POST: ArticleController/Create
