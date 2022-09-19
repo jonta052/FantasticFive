@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewsApp.Data;
 
@@ -11,9 +12,10 @@ using NewsApp.Data;
 namespace NewsApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220916081331_database-fixing")]
+    partial class databasefixing
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -273,10 +275,15 @@ namespace NewsApp.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("SubscriptionTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SubscriptionTypeId");
 
                     b.HasIndex("UserId");
 
@@ -297,16 +304,11 @@ namespace NewsApp.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("SubscriptionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("TypeName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SubscriptionId");
 
                     b.ToTable("SubscriptionTypes");
                 });
@@ -473,20 +475,17 @@ namespace NewsApp.Data.Migrations
 
             modelBuilder.Entity("NewsApp.Models.Subscription", b =>
                 {
+                    b.HasOne("NewsApp.Models.SubscriptionType", "SubscriptionType")
+                        .WithMany()
+                        .HasForeignKey("SubscriptionTypeId");
+
                     b.HasOne("NewsApp.Models.User", "User")
                         .WithMany("Subscription")
                         .HasForeignKey("UserId");
 
+                    b.Navigation("SubscriptionType");
+
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("NewsApp.Models.SubscriptionType", b =>
-                {
-                    b.HasOne("NewsApp.Models.Subscription", "Subscription")
-                        .WithMany("SubscriptionTypes")
-                        .HasForeignKey("SubscriptionId");
-
-                    b.Navigation("Subscription");
                 });
 
             modelBuilder.Entity("NewsApp.Models.Article", b =>
@@ -497,11 +496,6 @@ namespace NewsApp.Data.Migrations
             modelBuilder.Entity("NewsApp.Models.Category", b =>
                 {
                     b.Navigation("Articles");
-                });
-
-            modelBuilder.Entity("NewsApp.Models.Subscription", b =>
-                {
-                    b.Navigation("SubscriptionTypes");
                 });
 
             modelBuilder.Entity("NewsApp.Models.User", b =>

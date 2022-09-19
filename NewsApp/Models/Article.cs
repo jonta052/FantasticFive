@@ -20,7 +20,8 @@ namespace NewsApp.Models
         public int Views { get; set; }
         public int Likes { get; set; }
         public string ImageLink { get; set; }
-        public virtual ICollection<Category> Categories { get; set; }
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
 
     }

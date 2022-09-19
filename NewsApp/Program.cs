@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NewsApp.Data;
 using NewsApp.Models;
+using NewsApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,13 +25,21 @@ builder.Services.AddDefaultIdentity<User>(options =>
 builder.Services.AddControllersWithViews();
 
 //Add services here
-//builder.Services.AddScoped<IArticleService, ArticleService>();
-//builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<IArticleService, ArticleService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 
 var app = builder.Build();
 
 //Adds the required data to the database
 await Seeder.Seed(app);
+
+//Initializes seeding data from project models
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

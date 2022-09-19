@@ -1,82 +1,99 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NewsApp.Models;
+using NewsApp.Services;
 
 namespace NewsApp.Controllers
 {
     public class ArticleController : Controller
     {
-        // GET: ArticleController
-        public ActionResult Index()
+        private readonly IArticleService _articleService;
+        public ArticleController(IArticleService articleService)
         {
-            return View();
+            _articleService = articleService;
+        }
+
+
+        // GET: Article
+        public IActionResult Index()
+        {
+            var articles = _articleService.GetArticles();
+            return View(articles);
         }
 
         // GET: ArticleController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
-            return View();
+            var article = _articleService.GetArticle(id);
+            return View(article);
         }
 
         // GET: ArticleController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
-            return View();
+            var article = new Article();
+            return View(article);
         }
 
         // POST: ArticleController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(Article article)
         {
             try
             {
+                _articleService.CreateArticle(article);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(article);
             }
         }
 
         // GET: ArticleController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
-            return View();
+            var article = _articleService.GetArticle(id);
+            return View(article);
         }
 
         // POST: ArticleController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(int id, Article article)
         {
             try
             {
+                _articleService.UpdateArticle(article);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(article);
             }
         }
 
         // GET: ArticleController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var article = _articleService.GetArticle(id);
+            return View(article);
         }
 
         // POST: ArticleController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Article article)
         {
             try
             {
+                _articleService.DeleteArticle(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(article);
             }
         }
     }

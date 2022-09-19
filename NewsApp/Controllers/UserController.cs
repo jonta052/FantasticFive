@@ -1,14 +1,40 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NewsApp.Data;
+using NewsApp.Models;
+using System.Xml.Linq;
 
 namespace NewsApp.Controllers
 {
     public class UserController : Controller
     {
+        private readonly ApplicationDbContext _db;
+
+        public UserController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
         // GET: UserController
         public ActionResult Index()
         {
-            return View();
+            List<UserViewModel> users = new List<UserViewModel>();
+            
+            foreach (var user in _db.Users.ToList())
+            {
+                users.Add(new UserViewModel()
+                {
+                    UserId = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    PhoneNumber = user.PhoneNumber,
+                    DOB = user.DOB
+                });
+            }
+            return View(users);
         }
 
         // GET: UserController/Details/5
@@ -79,5 +105,6 @@ namespace NewsApp.Controllers
                 return View();
             }
         }
+        
     }
 }
