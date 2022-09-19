@@ -50,6 +50,10 @@ namespace NewsApp.Models
                 {
                     Name = "Culture"
                 };
+                Category categoryLocal = new Category
+                {
+                    Name = "Local"
+                };
                 //context.Categories.AddRange(
                 //    categoryLocal,
                 //    categoryWorld
