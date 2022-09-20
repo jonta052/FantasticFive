@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
 using NewsApp.Models;
 
@@ -14,37 +14,65 @@ namespace NewsApp.Controllers
             _db = db;
         }
         // GET: SubscriptionController
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            return View();
+            var listOfSubscriptions = _db.Subscriptions.ToList();
+            return View(listOfSubscriptions);
         }
 
         // GET: SubscriptionController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }
 
         // GET: SubscriptionController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
-            
 
-            return View(_db.SubscriptionTypes.ToList());
+            return View();
         }
 
         // POST: SubscriptionController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int subTypeId)
+        public IActionResult Create(string subscriptionType)
+        {
+            var subscriptionTypes = _db.SubscriptionTypes.ToList();
+            IEnumerable<SelectListItem> items =
+
+        from item in subscriptionTypes
+
+        select new SelectListItem
+
         {
 
+            Text = item.TypeName.ToString(),
+
+            Value = item.Price.ToString()
+
+        };
+            ViewBag.SubType = items;
+            /*if (!ModelState.IsValid)
+            { }*/
             try
             {
-                /*subscription.Expires = subscription.Created.AddDays(30);
-                subscription.KlarnaOrder = true;
-                subscription.IsActive = true;*/
-                //subscription.Price = ()
+                //subscription = (from s in _db.Subscriptions where s.Id == subId select s).FirstOrDefault();
+                Subscription subscription = new Subscription();
+                subscription.Expires = subscription.Created.AddDays(30);
+                //subscription.KlarnaOrder = true;
+                subscription.Active = true;
+
+                foreach (var item in items)
+                {
+                    if (item.Selected == true)
+                    {
+                        subscription.Price = decimal.Parse(item.Value);
+                    }
+                }
+
+                _db.Subscriptions.Add(subscription);
+                _db.SaveChanges();
 
                 return RedirectToAction(nameof(Index));
             }
@@ -52,10 +80,12 @@ namespace NewsApp.Controllers
             {
                 return View();
             }
+
+
         }
 
         // GET: SubscriptionController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             return View();
         }
@@ -63,7 +93,7 @@ namespace NewsApp.Controllers
         // POST: SubscriptionController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(int id, IFormCollection collection)
         {
             try
             {
@@ -76,7 +106,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: SubscriptionController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             return View();
         }
@@ -84,7 +114,7 @@ namespace NewsApp.Controllers
         // POST: SubscriptionController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int id, IFormCollection collection)
         {
             try
             {

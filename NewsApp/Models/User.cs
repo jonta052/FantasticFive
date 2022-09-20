@@ -21,6 +21,7 @@ namespace NewsApp.Models
         public DateTime CreatedAt { get; protected set; } = DateTime.Now;
 
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<KlarnaOrder> KlarnaOrders { get; set; }
 
         public string GetFullName()
         {
