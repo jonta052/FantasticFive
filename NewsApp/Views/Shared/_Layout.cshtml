@@ -18,11 +18,11 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                  <p>Date/Time: <span id="datetime"></span></p>
+                    <p>Date/Time: <span id="datetime"></span></p>
 
                     <script>
                         var dt = new Date();
-                        document.getElementById("datetime").innerHTML = (("0" + (dt.getMonth() + 1)).slice(-2)) + "/" + (("0" + dt.getDate()).slice(-2)) + "/" + (dt.getFullYear()) + " " + (("0" + dt.getHours() + 1).slice(-2)) + ":" + (("0" + dt.getMinutes() + 1).slice(-2));
+                        document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2));
                     </script>
                     <partial name="_LoginPartial" />
                 </div>
@@ -30,45 +30,45 @@
         </nav>
         <!--////////////////// -->
         <!-- second navbar -->
-          <div>
-              <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Fourth navbar example" style="margin-bottom:30px">
-                  <div class="container-fluid">
-                      <a class="navbar-brand text-warning" href="#">News </a>
-                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                          <span class="navbar-toggler-icon"></span>
-                       </button>
-                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                               <li class="nav-item">
-                                   <a class="nav-link" aria-current="page" href="#world" id="World">World</a>
-                               </li>
-                               <li class="nav-item">
-                                   <a class="nav-link" aria-current="page" href="#sweden" id="Sweden">Sweden</a>
-                               </li>
-                               <li class="nav-item">
-                                   <a class="nav-link" aria-current="page" href="#art" id="Art">Art</a>
-                               </li>
-                               <li class="nav-item">
-                                   <a class="nav-link" aria-current="page" href="#sports" id="Sports">Sports</a>
-                               </li>
-                               <li class="nav-item">
-                                   <a class="nav-link" aria-current="page" href="#health" id="Health">Health</a>
-                               </li>
-                               <li class="nav-item">
-                                   <a class="nav-link" aria-current="page" href="#business" id="Business">Business</a>
-                               </li>
-                               <li class="nav-item">
-                                   <a class="nav-link" aria-current="page" href="#culture" id="Culture">Culture</a>
-                               </li>
-                           </ul>
-                           <form class="d-flex">
-                               <input class="form-control me-2" type="search" placeholder="Search news">
-                               <button class="btn btn-outline-warning" type="button">Search</button>
-                           </form>
-                       </div>
-                  </div>
-              </nav>
-          </div>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Fourth navbar example" style="margin-bottom:30px">
+                <div class="container-fluid">
+                    <a class="navbar-link navbar-brand text-warning" asp-controller="Article" asp-action="Index">News </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryId="2">World</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryId="3">Sweden</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryId="4">Art</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryId="5">Sports</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryId="6">Health</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryId="7">Business</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryId="8">Culture</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search news">
+                            <button class="btn btn-outline-warning" type="button">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
         <!--////////////////// -->
     </header>
     <div class="container">
@@ -77,9 +77,39 @@
         </main>
     </div>
 
+
+
+
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - NewsApp.FantasticFive - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-4">
+                    &copy; 2022 - NewsApp.FantasticFive - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </div>
+                <div class="col-4" style="text-align: center">
+                    <h5 style="text-align: center;font-weight: bold; display: inline-block">About Us<br /></h5>
+
+                </div>
+                <div class="col-4" style="text-align: center">
+                    <h5 style="text-align: center;font-weight: bold; display: inline-block">Follow Us&nbsp&nbsp&nbsp&nbsp<br /></h5>
+                     <a class="fs-3 text-dark text-decoration-none" href="https://instagram.com">
+                        <i class="fab fa-instagram-square"></i>
+                    </a>
+                    <a class="fs-3 text-dark text-decoration-none" href="https://twitter.com">
+                        <i class="fab fa-twitter-square"></i>
+                    </a>
+                    <a class="fs-3 text-dark text-decoration-none" href="https://linkedin.com">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a class="fs-3 text-dark text-decoration-none" href="https://youtube.com">
+                        <i class="fab fa-youtube-square"></i>
+                    </a>
+                    <a class="fs-3 text-dark text-decoration-none" href="https://facebook.com">
+                        <i class="fab fa-facebook-square"></i>
+                    </a>
+                </div>
+                
+            </div>
         </div>
 
             <div b-49o2ir77gm class="col-md-2">
@@ -90,6 +120,11 @@
             </div>
 
     </footer>
+
+
+
+    <script src="https://kit.fontawesome.com/84f924f5fc.js" crossorigin="anonymous"></script>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

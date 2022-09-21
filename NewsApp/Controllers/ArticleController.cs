@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NewsApp.Data;
 using NewsApp.Models;
 using NewsApp.Services;
 
@@ -8,9 +9,14 @@ namespace NewsApp.Controllers
     public class ArticleController : Controller
     {
         private readonly IArticleService _articleService;
-        public ArticleController(IArticleService articleService)
+      
+        private readonly ApplicationDbContext _db;
+
+
+        public ArticleController(IArticleService articleService, ApplicationDbContext db)
         {
             _articleService = articleService;
+            _db = db;
         }
 
 
@@ -96,5 +102,14 @@ namespace NewsApp.Controllers
                 return View(article);
             }
         }
+
+       public IActionResult CategoryIndex(string CategoryId)
+        {
+            int categoryIdInt = Convert.ToInt32(CategoryId);
+            var category = _db.Categories.Find(categoryIdInt);
+            var catagoryArticles = from a in _db.Articles where a.CategoryId == categoryIdInt select a;
+            return View(catagoryArticles);
+        }
+
     }
 }

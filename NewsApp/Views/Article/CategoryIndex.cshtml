@@ -1,13 +1,12 @@
 ﻿@model IEnumerable<NewsApp.Models.Article>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "CategoryIndex";
 }
 
-<h1>All Article</h1>
-<br />
-<br />
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 
 @foreach(var item in Model)
 {
@@ -15,8 +14,8 @@
     <div class="container main-content">
       <div class="row">
         <div class="col-md-8">
-            @*<h1 class="text-center bg-secondary">@item.Category.Name</h1>*@
-            <h2 class="bg-dark text-light text-lg-center" >@item.Title</h2>
+            <h1 class="text-center bg-secondary">@item.Category.Name</h1>
+            <h2 style="text-align:center">@item.Title</h2>
             <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="830" height="500" />
             <div style="text-align:center">@item.ContentSummary</div>
             <div></div>
@@ -24,7 +23,5 @@
         </div>
       </div>
    </div>
-   <br />
-   <br />
 }
 

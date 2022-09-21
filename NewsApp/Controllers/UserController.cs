@@ -18,7 +18,7 @@ namespace NewsApp.Controllers
             _db = db;
         }
         // GET: UserController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             List<UserViewModel> users = new List<UserViewModel>();
             
