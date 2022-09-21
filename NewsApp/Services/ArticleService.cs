@@ -29,8 +29,8 @@ namespace NewsApp.Services
 
         public Article GetArticle(int id)
         {
-            /*var article = _db.Articles.Find(id);
-            _db.Entry(article).Collection(a => a.Comments).Load();*/
+            var article = _db.Articles.Find(id);
+            _db.Entry(article).Collection(a => a.Comments).Load();
 
             /*var article = _db.Articles.Include(a => a.Comments)
                 .FirstOrDefault(a => a.Id == id);*/
@@ -38,7 +38,7 @@ namespace NewsApp.Services
             //Use any of the two methods above or install
             //lazy loading from nuget packet manager,
             //don't forget to add virtual in models
-            var article = _db.Articles.Find(id);
+            //var article = _db.Articles.Find(id);
             return article;
             
         }
