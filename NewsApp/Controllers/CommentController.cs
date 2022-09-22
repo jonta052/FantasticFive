@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NewsApp.Models;
@@ -30,6 +31,7 @@ namespace NewsApp.Controllers
         //}
 
         // GET: CommentController/Details/5
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
             var comment = _commentService.GetComment(id);
@@ -50,7 +52,7 @@ namespace NewsApp.Controllers
                 Article = article
 
             };
-
+            
             return View(comment);
         }
 
@@ -65,6 +67,9 @@ namespace NewsApp.Controllers
                 Body = commentBody
             };
 
+            var user = _userManager.GetUserAsync(User).Result;
+               comment.UserId=user.Id;
+            _commentService.CreateComment(comment);
             return RedirectToAction("Details", "Article", new {id = articleId});
         }
 
