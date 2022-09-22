@@ -8,9 +8,10 @@
 
 <a asp-action="Details" asp-controller="Comment" asp-route-id="@Model.Id" class="text-decoration-none text-dark">
 
-<div class="card mt-2" style="width: 18rem;">
+<div class="card mt-2" style="width: 53rem;">
   <div class="card-body">
     <h5 class="card-title">@Model.User.GetFullName()</h5>
+    
     <p class="card-text">@Model.Body</p>
 
         @if (Model.User.Id==userId)

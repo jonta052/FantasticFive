@@ -16,3 +16,42 @@ html {
 body {
   margin-bottom: 60px;
 }
+.like-button {
+    float: left;
+    padding: 1em;
+    border: 1px solid grey;
+    border-radius: 0.5em;
+    font-weight: bold;
+    background-color: #f7f7f7;
+}
+.button-container {
+    display: inline-block;
+    margin: 0 10px;
+}
+.opinion-wrapper {
+    width: 65%;
+    padding: 1em;
+    background-color: #ecebeb;
+    margin-bottom: 2em;
+    border-radius: 5px;
+    text-align: center;
+}
+.like-text {
+    float: left;
+    margin: 0.7em 2em 0.7em 1em;
+    font-size: 18px;
+}
+.comment-form-comment {
+    font-size: 18px;
+    position: relative;
+}
+.comment {
+    display: block;
+    width: 70%;
+    margin-right: 0;
+    font-size: 1.3em;
+    padding: 0.5em 2em 0.5em 0.5em;
+    border-radius: 5px;
+    resize: none;
+    overflow: auto;
+}

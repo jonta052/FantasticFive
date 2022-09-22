@@ -57,17 +57,15 @@ namespace NewsApp.Controllers
         // POST: CommentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind(nameof(Comment.Body), nameof(Comment.ArticleId))] Comment comment)
+        public IActionResult Create(int articleId, string commentBody)
         {
-            ModelState.Remove("UserId");
-            if (ModelState.IsValid)
+            var comment = new Comment
             {
-                var user = _userManager.GetUserAsync(User).Result;
-                comment.User = user;
-                _commentService.CreateComment(comment);
-                return RedirectToAction("Details", "Article", new { id = comment.ArticleId });
-            }
-            return View(comment);
+                ArticleId = articleId,
+                Body = commentBody
+            };
+
+            return RedirectToAction("Details", "Article", new {id = articleId});
         }
 
 
