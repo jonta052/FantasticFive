@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NewsApp.Data;
 using NewsApp.Models;
 using NewsApp.Services;
 
 namespace NewsApp.Controllers
 {
+    //[Authorize(Roles = $"{Roles.Administrator}, {Roles.User}")]
     public class CommentController : Controller
     {
         private readonly ICommentService _commentService;
@@ -31,7 +33,9 @@ namespace NewsApp.Controllers
         //}
 
         // GET: CommentController/Details/5
-        [AllowAnonymous]
+
+
+        //[AllowAnonymous]
         public IActionResult Details(int id)
         {
             var comment = _commentService.GetComment(id);
@@ -39,6 +43,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: CommentController/Create
+        [Authorize]
         public IActionResult Create(int id)
         {
             var article = _articleService.GetArticle(id);
@@ -59,6 +64,7 @@ namespace NewsApp.Controllers
         // POST: CommentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Create(int articleId, string commentBody)
         {
             var comment = new Comment
@@ -76,6 +82,7 @@ namespace NewsApp.Controllers
 
 
         // GET: CommentController/Delete/5
+        [Authorize]
         public IActionResult Delete(int id)
         {
             var UserId = _userManager.GetUserId(User);
@@ -91,6 +98,7 @@ namespace NewsApp.Controllers
         // POST: CommentController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Delete(int id, Comment comment)
         {
             try
