@@ -29,8 +29,8 @@ namespace NewsApp.Services
 
         public Article GetArticle(int id)
         {
-            /*var article = _db.Articles.Find(id);
-            _db.Entry(article).Collection(a => a.Comments).Load();*/
+            //var article = _db.Articles.Find(id);
+            //_db.Entry(article).Collection(a => a.Comments).Load();
 
             /*var article = _db.Articles.Include(a => a.Comments)
                 .FirstOrDefault(a => a.Id == id);*/

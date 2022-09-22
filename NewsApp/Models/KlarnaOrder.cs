@@ -10,7 +10,7 @@
         public string FraudStatus { get; set; }
         public string RedirectUrl { get; set; }
         public virtual ICollection<Subscription> Subscriptions { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
     }
 }

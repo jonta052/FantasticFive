@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
 using NewsApp.Models;
 using NewsApp.Services;
@@ -23,21 +24,28 @@ namespace NewsApp.Controllers
         // GET: Article
         public IActionResult Index()
         {
+            
             var articles = _articleService.GetArticles();
+
+
+
             return View(articles);
         }
 
         // GET: ArticleController/Details/5
         public IActionResult Details(int id)
-        {
-            var articles = _articleService.GetArticle(id);
-            return View(articles);
+        {          
+            var article = _articleService.GetArticle(id);
+            return View(article);
         }
 
         // GET: ArticleController/Create
         public IActionResult Create()
         {
-            
+            var categories = _db.Categories.ToList();
+            var selectList = new SelectList(categories, "Id", "Name");
+
+            ViewBag.CategoryName = selectList;
             return View();
         }
 
@@ -46,6 +54,10 @@ namespace NewsApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Article article)
         {
+            var categories = _db.Categories.ToList();
+            var selectList = new SelectList(categories, "Id", "Name");
+
+            ViewBag.CategoryName = selectList;
             try
             {
                 _articleService.CreateArticle(article);

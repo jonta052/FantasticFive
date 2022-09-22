@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NewsApp.Data;
 using NewsApp.Models;
 using NewsApp.Services;
 
 namespace NewsApp.Controllers
 {
+    //[Authorize(Roles = $"{Roles.Administrator}, {Roles.User}")]
     public class CommentController : Controller
     {
         private readonly ICommentService _commentService;
@@ -30,6 +33,9 @@ namespace NewsApp.Controllers
         //}
 
         // GET: CommentController/Details/5
+
+
+        //[AllowAnonymous]
         public IActionResult Details(int id)
         {
             var comment = _commentService.GetComment(id);
@@ -37,6 +43,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: CommentController/Create
+        [Authorize]
         public IActionResult Create(int id)
         {
             var article = _articleService.GetArticle(id);
@@ -50,29 +57,32 @@ namespace NewsApp.Controllers
                 Article = article
 
             };
-
+            
             return View(comment);
         }
 
         // POST: CommentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind(nameof(Comment.Body), nameof(Comment.ArticleId))] Comment comment)
+        [Authorize]
+        public IActionResult Create(int articleId, string commentBody)
         {
-            ModelState.Remove("UserId");
-            if (ModelState.IsValid)
+            var comment = new Comment
             {
-                var user = _userManager.GetUserAsync(User).Result;
-                comment.User = user;
-                _commentService.CreateComment(comment);
-                return RedirectToAction("Details", "Article", new { id = comment.ArticleId });
-            }
-            return View(comment);
+                ArticleId = articleId,
+                Body = commentBody
+            };
+
+            var user = _userManager.GetUserAsync(User).Result;
+               comment.UserId=user.Id;
+            _commentService.CreateComment(comment);
+            return RedirectToAction("Details", "Article", new {id = articleId});
         }
 
 
 
         // GET: CommentController/Delete/5
+        [Authorize]
         public IActionResult Delete(int id)
         {
             var UserId = _userManager.GetUserId(User);
@@ -88,6 +98,7 @@ namespace NewsApp.Controllers
         // POST: CommentController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Delete(int id, Comment comment)
         {
             try

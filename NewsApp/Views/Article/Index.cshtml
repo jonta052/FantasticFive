@@ -6,8 +6,10 @@
 
 <h1>All Article</h1>
 <br />
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <br />
-
 
 @foreach(var item in Model)
 {
@@ -16,9 +18,11 @@
       <div class="row">
         <div class="col-md-8">
             @*<h1 class="text-center bg-secondary">@item.Category.Name</h1>*@
-            <h2 class="bg-dark text-light text-lg-center" >@item.Title</h2>
+            <h2 class="bg-dark text-light text-lg-center" >@item.Title</h2><br />
             <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="830" height="500" />
             <div style="text-align:center">@item.ContentSummary</div>
+             <a asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
+             <hr>
             <div></div>
           
         </div>
