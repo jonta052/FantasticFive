@@ -10,6 +10,63 @@
 </head>
 <body>
     <header>
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+                <div class="carousel-item active col-md-3 p-2 bg-light text-dark text-center">
+                    <span class="p-2">Silver</span>
+                    <span class="p-2">19.413</span>
+                    <span class="bg-success">+0.28%</span>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="p-2">Brent Oil</span>
+                    <span class="p-2">91.96</span>
+                    <span class="bg-danger">-0.04%</span>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="p-2">Natural Gas</span>
+                    <span class="p-2">7.836</span>
+                    <span class="bg-danger">-0.38%</span>
+                </div>
+
+                <div class="carousel-item  col-md-3 p-2 bg-light text-dark text-center">
+                    <span class="p-2">Apple</span>
+                    <span class="p-2">154.48</span>
+                    <span class="bg-success">+2.51</span>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="p-2">EUR/USD</span>
+                    <span class="p-2">0.9984</span>
+                    <span class="bg-danger">-0.34%</span>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="p-2">Netflix</span>
+                    <span class="p-2">243.63</span>
+                    <span class="bg-success">+1.46%</span>
+                </div>
+
+                <div class="carousel-item  col-md-3 p-2 bg-light text-dark text-center">
+                    <span class="p-2">Gold (USD/oz)</span>
+                    <span class="p-2">1672.6</span>
+                    <span class="bg-danger">-0.65%</span>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="p-2">Nikkei 225</span>
+                    <span class="p-2">27567.65</span>
+                    <span class="bg-danger">-1.11%</span>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="p-2">Tesla</span>
+                    <span class="p-2">309.07</span>
+                    <span class="bg-success">+1.89%</span>
+                </div>
+            </div>
+
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewsApp</a>
@@ -85,15 +142,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-4">
-                    &copy; 2022 - NewsApp.FantasticFive - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                 </div>
-                <div class="col-4" style="text-align: center">
-                    <h5 style="text-align: center;font-weight: bold; display: inline-block">About Us<br /></h5>
 
+                <div class="col-4" style="text-align: center">
+                    <a asp-area="" asp-controller="Home" asp-action="About">About Us</a>
                 </div>
+
                 <div class="col-4" style="text-align: center">
                     <h5 style="text-align: center;font-weight: bold; display: inline-block">Follow Us&nbsp&nbsp&nbsp&nbsp<br /></h5>
-                     <a class="fs-3 text-dark text-decoration-none" href="https://instagram.com">
+                    <a class="fs-3 text-dark text-decoration-none" href="https://instagram.com">
                         <i class="fab fa-instagram-square"></i>
                     </a>
                     <a class="fs-3 text-dark text-decoration-none" href="https://twitter.com">
@@ -109,8 +167,12 @@
                         <i class="fab fa-facebook-square"></i>
                     </a>
                 </div>
-                
+
             </div>
+        </div>
+
+        <div style="text-align: center">
+            &copy; 2022 - NewsApp.FantasticFive
         </div>
 
     </footer>
