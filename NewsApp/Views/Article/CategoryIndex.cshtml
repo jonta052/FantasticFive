@@ -4,80 +4,21 @@
     ViewData["Title"] = "CategoryIndex";
 }
 
-<h1>CategoryIndex</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateStamp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LinkText)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContentSummary)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Views)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Likes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateStamp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LinkText)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContentSummary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Views)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Likes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@foreach(var item in Model)
+{
+  
+    <div class="container main-content">
+      <div class="row">
+        <div class="col-md-8">
+            <h1 class="text-center bg-secondary">@item.Category.Name</h1>
+            <h2 style="text-align:center">@item.Title</h2>
+            <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="830" height="500" />
+            <div style="text-align:center">@item.ContentSummary</div>
+            <a asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
+          <br><br>
+        </div>
+      </div>
+   </div>
 }
-    </tbody>
-</table>
+

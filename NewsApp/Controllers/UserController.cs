@@ -18,23 +18,23 @@ namespace NewsApp.Controllers
             _db = db;
         }
         // GET: UserController
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            List<UserViewModel> users = new List<UserViewModel>();
+            //List<UserViewModel> users = new List<UserViewModel>();
             
-            foreach (var user in _db.Users.ToList())
-            {
-                users.Add(new UserViewModel()
-                {
-                    UserId = user.Id,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Email = user.Email,
-                    PhoneNumber = user.PhoneNumber,
-                    DOB = user.DOB
-                });
-            }
-            return View(users);
+            //foreach (var user in _db.Users.ToList())
+            //{
+            //    users.Add(new UserViewModel()
+            //    {
+            //        UserId = user.Id,
+            //        FirstName = user.FirstName,
+            //        LastName = user.LastName,
+            //        Email = user.Email,
+            //        PhoneNumber = user.PhoneNumber,
+            //        DOB = user.DOB
+            //    });
+            //}
+            return View(_db.Users.ToList());
         }
 
         // GET: UserController/Details/5

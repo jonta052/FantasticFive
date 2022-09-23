@@ -4,31 +4,81 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+    <div class="container main-content">
+      <div class="row">
+        <div class="col-md-8">
+            <h1 class="text-center bg-secondary">@Model.Category.Name</h1>
+            <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title" width="830" height="500" />
+            <h2 style="text-align:center">@Model.Title</h2><br />
+            <div>@Model.Content</div>
+          <br><br>
+        </div>
+      </div>
+   </div>
+   <hr />
+   @Model.DateStamp
+   <hr />
 
-<div>
-    <h4>Article</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-    </dl>
-
-    <a asp-action="Create" asp-controller="Comment" asp-route-id="@Model.Id">Make a comment.</a>
-
+   <div>
+        <h2 style="vertical-align:inherit">What do you think of the news?</h2>
+        <div class="opinion-wrapper">
+             <div class="button-container">
+                <button class="like-button" id="like-button" onclick="like()">
+                <img src="/wp-content/themes/8sidor/images/like.png" alt="">
+                Like
+                </button>
+                <p class="like-text">
+                    <span>
+                        @Model.Likes Person
+                    </span>
+                </p>
+             </div>
+           <div class="button-container">
+                <button class="like-button" id="like-button" onclick="Don't like()">
+                <img src="/wp-content/themes/8sidor/images/like.png" alt="">
+                Dislike
+                </button>
+                <p class="like-text">
+                    <span>
+                        @Model.Likes Person
+                    </span>
+                </p>
+             </div>
+        </div>
+   </div>
+   
+   <h2>Comments</h2>
     <div class="my-4">   
         @foreach(var comment in Model.Comments)
         {
             <partial name="_CommentPartial" model="comment"/>
         }
     </div>
+     @*<a asp-action="Create" asp-controller="Comment" asp-route-id="@Model.Id">Make a comment.</a>*@
+      
+    <div class="row">
+        <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Comment">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" name="articleId" value="@Model.Id" />
+            <p class="comment-form-comment">
+            <div class="form-group" style="font-weight:600">Comment
+                <label for="commentBody" class="control-label" ></label>
+                    <input id="commentBody" name="commentBody"  class="form-control" />
+            </div>
+            </p>
+            <div class="form-group">
+                 <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </div>
+
+
+
+@*</div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 

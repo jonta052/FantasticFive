@@ -5,34 +5,30 @@
 }
 
 <h1>All Article</h1>
-
+<br />
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-              <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="150" height="200" />
-            </td>
+<br />
 
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@foreach(var item in Model)
+{
+  
+    <div class="container main-content">
+      <div class="row">
+        <div class="col-md-8">
+            @*<h1 class="text-center bg-secondary">@item.Category.Name</h1>*@
+            <h2 class="bg-dark text-light text-lg-center" >@item.Title</h2><br />
+            <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="830" height="500" />
+            <div style="text-align:center">@item.ContentSummary</div>
+             <a asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
+             <hr>
+            <div></div>
+          
+        </div>
+      </div>
+   </div>
+   <br />
+   <br />
 }
-    </tbody>
-</table>
+

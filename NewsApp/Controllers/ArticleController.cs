@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
 using NewsApp.Models;
 using NewsApp.Services;
@@ -23,21 +24,28 @@ namespace NewsApp.Controllers
         // GET: Article
         public IActionResult Index()
         {
+            
             var articles = _articleService.GetArticles();
+
+
+
             return View(articles);
         }
 
         // GET: ArticleController/Details/5
         public IActionResult Details(int id)
-        {
-            var articles = _articleService.GetArticle(id);
-            return View(articles);
+        {          
+            var article = _articleService.GetArticle(id);
+            return View(article);
         }
 
         // GET: ArticleController/Create
         public IActionResult Create()
         {
-            
+            var categories = _db.Categories.ToList();
+            var selectList = new SelectList(categories, "Id", "Name");
+
+            ViewBag.CategoryName = selectList;
             return View();
         }
 
@@ -46,6 +54,10 @@ namespace NewsApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Article article)
         {
+            var categories = _db.Categories.ToList();
+            var selectList = new SelectList(categories, "Id", "Name");
+
+            ViewBag.CategoryName = selectList;
             try
             {
                 _articleService.CreateArticle(article);
@@ -103,11 +115,12 @@ namespace NewsApp.Controllers
             }
         }
 
-       public IActionResult CategoryIndex(string CategoryId)
+       public IActionResult CategoryIndex(string CategoryName)
         {
-            int categoryIdInt = Convert.ToInt32(CategoryId);
-            var category = _db.Categories.Find(categoryIdInt);
-            var catagoryArticles = from a in _db.Articles where a.CategoryId == categoryIdInt select a;
+            //Get category from category name
+            var category = _db.Categories.Where(c => c.Name == CategoryName).FirstOrDefault();
+            //Get articles belonging to that category
+            var catagoryArticles = from a in _db.Articles where a.CategoryId == category.Id select a;
             return View(catagoryArticles);
         }
 
