@@ -115,11 +115,12 @@ namespace NewsApp.Controllers
             }
         }
 
-       public IActionResult CategoryIndex(string CategoryId)
+       public IActionResult CategoryIndex(string CategoryName)
         {
-            int categoryIdInt = Convert.ToInt32(CategoryId);
-            var category = _db.Categories.Find(categoryIdInt);
-            var catagoryArticles = from a in _db.Articles where a.CategoryId == categoryIdInt select a;
+            //Get category from category name
+            var category = _db.Categories.Where(c => c.Name == CategoryName).FirstOrDefault();
+            //Get articles belonging to that category
+            var catagoryArticles = from a in _db.Articles where a.CategoryId == category.Id select a;
             return View(catagoryArticles);
         }
 
