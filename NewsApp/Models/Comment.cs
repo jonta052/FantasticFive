@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace NewsApp.Models
 {
@@ -8,6 +9,7 @@ namespace NewsApp.Models
 
         [Required]
         [StringLength(150, MinimumLength = 3)]
+        [DisplayName("Comment")]
         public string Body { get; set; }
 
         public int ArticleId { get; set; }
