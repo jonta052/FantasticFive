@@ -29,9 +29,23 @@ namespace NewsApp.Controllers
         {
             return View();
         }*/
+        public IActionResult Create()
+        {
+            SubscriptionType subscriptionType = new SubscriptionType();
+
+            return View(subscriptionType);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(SubscriptionType subscriptionType)
+        {
+            _db.SubscriptionTypes.Add(subscriptionType);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         // GET: SubscriptionController/Create
-        public IActionResult Create()
+        public IActionResult CreateUserSubscription()
         {
             var subscriptionTypes = _db.SubscriptionTypes.ToList();
             //add price here
@@ -42,8 +56,8 @@ namespace NewsApp.Controllers
 
         // POST: SubscriptionController/Create
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public IActionResult Create(int subId)
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateUserSubscription(int subId)
         {
             var subscriptionTypes = _db.SubscriptionTypes.ToList();
             var user = _userManager.GetUserAsync(User).Result;

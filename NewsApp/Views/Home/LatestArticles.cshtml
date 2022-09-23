@@ -1,0 +1,83 @@
+﻿@model NewsApp.Models.Article
+
+@{
+    ViewData["Title"] = "LatestArticles";
+}
+
+<h1>Latest Articles</h1>
+
+<h4>Article</h4>
+<hr /><table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateStamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LinkText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContentSummary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Views)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Likes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageLink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(Model => Model.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.DateStamp)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.LinkText)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.ContentSummary)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.Views)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.Likes)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.ImageLink)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.Category.Id)
+            </td>
+            
+        </tr>
+
+    </tbody>
+</table>
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
