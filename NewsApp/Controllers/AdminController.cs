@@ -58,8 +58,10 @@ namespace NewsApp.Controllers
 
         public IActionResult AssignUserRole(string Id)
         {
-            TempData["UserId"] = Id;
-
+            if (string.IsNullOrEmpty(Id))
+            {
+                return View();
+            }
             //Create list of roles for the dropdown
             var userroles = _db.Roles.ToList();
             var selectList = new SelectList(userroles, "Id", "Name");
@@ -69,9 +71,10 @@ namespace NewsApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AssignUserRole(string roleId, Guid userId)
+        public async Task<IActionResult> AssignUserRole(string roleId, string Id)
         {
-            userId = (Guid)TempData["UserId"];
+            var userId = Id;
+   
             var theUser = (from u in _db.Users where u.Id == userId.ToString() select u).FirstOrDefault();
 
             //Create list of roles for the dropdown
