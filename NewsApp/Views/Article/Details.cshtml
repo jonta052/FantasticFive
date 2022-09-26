@@ -1,4 +1,7 @@
-﻿@model NewsApp.Models.Article
+﻿@using Microsoft.AspNetCore.Identity
+@model NewsApp.Models.Article
+@inject SignInManager<User> SignInManager
+
 
 @{
     ViewData["Title"] = "Details";
@@ -55,7 +58,9 @@
         }
     </div>
      @*<a asp-action="Create" asp-controller="Comment" asp-route-id="@Model.Id">Make a comment.</a>*@
-      
+     
+@if (SignInManager.IsSignedIn(User))
+{
     <div class="row">
         <div class="col-md-4">
         <form asp-action="Create" asp-controller="Comment">
@@ -64,7 +69,8 @@
             <p class="comment-form-comment">
             <div class="form-group" style="font-weight:600">Comment
                 <label for="commentBody" class="control-label" ></label>
-                    <input id="commentBody" name="commentBody"  class="form-control" />
+                    <textarea id="commentBody" name="commentBody" rows="5" cols="110">
+                    </textarea>
             </div>
             </p>
             <div class="form-group">
@@ -73,6 +79,9 @@
         </form>
     </div>
 </div>
+
+}
+
 
 
 
