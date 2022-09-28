@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NewsApp.Data;
 using NewsApp.Models;
 using System.Diagnostics;
@@ -9,11 +10,13 @@ namespace NewsApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _db;
+        private readonly HttpClient _httpClient;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db, IHttpClientFactory httpClientFactory)
         {
             _logger = logger;
             _db = db;
+            _httpClient = httpClientFactory.CreateClient("weatherForecast");
         }
 
         public IActionResult Index()
@@ -55,6 +58,24 @@ namespace NewsApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public async Task <IActionResult> WeatherApp(/*string city*/)
+        {
+            /*if (string.IsNullOrEmpty(city))
+            {
+                return View();
+            }*/
+            var result = await _httpClient.GetAsync($"Forecast?city=linköping");
+            //var body = await result.Content.ReadAsStringAsync();
+
+            if (result.IsSuccessStatusCode)
+            {
+                var forecast = await result.Content.ReadFromJsonAsync<WeatherForecast>();
+                //ViewBag.result = body;
+                return View(forecast);
+            }
+            return View();
         }
 
     }
