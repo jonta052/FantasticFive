@@ -28,6 +28,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 
+builder.Services.AddHttpClient("weatherForecast", config => {
+
+    config.BaseAddress = new("https://weatherapi.dreammaker-it.se/");
+
+});
+
 var app = builder.Build();
 
 //Adds the required data to the database

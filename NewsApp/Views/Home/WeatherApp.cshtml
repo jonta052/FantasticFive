@@ -1,0 +1,66 @@
+﻿@model WeatherForecast
+
+@{
+    ViewData["Title"] = "Forecast";
+}
+<!--
+<form method="get">
+    <input name="city" type="text" placeholder="City"/>
+    <button type="submit">Submit</button>
+</form>-->
+
+@*@if (Model != null)
+{
+    <div id="hello" data-toggle="popover" data-trigger="hover">
+        <p>City: @Model.City</p>
+        <p>Summary: @Model.Summary</p>
+        <p>Temperature: @Model.TemperatureC &#8451</p>
+        <p>Humidity: @Model.Humidity %</p>
+        <p>Wind Speed: @Model.WindSpeed ms</p>
+        <p>Date: @Model.Date</p>
+    </div>
+    
+}*@
+<!-- <button id="hej" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom">
+    Popover on bottom
+</button><br />-->
+<img id="wicon" class="mr-3" alt="Sample Image" style="width:50px;" data-bs-toggle="popover" data-bs-placement="bottom">
+
+<!-- 
+<button type="button" class="btn btn-primary" data-toggle="popover" title="User Info">Popover with Title</button>
+-->
+
+@section Scripts
+{
+<script>
+
+        $(document).ready(function () {
+            //const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+            //const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
+            
+            function weatherIcon() {
+                if (@Model?.TemperatureC > 10) 
+                {
+                    document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+                    return "hot";
+                }
+                else
+                {
+                    document.getElementById('wicon').src = "/Image/weather/sun.png";
+                    return "cold";
+                }
+                
+            }
+            
+                $('[data-bs-toggle="popover"]').popover({
+                trigger: 'hover',
+                html: true,
+                content: `<div><div style="float:left;width:50%"><p>City:<p/><p>Summary:<p/><p>Temperature:<p/></div><div style="float:left;width:50%"><p>@Model?.City<p><p>@Model?.Summary</p>
+                                <p>@Model?.TemperatureC  &#8451 ${weatherIcon()}</p></div></div>`
+            });
+           
+        });
+       
+</script>
+}
