@@ -57,7 +57,6 @@
                 </div>
             </div>
 
-
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -67,32 +66,42 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark" border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewsApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                  <p>Date/Time : <span id="datetime"></span></p>
+                <div>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img height="50" width="50" src="~/image/news-5-logo.jpg" />NewsApp</a>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
+                        <p style="color: white; ">@*Date/Time : *@<span id="datetime"></span></p>
 
-                    <script>
+                        <script>
 
-                        setInterval(timer,1000);
-                        function timer(){
-                        var dt = new Date();
-                            document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2)) + ":" + (("0" + dt.getSeconds()).slice(-2));
-                        }
-                    </script>
-                    <partial name="_LoginPartial" />
+                            setInterval(timer, 1000);
+                            function timer() {
+                                var dt = new Date();
+                                document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2)) + ":" + (("0" + dt.getSeconds()).slice(-2));
+                            }
+                        </script>
+
+                    </div>
                 </div>
             </div>
+
+            <div style="text-align: right">
+                <partial name="_LoginPartial" />
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search news">
+                    <button class="btn btn-outline-warning" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+
         </nav>
+
         <!--////////////////// -->
         <!-- second navbar -->
         <div>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Fourth navbar example" style="margin-bottom:30px">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Fourth navbar example" style="margin-bottom:30px">
                 <div class="container-fluid">
                     <a class="navbar-link navbar-brand text-warning" asp-controller="Article" asp-action="Index">News </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,10 +132,7 @@
                                 <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Culture">Culture</a>
                             </li>
                         </ul>
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search news">
-                            <button class="btn btn-outline-warning" type="button">Search</button>
-                        </form>
+
                     </div>
                 </div>
             </nav>
@@ -134,16 +140,15 @@
         <!--////////////////// -->
     </header>
     <div class="container">
-            @RenderBody()
+        @RenderBody()
     </div>
     <br />
-    <hr />
-   
-
     
-     <br />
+
+
+    <br />
     <footer>
-        
+        <hr />
         <div class="container body-content">
             <div class="row">
                 <div class="col-4">
