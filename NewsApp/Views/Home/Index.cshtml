@@ -17,15 +17,18 @@
 
     <div class="col-md-4" style="background-color:palegoldenrod; margin:0px; border-color:black">
         <ul>
+            
             <li>
-                <h3>Popular News</h3><hr />
+                <a class="side-view-link" asp-controller="Home" asp-action="PopularArticles" asp-route-CatagoryName="PopularNews"><h3>Popular News</h3></a><hr />
             </li>
             <li>
-                <h3>Latest News</h3><hr />
+             <a class="side-view-link" asp-controller="Home" asp-action="LatestArticles" asp-route-CatagoryName="LatestNews"><h3>Latest News</h3></a><hr />
             </li>
             <li>
                 <h3>Editor choice</h3><hr />
             </li>
+            
+           
         </ul>
     </div>
 
@@ -90,7 +93,7 @@
         </div>
         <br />
         <h3 class="card-title text-center m-5">Unemployment falls, whilst inflation continues to rise</h3>
-        <img src="/Images/Tomatoes.PNG" class="card-img-top" alt="...">
+        <img src="" class="card-img-top" alt="...">
         <div class="card-body">
             <p class="card-text">At the end of August there were roughly 335,000 people registered at the employment agency.</p>
             <a class="btn btn-primary" href="/Article/FullArticle/23">View Full Article</a>
