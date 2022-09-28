@@ -11,12 +11,15 @@ namespace NewsApp.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _db;
         private readonly HttpClient _httpClient;
+        private readonly HttpClient _stockMarket;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db, IHttpClientFactory httpClientFactory)
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db, IHttpClientFactory httpClientFactory, IHttpClientFactory stockMarket)
         {
             _logger = logger;
             _db = db;
             _httpClient = httpClientFactory.CreateClient("weatherForecast");
+            _stockMarket = stockMarket.CreateClient("stockMarket");
         }
 
         public IActionResult Index()
@@ -74,6 +77,20 @@ namespace NewsApp.Controllers
                 var forecast = await result.Content.ReadFromJsonAsync<WeatherForecast>();
                 //ViewBag.result = body;
                 return View(forecast);
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> StockMarket(/*string city*/)
+        {
+            var result = await _stockMarket.GetAsync("summary");
+        
+
+            if (result.IsSuccessStatusCode)
+            {
+                var summary = await result.Content.ReadFromJsonAsync<TopThree>();
+                
+                return View(summary);
             }
             return View();
         }

@@ -1,0 +1,55 @@
+﻿@model NewsApp.Models.TopThree
+
+@{
+    ViewData["Title"] = "StockMarket";
+}
+
+<h1>StockMarket</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Top3.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Top3.FirstOrDefault().Symbol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Top3.FirstOrDefault().Close)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Top3.FirstOrDefault().PrevClose)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Top3.FirstOrDefault().PercentChange)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Top3) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Symbol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Close)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrevClose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PercentChange)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

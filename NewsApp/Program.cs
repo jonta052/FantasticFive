@@ -28,6 +28,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 
+builder.Services.AddHttpClient("stockMarket", config => {
+
+    config.BaseAddress = new("https://lexnewsbizdata.azurewebsites.net/");
+
+});
+
 builder.Services.AddHttpClient("weatherForecast", config => {
 
     config.BaseAddress = new("https://weatherapi.dreammaker-it.se/");
