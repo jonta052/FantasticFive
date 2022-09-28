@@ -37,7 +37,7 @@
         $(document).ready(function () {
             //const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
             //const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-
+            
             
             function weatherIcon() {
                 if (@Model?.TemperatureC > 10) 
@@ -56,11 +56,37 @@
                 $('[data-bs-toggle="popover"]').popover({
                 trigger: 'hover',
                 html: true,
-                content: `<div><div style="float:left;width:50%"><p>City:<p/><p>Summary:<p/><p>Temperature:<p/></div><div style="float:left;width:50%"><p>@Model?.City<p><p>@Model?.Summary</p>
-                                <p>@Model?.TemperatureC  &#8451 ${weatherIcon()}</p></div></div>`
+                content:
+                `<div class="flex-container">
+                      <div class="flex-child">
+                           <p>City:</p>
+                           <p>Summary:</p>
+                           <p>Temperature:&nbsp&nbsp</p>
+                      </div>
+                      <div class="flex-child">
+                           <p>@Model?.City</p>
+                           <p>@Model?.Summary</p>
+                           <p>@Model?.TemperatureC &#8451 ${weatherIcon()}</p>
+                      </div>
+                </div>`
             });
            
         });
        
 </script>
 }
+<style>
+        .flex-container {
+            display: flex;
+        }
+
+        .flex-child {
+            flex: 1;
+            white-space: nowrap;
+            
+        }
+
+            .flex-child:first-child {
+                font-weight: bold;
+            }
+</style>

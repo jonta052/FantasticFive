@@ -66,7 +66,7 @@ namespace NewsApp.Controllers
             {
                 return View();
             }*/
-            var result = await _httpClient.GetAsync($"Forecast?city=linköping");
+            var result = await _httpClient.GetAsync($"Forecast?city=Linköping");
             //var body = await result.Content.ReadAsStringAsync();
 
             if (result.IsSuccessStatusCode)
