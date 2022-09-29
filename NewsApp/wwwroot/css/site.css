@@ -61,37 +61,32 @@ body {
     resize: none;
     overflow: auto;
 }
-
 .nav-li {
     display: inline-block;
     margin-left: 50px;
     padding: 7px;
-    position: relative;
+    position:relative;
 }
-
-.nav-a {
-    color: #444;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 16px;
+.nav-a{
+    color:#444;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-size:16px;
 }
-
-    .nav-a:hover {
-        color: #000;
-    }
-
-    .nav-a::before {
-        content: '';
-        display: block;
-        height: 3px;
-        width: 100%;
-        background-color:#000;
-        position: absolute;
-        top: 0;
-        width: 0%;
-        transition: all ease-in-out 250ms;
-    }
-
-    .nav-a:hover::before {
-        width: 100%;
-    }
+.nav-a:hover{
+    color:#000;
+}
+.nav-a::before{
+    content:'';
+    display: block;
+    height:3px;
+    width: 100%;
+    background-color: #000;
+    position:absolute;
+    top:0;
+    width:0%;
+    transition: all ease-in-out 250ms;
+}
+.nav-a:hover::before{
+    width:100%;
+}

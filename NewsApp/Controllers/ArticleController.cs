@@ -40,6 +40,7 @@ namespace NewsApp.Controllers
             return View(article);
         }
 
+        [Authorize(Roles = $"{Roles.Administrator},{Roles.Editor}")]
         // GET: ArticleController/Create
         [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
         public IActionResult Create()
