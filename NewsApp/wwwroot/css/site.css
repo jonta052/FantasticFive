@@ -61,10 +61,20 @@ body {
     resize: none;
     overflow: auto;
 }
+.nav{
+    background:#fff;
+    box-shadow:0 0 15px 0 rgba(0,0,0,10)
+}
+.nav-ul{
+    margin:0;
+    padding:0;
+    list-style:none;
+    position:relative;
+}
 .nav-li {
     display: inline-block;
     margin-left: 50px;
-    padding: 7px;
+    padding: 3px;
     position:relative;
 }
 .nav-a{
@@ -79,14 +89,20 @@ body {
 .nav-a::before{
     content:'';
     display: block;
-    height:3px;
+    height:5px;
     width: 100%;
     background-color: #000;
     position:absolute;
-    top:0;
+    top:-8px;
     width:0%;
     transition: all ease-in-out 250ms;
 }
-.nav-a:hover::before{
-    width:100%;
+#navbarDropdown::before {
+    top: -11px;
+}
+.nav-a:hover::before {
+    width: 100%;
+}
+.menu-sub{
+    position:absolute
 }
