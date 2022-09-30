@@ -103,7 +103,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: AdminController/Delete/5
-        public ActionResult Delete(string id)
+        public IActionResult Delete(string id)
         {
             var roleToDelete = (from r in _db.Roles where r.Id == id select r);
             return View(roleToDelete.FirstOrDefault());
@@ -112,7 +112,7 @@ namespace NewsApp.Controllers
         // POST: AdminController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id, IdentityRole roleToDelete)
+        public IActionResult Delete(string id, IdentityRole roleToDelete)
         {
             try
             {
@@ -126,6 +126,51 @@ namespace NewsApp.Controllers
                 return View();
             }
         }
+
+        /*public IActionResult LockoutUser(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return View();
+            }
+            
+            var userToLockOut = (from u in _db.Users where u.Id == id select u);
+            
+            return View(userToLockOut.FirstOrDefault());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LockoutUser(User userToLockOut)
+        {
+            
+
+            var theUser = (from u in _db.Users where u.Id == userId.ToString() select u).FirstOrDefault();
+
+            //Create list of roles for the dropdown
+            var userroles = _db.Roles.ToList();
+            var selectList = new SelectList(userroles, "Id", "Name");
+            ViewBag.RoleType = selectList;
+
+            //Does the user already have a role?
+            var roles = await _userManager.GetRolesAsync(theUser);
+
+            //If user has a role remove it
+            foreach (var item in roles)
+            {
+                await _userManager.RemoveFromRoleAsync(theUser, item);
+            }
+
+            foreach (var item in selectList)
+            {
+                if (item.Value == roleId)
+                {
+                    await _userManager.AddToRoleAsync(theUser, item.Text);
+                }
+            }
+
+            return View();
+        }*/
+
         //Stuff that we might not need below this line
         // GET: AdminController/Details/5
         public ActionResult Details(int id)
