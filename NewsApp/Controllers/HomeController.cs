@@ -43,10 +43,7 @@ namespace NewsApp.Controllers
             return View(latest);
         }
 
-        public IActionResult EditorChoice()
-        {
-            return View();
-        }
+        
 
         public IActionResult Privacy()
         {

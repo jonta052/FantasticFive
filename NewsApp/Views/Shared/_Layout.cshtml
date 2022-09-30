@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NewsApp.styles.css" asp-append-version="true" />
+    
 </head>
 <body>
     <header>
@@ -109,6 +110,7 @@
                         <!--<input type="submit" value="Search" class="fa-solid fa-magnifying-glass" />-->
                     </div>
                 </form>
+
             </div>
 
         </nav>
@@ -126,27 +128,39 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sweden">Sweden</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sweden">Sweden</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Art">Art</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Art">Art</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sports">Sports</a>
-                                @*<i class="fa-thin fa-futbol"></i>*@
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sports">Sports</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Health">Health</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Health">Health</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Business">Business</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Business">Business</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Culture">Culture</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Culture">Culture</a>
+                            </li>
+                            <li class="nav-item nav-li dropdown">         
+                              <a class="nav-link dropdown-toggle nav-a" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        More </a>
+                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                        <li><a class="dropdown-item" asp-controller="Article" asp-action="Create">Travel</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" asp-controller="#" asp-action="#">Tech</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" asp-controller="#" asp-action="#">More</a></li>
+                                 </ul>
+ 
+                                 
                             </li>
                         </ul>
 

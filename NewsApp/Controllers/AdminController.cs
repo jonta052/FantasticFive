@@ -9,7 +9,7 @@ using NewsApp.Models;
 
 namespace NewsApp.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _db;
