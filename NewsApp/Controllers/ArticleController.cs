@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Castle.Core.Internal;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,14 +24,16 @@ namespace NewsApp.Controllers
 
 
         // GET: Article
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
-            
-            var articles = _articleService.GetArticles();
+            var selectedArticles = (from a in _db.Articles where a.Content.Contains(search) || a.Title.Contains(search) select a).ToList();
 
-
-
-            return View(articles);
+            if (selectedArticles.IsNullOrEmpty())
+            {
+                selectedArticles = _articleService.GetArticles().ToList();
+            }
+           
+            return View(selectedArticles);
         }
 
         // GET: ArticleController/Details/5
