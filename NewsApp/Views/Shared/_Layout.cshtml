@@ -126,7 +126,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse container" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item nav-li">
                                 <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>
@@ -149,18 +149,41 @@
                             <li class="nav-item nav-li">
                                 <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Culture">Culture</a>
                             </li>
-                            <li class="nav-item nav-li dropdown">         
-                              <a class="nav-link dropdown-toggle nav-a" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        More </a>
-                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" asp-controller="Article" asp-action="Create">Travel</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" asp-controller="#" asp-action="#">Tech</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" asp-controller="#" asp-action="#">More</a></li>
-                                 </ul>
- 
-                                 
+                             <li class="nav-item nav-li dropdown position-static">
+                                <a class="nav-link nav-a dropdown-toggle position-relative " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    More
+                                </a>
+                                <!-- Dropdown menu -->
+                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0; ">
+                                    <div class="container">
+                                        <div class="row my-4">
+                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                                                <div class="list-group list-group-flush">
+                                                    <a href="" class="list-group-item list-group-item-action">Tech</a>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                                                <div class="list-group list-group-flush">
+                                                    <a href="" class="list-group-item list-group-item-action">Fashion</a>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
+                                                <div class="list-group list-group-flush">
+                                                    <a href="" class="list-group-item list-group-item-action">Travel</a>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-3">
+                                                <div class="list-group list-group-flush">
+                                                    <a href="" class="list-group-item list-group-item-action">Science</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
 
@@ -169,6 +192,7 @@
             </nav>
         </div>
         <!--////////////////// -->
+
     </header>
     <div class="container">
         @RenderBody()
