@@ -43,10 +43,7 @@ namespace NewsApp.Controllers
             return View(latest);
         }
 
-        public IActionResult EditorChoice()
-        {
-            return View();
-        }
+        
 
         public IActionResult Privacy()
         {
@@ -92,6 +89,14 @@ namespace NewsApp.Controllers
                 
                 return View(summary);
             }
+            return View();
+        }
+
+        public IActionResult SearchNews()
+        {
+            /*var temp = (from a in _db.Articles where a.Content.Contains(search) select a).ToList();
+            TempData["SelectedArticles"] = temp;*/
+            
             return View();
         }
 

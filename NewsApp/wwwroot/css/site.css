@@ -1,21 +1,22 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
 .like-button {
     float: left;
     padding: 1em;
@@ -24,10 +25,12 @@ body {
     font-weight: bold;
     background-color: #f7f7f7;
 }
+
 .button-container {
     display: inline-block;
     margin: 0 10px;
 }
+
 .opinion-wrapper {
     width: 65%;
     padding: 1em;
@@ -36,15 +39,18 @@ body {
     border-radius: 5px;
     text-align: center;
 }
+
 .like-text {
     float: left;
     margin: 0.7em 2em 0.7em 1em;
     font-size: 18px;
 }
+
 .comment-form-comment {
     font-size: 18px;
     position: relative;
 }
+
 .comment {
     display: block;
     width: 70%;
@@ -54,4 +60,33 @@ body {
     border-radius: 5px;
     resize: none;
     overflow: auto;
+}
+.nav-li {
+    display: inline-block;
+    margin-left: 50px;
+    padding: 7px;
+    position:relative;
+}
+.nav-a{
+    color:#444;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-size:16px;
+}
+.nav-a:hover{
+    color:#000;
+}
+.nav-a::before{
+    content:'';
+    display: block;
+    height:3px;
+    width: 100%;
+    background-color: #000;
+    position:absolute;
+    top:0;
+    width:0%;
+    transition: all ease-in-out 250ms;
+}
+.nav-a:hover::before{
+    width:100%;
 }

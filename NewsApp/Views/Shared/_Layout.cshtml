@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NewsApp.styles.css" asp-append-version="true" />
+    
 </head>
 <body>
     <header>
@@ -90,13 +91,31 @@
 
             <div style="text-align: right">
                 <partial name="_LoginPartial" />
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search news">
-                    <button class="btn btn-outline-warning" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+               <!-- <form class="d-flex">
+                    <input id="search" class="form-controll me-2" type="search" placeholder="Search news">
+                    <button id="searchbutton" class="btn btn-outline-warning" type="button" action="submit">Search</button>
+                    
+                    
+
+                </form>-->
+
+                <form asp-action="Index" asp-controller="Article">
+                    
+                    <div class="form-group d-flex">
+                
+                    
+                        <input value="search" name="search" type="text"  class="form-control me-2" />
+                        <button class="btn btn-outline-warning" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                
+                        <!--<input type="submit" value="Search" class="fa-solid fa-magnifying-glass" />-->
+                    </div>
                 </form>
+
             </div>
 
         </nav>
+
+        
 
         <!--////////////////// -->
         <!-- second navbar -->
@@ -109,27 +128,39 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sweden">Sweden</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sweden">Sweden</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Art">Art</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Art">Art</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sports">Sports</a>
-                                @*<i class="fa-thin fa-futbol"></i>*@
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sports">Sports</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Health">Health</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Health">Health</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Business">Business</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Business">Business</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Culture">Culture</a>
+                            <li class="nav-item nav-li">
+                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Culture">Culture</a>
+                            </li>
+                            <li class="nav-item nav-li dropdown">         
+                              <a class="nav-link dropdown-toggle nav-a" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        More </a>
+                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                        <li><a class="dropdown-item" asp-controller="Article" asp-action="Create">Travel</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" asp-controller="#" asp-action="#">Tech</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" asp-controller="#" asp-action="#">More</a></li>
+                                 </ul>
+ 
+                                 
                             </li>
                         </ul>
 
@@ -195,5 +226,30 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    @*@section scripts{
+        
+        
+        <script type="text/javascript">
+            $(document).ready(function () {
+            document.getElementById("searchbutton").onclick = function () {
+
+                console.log("sdfgh");
+                searchSite();
+                //window.location = 'Article' + document.getElementById('test').value;
+                return false;
+            }
+
+            function searchSite() {
+                var inputted = document.getElementById("search").value;
+                var searchForm = document.getElementById("searchForm");
+                searchForm.action = "Article";
+                searchForm.submit();
+            }
+
+            });
+        </script>
+    }*@
+
 </body>
 </html>

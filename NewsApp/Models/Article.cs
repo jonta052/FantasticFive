@@ -24,6 +24,7 @@ namespace NewsApp.Models
         public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
 
+        public bool EditorChoice { get; set; }  
     }
     
 }
