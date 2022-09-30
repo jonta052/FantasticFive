@@ -95,5 +95,13 @@ namespace NewsApp.Controllers
             return View();
         }
 
+        public IActionResult SearchNews()
+        {
+            /*var temp = (from a in _db.Articles where a.Content.Contains(search) select a).ToList();
+            TempData["SelectedArticles"] = temp;*/
+            
+            return View();
+        }
+
     }
 }
