@@ -5,20 +5,20 @@
 }
 
 
-@foreach(var item in Model)
+@foreach (var item in Model)
 {
-  
+
     <div class="container main-content">
-      <div class="row">
-        <div class="col-md-8">
-            <h1 class="text-center bg-secondary">@item.Category.Name</h1>
-            <h2 style="text-align:center">@item.Title</h2>
-            <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="830" height="500" />
-            <div style="text-align:center">@item.ContentSummary</div>
-            <a asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
-          <br><br>
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="text-center bg-secondary">@item.Category.Name</h1>
+                <h2 style="text-align:center">@item.Title</h2>
+                <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="830" height="500" />
+                <div style="text-align:center">@item.ContentSummary</div>
+                <a asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
+                <br><br>
+            </div>
         </div>
-      </div>
-   </div>
+    </div>
 }
 
