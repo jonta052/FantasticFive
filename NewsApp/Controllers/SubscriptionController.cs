@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
@@ -20,7 +21,27 @@ namespace NewsApp.Controllers
         // GET: SubscriptionController
         public IActionResult Index()
         {
+            
             var listOfSubscriptionTypes = _db.SubscriptionTypes.ToList();
+            //ViewBag.Names = 
+               var subTypes = (from n in listOfSubscriptionTypes select n).ToList();
+            ViewBag.Length = listOfSubscriptionTypes.Count();
+           var subscriptions  = (from s in _db.Subscriptions
+                                     join st in _db.SubscriptionTypes on s.SubscriptionType.Id equals st.Id
+                                     select new
+                                     {
+                                         TypeName = st.TypeName,
+                                         Active = s.Active
+                                     }
+                                     ).GroupBy(x => x.TypeName).Select(x => new
+                                     {  
+                                         Active = x.Count(d => d.Active == true),
+                                        TypeName = x.FirstOrDefault().TypeName
+
+                                     }).ToList();
+            ViewBag.Subscriptions = subscriptions;
+            ViewBag.Length = subscriptions.Count();
+
             return View(listOfSubscriptionTypes);
         }
 
@@ -29,6 +50,8 @@ namespace NewsApp.Controllers
         {
             return View();
         }*/
+
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Create()
         {
             SubscriptionType subscriptionType = new SubscriptionType();
@@ -37,6 +60,7 @@ namespace NewsApp.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Create(SubscriptionType subscriptionType)
         {
             _db.SubscriptionTypes.Add(subscriptionType);
@@ -97,6 +121,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: SubscriptionController/Edit/5
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Edit(int id)
         {
             var thisSubType = _db.SubscriptionTypes.Where(s => s.Id == id).FirstOrDefault();
@@ -106,6 +131,7 @@ namespace NewsApp.Controllers
         // POST: SubscriptionController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Edit(int id, SubscriptionType subType)
         {
             try
@@ -121,6 +147,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: SubscriptionController/Delete/5
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Delete(int id)
         {
             var thisSubType = _db.SubscriptionTypes.Where(s => s.Id == id).FirstOrDefault();
@@ -130,6 +157,7 @@ namespace NewsApp.Controllers
         // POST: SubscriptionController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Delete(int id, SubscriptionType subType)
         {
             try

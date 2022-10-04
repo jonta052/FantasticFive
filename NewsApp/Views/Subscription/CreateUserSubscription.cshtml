@@ -4,17 +4,53 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Join Now!</h1>
 
-<h4>Subscription</h4>
-<hr />
+
+<hr /><br />
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <h5 class="card-header">Basic</h5>
+      <div class="card-body">
+        <p class="card-text"> 
+            <ul>
+                <li>Unlimited access to News5. </li>
+                <li>News5 mobile app. </li>
+                <li>You can cancel anytime. </li>
+            </ul>
+         </p> 
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="card">
+      <h5 class="card-header">Premium</h5>
+      <div class="card-body">
+        <p class="card-text">
+            <ul>
+                <li>70% fewer adverts. </li>
+                <li>Available offline. </li>
+                <li>You can cancel anytime. </li>
+            </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<br />
+<br />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateUserSubscription">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <div class="form-group">
-                <label asp-for="TypeName" class="control-label"></label>
+                <label asp-for="TypeName" class="control-label">Choose a plan that suits you:</label>
                 <select class="form-control" name="subId" asp-items="@ViewBag.SubType">
                     <option disabled selected>Select a Subscription</option>
                 </select>
@@ -26,7 +62,7 @@
                 <input asp-for="Expires" class="form-control" />
                 <span asp-validation-for="Expires" class="text-danger"></span>
             </div>*@
-            
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -34,9 +70,7 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

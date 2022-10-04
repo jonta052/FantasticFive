@@ -24,7 +24,10 @@ namespace NewsApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var popular = _db.Articles
+              .OrderByDescending(m => m.Likes)
+              .Take(5).ToList();
+            return View(popular);
         }
 
         public IActionResult PopularArticles()
@@ -43,10 +46,7 @@ namespace NewsApp.Controllers
             return View(latest);
         }
 
-        public IActionResult EditorChoice()
-        {
-            return View();
-        }
+        
 
         public IActionResult Privacy()
         {
@@ -92,6 +92,14 @@ namespace NewsApp.Controllers
                 
                 return View(summary);
             }
+            return View();
+        }
+
+        public IActionResult SearchNews()
+        {
+            /*var temp = (from a in _db.Articles where a.Content.Contains(search) select a).ToList();
+            TempData["SelectedArticles"] = temp;*/
+            
             return View();
         }
 

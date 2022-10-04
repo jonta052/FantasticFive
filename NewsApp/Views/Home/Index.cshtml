@@ -1,3 +1,6 @@
+@model IEnumerable<NewsApp.Models.Article>
+
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -15,34 +18,93 @@
     <div><a class="btn btn-primary" href=""><h3>Editor choice</h3></a></div><hr />
     </div>
     *@
-
+     
     <div class="col-md-4" style="background-color:palegoldenrod; margin:0px; border-color:black">
-        <ul>
-            
-            <li>
-                <a class="side-view-link" asp-controller="Home" asp-action="PopularArticles" asp-route-CatagoryName="PopularNews"><h3>Popular News</h3></a><hr />
-            </li>
-            <li>
-             <a class="side-view-link" asp-controller="Home" asp-action="LatestArticles" asp-route-CatagoryName="LatestNews"><h3>Latest News</h3></a><hr />
-            </li>
-            <li>
-                <h3>Editor choice</h3><hr />
-            </li>
-            
-           
-        </ul>
+        <hr />
+        <h3>Popular News</h3>
+        <hr />
+       
+       @foreach (var article in Model)
+        {
+           <div class="row" style="margin:10px 0px">
+               <div class="col-md-4">
+                   @article.Likes
+                   <img src="@article.ImageLink" style="width:100%"  />
+                   <hr />
+                 </div> 
+
+               <div class="col-md-8">
+                   @article.Title
+                   
+                   <a class="nav-link" asp-controller="Article" asp-action="Details" asp-route-id=@article.Id >Details</a>
+                   <br />
+
+                   <hr />
+               </div>
+
+           </div>
+        }
+        <br />
+
+        
+        <hr />
+        <h3>Latest News</h3>
+        <hr />
+       
+      @*  @foreach (var article in Model)
+        {
+            <div class="row" style="margin:10px 0px">
+                <div class="col-md-4">
+                    @article.DateStamp
+                    <img src="@article.ImageLink" style="width:100%" />
+                </div>
+                <div class="col-md-8">.
+                    @article.Title
+
+                    <a class="nav-link" asp-controller="Article" asp-action="View full article" asp-route-id="@article.Id">@Html.DisplayFor(modelItem => item.LinkText)</a>
+                </div>
+            </div>
+        }
+        <br />*@
+
+
+         <hr />
+        <h3>Editor choice</h3>
+        <hr />
+
+
+        @*                <a class="side-view-link" asp-controller="Home" asp-action="PopularArticles" asp-route-CatagoryName="PopularNews"><h3>Popular News</h3></a><hr />
+        *@
+        <div class="sidebar-item popular-News sidebar-articles">
+@*            <h3>Popular News</h3>
+            <ol>
+                <li><a href="/" target="_self"><img data-img-src="https://c.files.bbci.co.uk/12E97/production/_126736477_gettyimages-1423631022.jpg" width="200" height="150" alt="Times editor Tony Gallagher" class="wpp-thumbnail wpp_featured wpp-lazyload wpp_cached_thumb" /></a> <a href="https://pressgazette.co.uk/tony-gallagher-named-editor-of-the-times/" class="wpp-post-title" target="_self">Royal Family greet Queen Elizabeth II's coffin</a> <span class="wpp-meta post-stats"></span></li>
+                <li><a href="https://pressgazette.co.uk/uk-national-newspaper-editors/" title="Who are the UK&#039;s national newspaper editors?" target="_self"><img data-img-src="https://pressgazette.co.uk/wp-content/uploads/wordpress-popular-posts/188374-featured-200x150.jpg" width="200" height="150" alt="UK national newspaper editors Alison Phillips, Tony Gallagher, Gary Jones and Victoria Newton" class="wpp-thumbnail wpp_featured wpp-lazyload wpp_cached_thumb" /></a> <a href="https://pressgazette.co.uk/uk-national-newspaper-editors/" title="Who are the UK&#039;s national newspaper editors?" class="wpp-post-title" target="_self">Who are the UK's national newspaper editors?</a> <span class="wpp-meta post-stats"></span></li>
+                <li><a href="https://pressgazette.co.uk/most-popular-websites-news-uk-monthly/" target="_self"><img data-img-src="https://pressgazette.co.uk/wp-content/uploads/wordpress-popular-posts/166990-featured-200x150.jpg" width="200" height="150" alt="Express homepage" class="wpp-thumbnail wpp_featured wpp-lazyload wpp_cached_thumb" /></a> <a href="https://pressgazette.co.uk/most-popular-websites-news-uk-monthly/" class="wpp-post-title" target="_self">Top 50 newsbrands in the UK: Daily Express fastest-growing top ten site in August</a> <span class="wpp-meta post-stats"></span></li>
+            </ol>
+*@
+            @*<a class="side-view-link" asp-controller="Home" asp-action="LatestArticles" asp-route-CatagoryName="LatestNews"><h3>Latest News</h3></a><hr />
+
+            <h3>Editor choice</h3><hr />*@
+        </div>
     </div>
 
+    <div class="col-md-8">
 
-    <div class="col-md-7 card">
-        
-        <h3 class="card-title text-center m-5">Unemployment falls, whilst inflation continues to rise</h3>
-        <img src="" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">At the end of August there were roughly 335,000 people registered at the employment agency.</p>
-            <a class="btn btn-primary" href="/Article/FullArticle/23">View Full Article</a>
+
+        <div class="card-header">
+            <h3 class="card-title text-center m-5">Royal Family greet Queen Elizabeth II's coffin </h3>
+        </div>
+        <div class="card-body" style="padding:0px">
+            <img src="https://c.files.bbci.co.uk/12E97/production/_126736477_gettyimages-1423631022.jpg" class="card-img-top" alt="Queen Elizabeth">
+
+            <p class="card-text">The Queen's children and grandchildren greeted her coffin on its arrival at Buckingham Palace.</p>
+
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary" href="/Article/FullArticle/23">View full Airticle</a>
         </div>
     </div>
 </div>
-
+    
 
