@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+using Castle.Core.Internal;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
@@ -22,14 +24,16 @@ namespace NewsApp.Controllers
 
 
         // GET: Article
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
-            
-            var articles = _articleService.GetArticles();
+            var selectedArticles = (from a in _db.Articles where a.Content.Contains(search) || a.Title.Contains(search) select a).ToList();
 
-
-
-            return View(articles);
+            if (selectedArticles.IsNullOrEmpty())
+            {
+                selectedArticles = _articleService.GetArticles().ToList();
+            }
+           
+            return View(selectedArticles);
         }
 
         // GET: ArticleController/Details/5
@@ -39,7 +43,9 @@ namespace NewsApp.Controllers
             return View(article);
         }
 
+        [Authorize(Roles = $"{Roles.Administrator},{Roles.Editor}")]
         // GET: ArticleController/Create
+        [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
         public IActionResult Create()
         {
             var categories = _db.Categories.ToList();
@@ -52,6 +58,7 @@ namespace NewsApp.Controllers
         // POST: ArticleController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
         public IActionResult Create(Article article)
         {
             var categories = _db.Categories.ToList();
@@ -70,6 +77,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: ArticleController/Edit/5
+        [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
         public IActionResult Edit(int id)
         {
             var article = _articleService.GetArticle(id);
@@ -79,6 +87,7 @@ namespace NewsApp.Controllers
         // POST: ArticleController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
         public IActionResult Edit(int id, Article article)
         {
             try
@@ -93,6 +102,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: ArticleController/Delete/5
+        [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
         public ActionResult Delete(int id)
         {
             var article = _articleService.GetArticle(id);
@@ -100,6 +110,7 @@ namespace NewsApp.Controllers
         }
 
         // POST: ArticleController/Delete/5
+        [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, Article article)

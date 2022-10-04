@@ -86,25 +86,29 @@ namespace NewsApp.Controllers
         }
 
         // GET: UserController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            var userToDelete = (from u in _db.Users where u.Id == id select u);
+            return View(userToDelete.FirstOrDefault());
         }
 
         // POST: UserController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(string id, User userToDelete)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                userToDelete = _db.Users.Find(id);
+                _db.Remove(userToDelete);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
         }
-        
+
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NewsApp.Models.SubscriptionType>
+@model IEnumerable<NewsApp.Models.SubscriptionType>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,6 +8,10 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<h1>Manage Subscription</h1>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -53,7 +57,7 @@
 </table>
 <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 <script>
-    
+  
    //alert(@Html.Raw(Json.Serialize(@ViewBag.Subscriptions[0].Active)));
    var xValues = [];
    var yValues = [];
@@ -92,3 +96,8 @@ new Chart("myChart", {
     }
   }
 });</script>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
