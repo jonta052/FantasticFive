@@ -24,7 +24,10 @@ namespace NewsApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var popular = _db.Articles
+              .OrderByDescending(m => m.Likes)
+              .Take(5).ToList();
+            return View(popular);
         }
 
         public IActionResult PopularArticles()
