@@ -14,73 +14,17 @@
 <body>
    
     <header>
-
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-
-            <div class="carousel-inner">
-                <div class="carousel-item active col-md-3 p-2 bg-light text-dark text-center">
-                    <span class="p-2">Silver</span>
-                    <span class="p-2">19.413</span>
-                    <span class="bg-success">+0.28%</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">Brent Oil</span>
-                    <span class="p-2">91.96</span>
-                    <span class="bg-danger">-0.04%</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">Natural Gas</span>
-                    <span class="p-2">7.836</span>
-                    <span class="bg-danger">-0.38%</span>
-                </div>
-
-                <div class="carousel-item  col-md-3 p-2 bg-light text-dark text-center">
-                    <span class="p-2">Apple</span>
-                    <span class="p-2">154.48</span>
-                    <span class="bg-success">+2.51</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">EUR/USD</span>
-                    <span class="p-2">0.9984</span>
-                    <span class="bg-danger">-0.34%</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">Netflix</span>
-                    <span class="p-2">243.63</span>
-                    <span class="bg-success">+1.46%</span>
-                </div>
-
-                <div class="carousel-item  col-md-3 p-2 bg-light text-dark text-center">
-                    <span class="p-2">Gold (USD/oz)</span>
-                    <span class="p-2">1672.6</span>
-                    <span class="bg-danger">-0.65%</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">Nikkei 225</span>
-                    <span class="p-2">27567.65</span>
-                    <span class="bg-danger">-1.11%</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">Tesla</span>
-                    <span class="p-2">309.07</span>
-                    <span class="bg-success">+1.89%</span>
-                </div>
-            </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
-
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark" border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <div>
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img height="50" width="50" src="~/image/news 5.jpg" />NewsApp</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@*&nbsp;&nbsp;<img height="50" width="50" src="~/image/news 5.jpg" />NewsApp*@</a>
+
+                    <h2 style="font-weight: bold; text-shadow: 2px 2px #808080;color: white;"><img height="50" width="50" src="~/image/news 5.jpg" />NewsApp</h2>
+
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
-                        <p style="color: white; ">@*Date/Time : *@<span id="datetime"></span></p>
+                        <p style="color: white; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="datetime"></span></p>
 
                         <script>
-
                             setInterval(timer, 1000);
                             function timer() {
                                 var dt = new Date();
@@ -123,70 +67,37 @@
         <!--////////////////// -->
         <!-- second navbar -->
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Fourth navbar example" style="margin-bottom:30px">
+            <nav class="navbar navbar-expand-lg" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: wheat">
                 <div class="container-fluid">
-                    <a class="navbar-link navbar-brand text-warning" asp-controller="Article" asp-action="Index">News </a>
+                    <a class="navbar-link navbar-brand text-warning" asp-controller="Article" asp-action="Index">News</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse container" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>
-                            </li>
-                            <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sweden">Sweden</a>
-                            </li>
-                            <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Art">Art</a>
-                            </li>
-                            <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sports">Sports</a>
-                            </li>
-                            <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Health">Health</a>
-                            </li>
-                            <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Business">Business</a>
-                            </li>
-                            <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Culture">Culture</a>
-                            </li>
-                             <li class="nav-item nav-li dropdown position-static">
-                                <a class="nav-link nav-a dropdown-toggle position-relative " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    More
-                                </a>
-                                <!-- Dropdown menu -->
-                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0; ">
-                                    <div class="container">
-                                        <div class="row my-4">
-                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
-                                                <div class="list-group list-group-flush">
-                                                    <a href="" class="list-group-item list-group-item-action">Tech</a>
 
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
-                                                <div class="list-group list-group-flush">
-                                                    <a href="" class="list-group-item list-group-item-action">Fashion</a>
+                            <li class="nav-item">
+                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sweden">Sweden</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Art">Art</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Sports">Sports</a>
+                                @*<i class="fa-thin fa-futbol"></i>*@
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Health">Health</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Business">Business</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Culture">Culture</a>
 
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
-                                                <div class="list-group list-group-flush">
-                                                    <a href="" class="list-group-item list-group-item-action">Travel</a>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-lg-3">
-                                                <div class="list-group list-group-flush">
-                                                    <a href="" class="list-group-item list-group-item-action">Science</a>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </li>
                         </ul>
 
@@ -206,45 +117,42 @@
 
 
 
-    <br />
-    <footer>
-        <hr />
+    <footer class="fixed-bottom" style="background-color: black">
         <div class="container body-content">
             <div class="row">
                 <div class="col-4">
-                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                 </div>
 
                 <div class="col-4" style="text-align: center">
-                    <a asp-area="" asp-controller="Home" asp-action="About">About Us</a>
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">About Us</a>
                 </div>
 
-                <div class="col-4" style="text-align: center">
-                    <h5 style="text-align: center;font-weight: bold; display: inline-block">Follow Us&nbsp&nbsp&nbsp&nbsp<br /></h5>
+                <div class="col-4 text-light" style="text-align: center">
+                    <h5 style="text-align: center;font-weight: bold; display: inline-block">Follow Us&nbsp&nbsp<br /></h5>
                     <a class="fs-3 text-dark text-decoration-none" href="https://instagram.com">
-                        <i class="fab fa-instagram-square"></i>
+                        <i class="fab fa-instagram-square text-light"></i>
                     </a>
                     <a class="fs-3 text-dark text-decoration-none" href="https://twitter.com">
-                        <i class="fab fa-twitter-square"></i>
+                        <i class="fab fa-twitter-square text-light"></i>
                     </a>
                     <a class="fs-3 text-dark text-decoration-none" href="https://linkedin.com">
-                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-linkedin text-light"></i>
                     </a>
                     <a class="fs-3 text-dark text-decoration-none" href="https://youtube.com">
-                        <i class="fab fa-youtube-square"></i>
+                        <i class="fab fa-youtube-square text-light"></i>
                     </a>
                     <a class="fs-3 text-dark text-decoration-none" href="https://facebook.com">
-                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-facebook-square text-light"></i>
                     </a>
                 </div>
 
             </div>
         </div>
 
-        <div style="text-align: center">
+        <div class="nav-link text-light" style="text-align: center">
             &copy; 2022 - NewsApp.FantasticFive
         </div>
-
     </footer>
 
 
