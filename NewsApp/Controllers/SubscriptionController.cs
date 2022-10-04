@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
@@ -49,6 +50,8 @@ namespace NewsApp.Controllers
         {
             return View();
         }*/
+
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Create()
         {
             SubscriptionType subscriptionType = new SubscriptionType();
@@ -57,6 +60,7 @@ namespace NewsApp.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Create(SubscriptionType subscriptionType)
         {
             _db.SubscriptionTypes.Add(subscriptionType);
@@ -117,6 +121,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: SubscriptionController/Edit/5
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Edit(int id)
         {
             var thisSubType = _db.SubscriptionTypes.Where(s => s.Id == id).FirstOrDefault();
@@ -126,6 +131,7 @@ namespace NewsApp.Controllers
         // POST: SubscriptionController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Edit(int id, SubscriptionType subType)
         {
             try
@@ -141,6 +147,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: SubscriptionController/Delete/5
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Delete(int id)
         {
             var thisSubType = _db.SubscriptionTypes.Where(s => s.Id == id).FirstOrDefault();
@@ -150,6 +157,7 @@ namespace NewsApp.Controllers
         // POST: SubscriptionController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Roles.Administrator}")]
         public IActionResult Delete(int id, SubscriptionType subType)
         {
             try
