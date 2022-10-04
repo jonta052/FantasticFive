@@ -20,7 +20,27 @@ namespace NewsApp.Controllers
         // GET: SubscriptionController
         public IActionResult Index()
         {
+            
             var listOfSubscriptionTypes = _db.SubscriptionTypes.ToList();
+            //ViewBag.Names = 
+               var subTypes = (from n in listOfSubscriptionTypes select n).ToList();
+            ViewBag.Length = listOfSubscriptionTypes.Count();
+           var subscriptions  = (from s in _db.Subscriptions
+                                     join st in _db.SubscriptionTypes on s.SubscriptionType.Id equals st.Id
+                                     select new
+                                     {
+                                         TypeName = st.TypeName,
+                                         Active = s.Active
+                                     }
+                                     ).GroupBy(x => x.TypeName).Select(x => new
+                                     {  
+                                         Active = x.Count(d => d.Active == true),
+                                        TypeName = x.FirstOrDefault().TypeName
+
+                                     }).ToList();
+            ViewBag.Subscriptions = subscriptions;
+            ViewBag.Length = subscriptions.Count();
+
             return View(listOfSubscriptionTypes);
         }
 
