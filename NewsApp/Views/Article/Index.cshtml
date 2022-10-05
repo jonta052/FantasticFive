@@ -13,11 +13,14 @@
     <div class="container main-content">
       <div class="row">
         <div class="col-md-8">
-            @*<h1 class="text-center bg-secondary">@item.Category.Name</h1>*@
+            
             <h2 class="bg-dark text-light text-lg-center" >@item.Title</h2><br />
             <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="830" height="500" />
             <div style="text-align:center">@item.ContentSummary</div>
              <a asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
+             <br>
+             <i class="bi bi-chat-text-fill">counts of comments</i><br>
+             <i class="bi bi-eye-fill">@item.Views</i>
              <hr>
             <div></div>
           

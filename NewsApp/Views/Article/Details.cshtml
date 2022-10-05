@@ -26,10 +26,10 @@
         <h2 style="vertical-align:inherit">What do you think of the news?</h2>
         <div class="opinion-wrapper">
              <div class="button-container">
-                <button class="like-button" id="like-button" onclick="like()">
-                <img src="/wp-content/themes/8sidor/images/like.png" alt="">
+                <a class="button like-button"  id="like-button"  asp-controller="Article" asp-action="ClickLike" asp-route-Id=@Model.Id>
+                    <i class="bi bi-hand-thumbs-up"></i>
                 Like
-                </button>
+                </a>
                 <p class="like-text">
                     <span>
                         @Model.Likes Person
@@ -38,7 +38,7 @@
              </div>
            <div class="button-container">
                 <button class="like-button" id="like-button" onclick="Don't like()">
-                <img src="/wp-content/themes/8sidor/images/like.png" alt="">
+                <i class="bi bi-hand-thumbs-down"></i>
                 Dislike
                 </button>
                 <p class="like-text">
@@ -69,7 +69,7 @@
             <p class="comment-form-comment">
             <div class="form-group" style="font-weight:600">Comment
                 <label for="commentBody" class="control-label" ></label>
-                    <textarea id="commentBody" name="commentBody" rows="5" cols="110">
+                <textarea id="commentBody" name="commentBody" rows="5" cols="110">
                     </textarea>
             </div>
             </p>

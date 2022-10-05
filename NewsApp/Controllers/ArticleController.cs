@@ -40,6 +40,10 @@ namespace NewsApp.Controllers
         public IActionResult Details(int id)
         {          
             var article = _articleService.GetArticle(id);
+            var click = _db.Articles.Where(c => c.Id == id).FirstOrDefault();
+            click.Views += 1;
+            _db.Update(click);
+            _db.SaveChanges();
             return View(article);
         }
 
@@ -133,6 +137,15 @@ namespace NewsApp.Controllers
             //Get articles belonging to that category
             var catagoryArticles = from a in _db.Articles where a.CategoryId == category.Id select a;
             return View(catagoryArticles);
+        }
+
+        public IActionResult ClickLike(int Id)
+        {
+            var click = _db.Articles.Where(c => c.Id == Id).FirstOrDefault();
+            click.Likes += 1;
+            _db.Update(click);
+            _db.SaveChanges();
+            return View("Details", click);
         }
 
     }
