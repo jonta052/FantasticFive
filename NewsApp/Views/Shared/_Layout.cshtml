@@ -92,25 +92,15 @@
                 </div>
             </div>
 
-            <div style="text-align: right">
+            <div style="text-align: right; padding-right:15px">
                 <partial name="_LoginPartial" />
-               <!-- <form class="d-flex">
-                    <input id="search" class="form-controll me-2" type="search" placeholder="Search news">
-                    <button id="searchbutton" class="btn btn-outline-warning" type="button" action="submit">Search</button>
-                    
-                    
-
-                </form>-->
-
+   
                 <form asp-action="Index" asp-controller="Article">
                     
-                    <div class="form-group d-flex">
-                
-                    
+                    <div class="form-group d-flex" >
                         <input value="search" name="search" type="text"  class="form-control me-2" />
-                        <button class="btn btn-outline-warning" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                
-                        <!--<input type="submit" value="Search" class="fa-solid fa-magnifying-glass" />-->
+                        <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+             
                     </div>
                 </form>
 
