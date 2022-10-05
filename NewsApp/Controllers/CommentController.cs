@@ -72,7 +72,7 @@ namespace NewsApp.Controllers
                 ArticleId = articleId,
                 Body = commentBody
             };
-
+          
             var user = _userManager.GetUserAsync(User).Result;
                comment.UserId=user.Id;
             _commentService.CreateComment(comment);

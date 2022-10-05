@@ -9,24 +9,26 @@
 
     <div class="container main-content">
       <div class="row">
-        <div class="col-md-8">
-            <h1 class="text-center bg-secondary">@Model.Category.Name</h1>
-            <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title" width="830" height="500" />
+        <div class="col-md-10">
             <h2 style="text-align:center">@Model.Title</h2><br />
+            <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title" width="100%" height="500" />
+            <br /><br />
             <div>@Model.Content</div>
-          <br><br>
+            <br><br>
+            <hr />
+                 @Model.DateStamp
+            <hr />
         </div>
       </div>
    </div>
-   <hr />
-   @Model.DateStamp
-   <hr />
 
+   @if (SignInManager.IsSignedIn(User))
+   {
    <div>
         <h2 style="vertical-align:inherit">What do you think of the news?</h2>
         <div class="opinion-wrapper">
              <div class="button-container">
-                <a class="button like-button"  id="like-button"  asp-controller="Article" asp-action="ClickLike" asp-route-Id=@Model.Id>
+                <a class="like-button"  id="like-button" asp-controller="Article" asp-action="ClickLike" asp-route-Id=@Model.Id>
                     <i class="bi bi-hand-thumbs-up"></i>
                 Like
                 </a>
@@ -43,7 +45,7 @@
                 </button>
                 <p class="like-text">
                     <span>
-                        @Model.Likes Person
+                          @Model.Likes Person
                     </span>
                 </p>
              </div>
@@ -59,17 +61,17 @@
     </div>
      @*<a asp-action="Create" asp-controller="Comment" asp-route-id="@Model.Id">Make a comment.</a>*@
      
-@if (SignInManager.IsSignedIn(User))
-{
+
+
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-10">
         <form asp-action="Create" asp-controller="Comment">
             <div asp-validation-summary="All" class="text-danger"></div>
             <input type="hidden" name="articleId" value="@Model.Id" />
             <p class="comment-form-comment">
-            <div class="form-group" style="font-weight:600">Comment
+            <div class="form-group" style="font-weight:700">Comment
                 <label for="commentBody" class="control-label" ></label>
-                <textarea id="commentBody" name="commentBody" rows="5" cols="110">
+                <textarea id="commentBody" name="commentBody" rows="5" cols="140">
                     </textarea>
             </div>
             </p>
