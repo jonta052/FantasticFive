@@ -13,8 +13,8 @@
   </div>
   <div class="card-body">
        <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title"  width="100%" height="500"/>
-    <h5 class="card-title">@item.Title</h5>
-    <p class="card-text">@item.ContentSummary</p>
+    <h5 class="card-title title-style">@item.Title</h5>
+    <p class="card-text content-style">@item.ContentSummary</p>
     <a class="btn btn-primary" asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
   </div>
   <div class="text-sm-end  text-muted">
