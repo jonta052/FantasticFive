@@ -2,8 +2,25 @@
 
 @{
     ViewData["Title"] = "CategoryIndex";
-}
 
+    var tmp = @Model.FirstOrDefault(c => c.Category.Name == "Business");
+
+    if (tmp != null)
+    {
+        if (tmp.Category.Name == "Business")
+        {
+            <div style="border: 1px solid gray">
+                TEST if you can see this only in Business category
+                //<vc:View-Componet-Name></vc:View-Componet-Name>
+            </div>
+            <br />
+        }
+    }
+
+
+     
+
+}
 
 @foreach (var item in Model)
 {
