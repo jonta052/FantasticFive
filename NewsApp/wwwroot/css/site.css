@@ -106,3 +106,16 @@ body {
 .menu-sub{
     position:absolute
 }
+/*Weather App*/
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    white-space: nowrap;
+}
+
+    .flex-child:first-child {
+        font-weight: bold;
+    }
