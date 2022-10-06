@@ -11,6 +11,7 @@
 <div class="card mt-2" style="width: 67rem;">
   <div class="card-body">
     <h5 class="card-title">@Model.User.GetFullName()</h5>
+    <div>@Model.DateStamp</div>
     <p class="card-text">@Model.Body</p>
      <div>
         @if (Model.User.Id==userId)

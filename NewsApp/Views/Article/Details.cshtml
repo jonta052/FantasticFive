@@ -1,10 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @model NewsApp.Models.Article
 @inject SignInManager<User> SignInManager
-
+@inject UserManager<User> UserManager
 
 @{
     ViewData["Title"] = "Details";
+    var userId = UserManager.GetUserId(User);
 }
 
     <div class="container main-content">
@@ -16,39 +17,45 @@
             <div class="content-style">@Model.Content</div>
             <br><br>
             <hr />
-                 @Model.DateStamp
-            <hr />
+                 @Model.DateStamp.ToLongDateString()
+            
         </div>
       </div>
    </div>
 
    @if (SignInManager.IsSignedIn(User))
    {
-   <div>
+    <hr />
+    <div>
         <h2 style="vertical-align:inherit">What do you think of the news?</h2>
         <div class="opinion-wrapper">
-             <div class="button-container">
-                <a class="like-button"  id="like-button" asp-controller="Article" asp-action="ClickLike" asp-route-Id=@Model.Id>
+            <div class="button-container">
+                   <a class="like-button"  id="like-button" asp-controller="Article" asp-action="ClickLike" asp-route-like=@Model.Id>
                     <i class="bi bi-hand-thumbs-up"></i>
                 Like
                 </a>
                 <p class="like-text">
                     <span>
-                        @Model.Likes Person
+                        @Model.Likes.Count Person
                     </span>
                 </p>
+        @*        @if(Model.Likes.Any( l=>l.UserId == userId))
+                {<p>like</p>}
+                else
+                {<p>no like</p>}*@
+               
              </div>
            <div class="button-container">
-                <button class="like-button" id="like-button" onclick="Don't like()">
+                <a class="like-button"  id="dislike-button" asp-controller="Article" asp-action="ClickLike" asp-route-dislike=@Model.Id>
                 <i class="bi bi-hand-thumbs-down"></i>
                 Dislike
-                </button>
+                </a>
                 <p class="like-text">
                     <span>
-                          @Model.Likes Person
+                          @Model.Dislikes.Count Person
                     </span>
                 </p>
-             </div>
+           </div>
         </div>
    </div>
    

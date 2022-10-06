@@ -1,6 +1,7 @@
 using Castle.Core.Internal;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
@@ -14,12 +15,14 @@ namespace NewsApp.Controllers
         private readonly IArticleService _articleService;
       
         private readonly ApplicationDbContext _db;
+        private readonly UserManager<User> _userManager;
 
 
-        public ArticleController(IArticleService articleService, ApplicationDbContext db)
+        public ArticleController(IArticleService articleService, ApplicationDbContext db, UserManager<User> userManager)
         {
             _articleService = articleService;
             _db = db;
+            _userManager = userManager;
         }
 
 
@@ -139,13 +142,54 @@ namespace NewsApp.Controllers
             return View(catagoryArticles);
         }
 
-        public IActionResult ClickLike(int Id)
+        public IActionResult ClickLike(int like, int dislike)
         {
-            var click = _db.Articles.Where(c => c.Id == Id).FirstOrDefault();
-            click.Likes += 1;
-            _db.Update(click);
-            _db.SaveChanges();
-            return View("Details", click);
+            var userId = _userManager.GetUserId(User);
+            if (like > dislike)
+            {
+                var existingLike = _db.Likes.FirstOrDefault(l => l.ArticleId == like && l.UserId == userId);
+                if (existingLike != null)
+                {
+                    _db.Remove(existingLike);
+                    _db.SaveChanges();
+                    return RedirectToAction("Details", new {id=like});
+                }
+
+                var userLike = new Like
+                {
+                    UserId = userId,
+                    ArticleId = like
+                };
+
+                _db.Add(userLike);
+                _db.SaveChanges();
+                return RedirectToAction("Details", new { id = like });
+            }
+            else
+            {
+
+                    var existingDislike = _db.Dislikes.FirstOrDefault(l => l.ArticleId == dislike && l.UserId == userId);
+                    if (existingDislike != null)
+                    {
+                    // TODO Remove like
+                        _db.Remove(existingDislike);
+                        _db.SaveChanges();
+                        return RedirectToAction("Details", new { id = dislike });
+                    }
+
+                    var userDislike = new Dislike
+                    {
+                        UserId = userId,
+                        ArticleId = dislike
+                    };
+
+                    _db.Add(userDislike);
+                    _db.SaveChanges();
+                    return RedirectToAction("Details", new { id = dislike });
+                
+            }
+
+
         }
 
     }
