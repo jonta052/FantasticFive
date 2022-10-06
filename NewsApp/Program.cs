@@ -27,6 +27,7 @@ builder.Services.AddControllersWithViews();
 //Add services here
 builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<IWeatherService, WeatherService>();
 
 builder.Services.AddHttpClient("stockMarket", config => {
 

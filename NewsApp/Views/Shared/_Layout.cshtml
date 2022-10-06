@@ -1,3 +1,9 @@
+@using NewsApp.Services
+@inject IWeatherService _weatherService
+@{
+    var weatherData = _weatherService.WeatherApp().Result;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +39,17 @@
                         </script>
 
                     </div>
+                    <!--START-->
+                    
+                    <img id="wicon" class="mr-3" alt="Sample Image" style="width:50px;" data-bs-toggle="popover" data-bs-placement="bottom">
+
+
+                        <!--
+                    <button type="button" class="btn btn-primary" data-toggle="popover" title="User Info">Popover with Title</button>
+                    -->
+                        
+
+                    <!--STOP-->
                 </div>
             </div>
 
@@ -202,31 +219,40 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+         $(document).ready(function () {
 
-    @*@section scripts{
+            if (@weatherData.TemperatureC > 10) {
+                    document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+                }
+             else {
+                    document.getElementById('wicon').src = "/Image/weather/sun.png";
+                  
+                }
+                
+            $('[data-bs-toggle="popover"]').popover({
+                trigger: 'hover',
+                html: true,
+                content:
+                    `<div class="flex-container">
+                                  <div class="flex-child">
+                                       <p>City:</p>
+                                       <p>Summary:</p>
+                                       <p>Temperature:&nbsp&nbsp</p>
+                                  </div>
+                                  <div class="flex-child">
+                                      <p>@weatherData.City</p>
+                                      <p>@weatherData.Summary</p>
+                                      <p>@weatherData.TemperatureC &#8451</p>
+                                  </div>
+                            </div>`
+            });
 
-
-    <script type="text/javascript">
-    $(document).ready(function () {
-    document.getElementById("searchbutton").onclick = function () {
-
-    console.log("sdfgh");
-    searchSite();
-    //window.location = 'Article' + document.getElementById('test').value;
-    return false;
-    }
-
-    function searchSite() {
-    var inputted = document.getElementById("search").value;
-    var searchForm = document.getElementById("searchForm");
-    searchForm.action = "Article";
-    searchForm.submit();
-    }
-
-    });
+        });
     </script>
-    }*@
+    @await RenderSectionAsync("Scripts", required: false)
+   
+    
 
 </body>
 </html>
