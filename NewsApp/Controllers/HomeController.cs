@@ -30,7 +30,7 @@ namespace NewsApp.Controllers
         public IActionResult Index()
         {
             var popular = _db.Articles
-              .OrderByDescending(m => m.Likes)
+              .OrderByDescending(m => m.Likes.Count)
               .Take(5).ToList();
             return View(popular);
         }
@@ -38,7 +38,7 @@ namespace NewsApp.Controllers
         public IActionResult PopularArticles()
         {
             var popular = _db.Articles
-              .OrderByDescending(m => m.Likes)
+              .OrderByDescending(m => m.Likes.Count)
               .Take(5).ToList();
             return View(popular);
         }

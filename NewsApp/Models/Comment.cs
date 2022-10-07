@@ -18,6 +18,7 @@ namespace NewsApp.Models
         [Required]
         public string UserId { get; set; }
         public virtual User User { get; set; }
+        public DateTime DateStamp { get; protected set; } = DateTime.Now;
 
     }
 }

@@ -1,6 +1,6 @@
 using Castle.Core.Internal;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
@@ -12,34 +12,48 @@ namespace NewsApp.Controllers
     public class ArticleController : Controller
     {
         private readonly IArticleService _articleService;
-      
+
         private readonly ApplicationDbContext _db;
+        private readonly UserManager<User> _userManager;
 
 
-        public ArticleController(IArticleService articleService, ApplicationDbContext db)
+        public ArticleController(IArticleService articleService, ApplicationDbContext db, UserManager<User> userManager)
         {
             _articleService = articleService;
             _db = db;
+            _userManager = userManager;
         }
 
 
         // GET: Article
-        public IActionResult Index(string search)
+        public IActionResult Index()
+        {
+            
+            var allArticles = _articleService.GetArticles().ToList();
+
+            return View(allArticles);
+        }
+
+        public IActionResult SearchArticles(string search)
         {
             var selectedArticles = (from a in _db.Articles where a.Content.Contains(search) || a.Title.Contains(search) select a).ToList();
 
             if (selectedArticles.IsNullOrEmpty())
             {
-                selectedArticles = _articleService.GetArticles().ToList();
+                return View("NotFound");
             }
-           
-            return View(selectedArticles);
+
+            return View("Index", selectedArticles);
         }
 
         // GET: ArticleController/Details/5
         public IActionResult Details(int id)
-        {          
+        {
             var article = _articleService.GetArticle(id);
+            var click = _db.Articles.Where(c => c.Id == id).FirstOrDefault();
+            click.Views += 1;
+            _db.Update(click);
+            _db.SaveChanges();
             return View(article);
         }
 
@@ -126,13 +140,108 @@ namespace NewsApp.Controllers
             }
         }
 
-       public IActionResult CategoryIndex(string CategoryName)
+        public IActionResult CategoryIndex(string CategoryName)
         {
             //Get category from category name
             var category = _db.Categories.Where(c => c.Name == CategoryName).FirstOrDefault();
             //Get articles belonging to that category
             var catagoryArticles = from a in _db.Articles where a.CategoryId == category.Id select a;
             return View(catagoryArticles);
+        }
+
+        public IActionResult ClickLike(int like, int dislike)
+        {
+            var currentClick = 0;
+            if (like > dislike)
+            {
+                currentClick = like;
+            }
+            else
+            {
+                currentClick = dislike;
+            }
+
+            var userId = _userManager.GetUserId(User);
+            var existingLike = _db.Likes.FirstOrDefault(l => l.ArticleId == currentClick && l.UserId == userId);
+            var existingDislike = _db.Dislikes.FirstOrDefault(l => l.ArticleId == currentClick && l.UserId == userId);
+            if (like > dislike)
+            {
+
+                //user has liked article before
+                if (existingLike != null)
+                {
+
+                    _db.Remove(existingLike);
+                    _db.SaveChanges();
+                    return RedirectToAction("Details", new { id = like });
+                }
+                //user has not disliked article before
+                else if (existingDislike == null)
+                {
+                    var userLike = new Like
+                    {
+                        UserId = userId,
+                        ArticleId = like
+                    };
+
+                    _db.Add(userLike);
+                    _db.SaveChanges();
+                }
+                else if(existingDislike != null)
+                {
+                    var userLike = new Like
+                    {
+                        UserId = userId,
+                        ArticleId = like
+                    };
+
+                    _db.Remove(existingDislike);
+                    _db.Add(userLike);
+                    _db.SaveChanges();
+                };
+
+
+                return RedirectToAction("Details", new { id = like });
+            }
+            else
+            {
+
+
+                if (existingDislike != null)
+                {
+                    // TODO Remove like
+                    _db.Remove(existingDislike);
+                    _db.SaveChanges();
+                    return RedirectToAction("Details", new { id = dislike });
+                }
+                else if (existingLike == null)
+                {
+                    var userDislike = new Dislike
+                    {
+                        UserId = userId,
+                        ArticleId = dislike
+                    };
+
+                    _db.Add(userDislike);
+                    _db.SaveChanges();
+                }
+                else if (existingLike != null)
+                {
+                    var userDislike = new Dislike
+                    {
+                        UserId = userId,
+                        ArticleId = dislike
+                    };
+
+                    _db.Remove(existingLike);
+                    _db.Add(userDislike);
+                    _db.SaveChanges();
+                };
+                return RedirectToAction("Details", new { id = dislike });
+
+            }
+
+
         }
 
     }

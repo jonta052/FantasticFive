@@ -12,7 +12,9 @@ namespace NewsApp.Data
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<SubscriptionType> SubscriptionTypes { get; set; }
         public DbSet<KlarnaOrder> KlarnaOrders { get; set; }
-
+        
+        public DbSet<Like> Likes { get; set; }
+        public DbSet<Dislike> Dislikes { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
