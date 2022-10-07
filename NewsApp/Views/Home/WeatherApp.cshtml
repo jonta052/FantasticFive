@@ -1,8 +1,6 @@
 ﻿@model WeatherForecast
 
-@{
-    ViewData["Title"] = "Forecast";
-}
+
 <!--
 <form method="get">
     <input name="city" type="text" placeholder="City"/>
@@ -32,49 +30,51 @@
 
 @section Scripts
 {
-<script>
+    <script>
 
         $(document).ready(function () {
             //const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
             //const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-            
-            
+
+
             function weatherIcon() {
-                if (@Model?.TemperatureC > 10) 
-                {
+                if (@Model?.TemperatureC > 10) {
                     document.getElementById('wicon').src = "/Image/weather/cloudy.png";
                     return "hot";
                 }
-                else
-                {
+                else {
                     document.getElementById('wicon').src = "/Image/weather/sun.png";
                     return "cold";
                 }
-                
+
             }
-            
-                $('[data-bs-toggle="popover"]').popover({
+
+            $('[data-bs-toggle="popover"]').popover({
                 trigger: 'hover',
                 html: true,
                 content:
-                `<div class="flex-container">
-                      <div class="flex-child">
-                           <p>City:</p>
-                           <p>Summary:</p>
-                           <p>Temperature:&nbsp&nbsp</p>
-                      </div>
-                      <div class="flex-child">
-                           <p>@Model?.City</p>
-                           <p>@Model?.Summary</p>
-                           <p>@Model?.TemperatureC &#8451 ${weatherIcon()}</p>
-                      </div>
-                </div>`
+                    `<div class="flex-container">
+                                  <div class="flex-child">
+                                       <p>City:</p>
+                                       <p>Summary:</p>
+                                       <p>Temperature:&nbsp&nbsp</p>
+                                  </div>
+                                  <div class="flex-child">
+                                                      <p>@Model?.City</p>
+                                                      <p>@Model?.Summary</p>
+                                                      <p>@Model?.TemperatureC &#8451 ${weatherIcon()}</p>
+                                  </div>
+                            </div>`
             });
-           
+
         });
-       
-</script>
+
+    </script>
+
 }
+
+
+
 <style>
         .flex-container {
             display: flex;

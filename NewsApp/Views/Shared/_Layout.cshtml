@@ -1,3 +1,9 @@
+@using NewsApp.Services
+@inject IWeatherService _weatherService
+@{
+    var weatherData = _weatherService.WeatherApp().Result;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,100 +16,91 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
+
+    <!--
+          <style>
+               .search-toggle input[type=text] {
+                width: 25px; border: none;background: none;
+            }
+
+                .search-toggle input[type=text]:focus {
+                width: 150px; background:#fff;
+                }
+    </style>
+    -->
+
 </head>
 <body>
    
     <header>
-
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-
-            <div class="carousel-inner">
-                <div class="carousel-item active col-md-3 p-2 bg-light text-dark text-center">
-                    <span class="p-2">Silver</span>
-                    <span class="p-2">19.413</span>
-                    <span class="bg-success">+0.28%</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">Brent Oil</span>
-                    <span class="p-2">91.96</span>
-                    <span class="bg-danger">-0.04%</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">Natural Gas</span>
-                    <span class="p-2">7.836</span>
-                    <span class="bg-danger">-0.38%</span>
-                </div>
-
-                <div class="carousel-item  col-md-3 p-2 bg-light text-dark text-center">
-                    <span class="p-2">Apple</span>
-                    <span class="p-2">154.48</span>
-                    <span class="bg-success">+2.51</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">EUR/USD</span>
-                    <span class="p-2">0.9984</span>
-                    <span class="bg-danger">-0.34%</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">Netflix</span>
-                    <span class="p-2">243.63</span>
-                    <span class="bg-success">+1.46%</span>
-                </div>
-
-                <div class="carousel-item  col-md-3 p-2 bg-light text-dark text-center">
-                    <span class="p-2">Gold (USD/oz)</span>
-                    <span class="p-2">1672.6</span>
-                    <span class="bg-danger">-0.65%</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">Nikkei 225</span>
-                    <span class="p-2">27567.65</span>
-                    <span class="bg-danger">-1.11%</span>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="p-2">Tesla</span>
-                    <span class="p-2">309.07</span>
-                    <span class="bg-success">+1.89%</span>
-                </div>
-            </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
-
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark" border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <div>
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img height="50" width="50" src="~/image/news 5.jpg" />NewsApp</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@*&nbsp;&nbsp;<img height="50" width="50" src="~/image/news 5.jpg" />NewsApp*@</a>
+
+                    <h2 style="font-weight: bold; text-shadow: 2px 2px #808080;color: white;"><img height="50" width="50" src="~/image/news 5.jpg" />NewsApp</h2>
+
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
-                        <p style="color: white; ">@*Date/Time : *@<span id="datetime"></span></p>
+                        <img id="wicon" class="mr-3" alt="Sample Image" style="width:50px;" data-bs-toggle="popover" data-bs-placement="bottom">
+                        <p style="color: white; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="datetime"></span></p>
 
                         <script>
-
                             setInterval(timer, 1000);
                             function timer() {
                                 var dt = new Date();
                                 document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2)) + ":" + (("0" + dt.getSeconds()).slice(-2));
                             }
                         </script>
-
+                        </div>
                     </div>
-                </div>
             </div>
 
             <div style="text-align: right; padding-right:15px">
                 <partial name="_LoginPartial" />
-   
-                <form asp-action="SearchArticles" asp-controller="Article">
-                    
-                    <div class="form-group d-flex" >
-                        <input name="search" type="text"  class="form-control me-2" />
-                        <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
-             
-                    </div>
-                </form>
 
+                <!-- <form class="d-flex">
+                     <input id="search" class="form-controll me-2" type="search" placeholder="Search news">
+                     <button id="searchbutton" class="btn btn-outline-warning" type="button" action="submit">Search</button>
+
+
+
+                 </form>-->
+
+                <form asp-action="Index" asp-controller="Article">
+
+
+                    <div>
+                        <button class="btn btn-darck" style="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                            <i class="fa-solid fa-magnifying-glass" style="color: white;"></i>
+                        </button>
+                    
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                            <input value="" name="search" type="text" class="form-control me-2" />
+                        </div>
+                    </div>
+
+                    <!--second search-->
+                    @*<div class="form-group d-flex search-toggle" style="search-toggle i-position: relative;top: 12px;color: #fff;">
+
+                        <input value="search" name="search" type="text" class="form-control me-2" placeholder="search" />
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+*@
+
+
+
+@*
+                    <div class="form-group d-flex">
+
+
+                        <input value="" name="search" type="text" class="form-control me-2" />
+                        <button class="btn btn-outline-warning" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+                        <!--<input type="submit" value="Search" class="fa-solid fa-magnifying-glass" />-->
+                    </div>*@
+
+                </form>
+                
             </div>
 
         </nav>
@@ -111,9 +108,13 @@
         
 
         <!--////////////////// -->
+        @*<nav class="navbar navbar-expand-lg" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: wheat">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: wheat">*@
+
+
         <!-- second navbar -->
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Fourth navbar example" style="margin-bottom:30px">
+            <nav class="navbar navbar-expand-lg" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: wheat">
                 <div class="container-fluid">
                     <a class="navbar-link navbar-brand text-warning" asp-controller="Article" asp-action="Index">News </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -121,6 +122,9 @@
                     </button>
                     <div class="collapse navbar-collapse container" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>
                             <li class="nav-item nav-li">
                                 <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>
                             </li>
@@ -142,7 +146,7 @@
                             <li class="nav-item nav-li">
                                 <a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="Culture">Culture</a>
                             </li>
-                             <li class="nav-item nav-li dropdown position-static">
+                            <li class="nav-item nav-li dropdown position-static">
                                 <a class="nav-link nav-a dropdown-toggle position-relative " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     More
                                 </a>
@@ -174,6 +178,19 @@
 
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
+                                                <div class="list-group list-group-flush">
+                                                    <a href="https://localhost:7111/home/stockmarket" class="list-group-item list-group-item-action">Stockmarket</a>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-3">
+                                                <div class="list-group list-group-flush">
+                                                    <a href="https://localhost:7111/Home/weatherapp" class="list-group-item list-group-item-action">Wheater</a>
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -196,45 +213,42 @@
 
 
 
-    <br />
-    <footer>
-        <hr />
+    <footer class="fixed-bottom" style="background-color: black">
         <div class="container body-content">
             <div class="row">
                 <div class="col-4">
-                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                 </div>
 
                 <div class="col-4" style="text-align: center">
-                    <a asp-area="" asp-controller="Home" asp-action="About">About Us</a>
+                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">About Us</a>
                 </div>
 
-                <div class="col-4" style="text-align: center">
-                    <h5 style="text-align: center;font-weight: bold; display: inline-block">Follow Us&nbsp&nbsp&nbsp&nbsp<br /></h5>
+                <div class="col-4 text-light" style="text-align: center">
+                    <h5 style="text-align: center;font-weight: bold; display: inline-block">Follow Us&nbsp&nbsp<br /></h5>
                     <a class="fs-3 text-dark text-decoration-none" href="https://instagram.com">
-                        <i class="fab fa-instagram-square"></i>
+                        <i class="fab fa-instagram-square text-light"></i>
                     </a>
                     <a class="fs-3 text-dark text-decoration-none" href="https://twitter.com">
-                        <i class="fab fa-twitter-square"></i>
+                        <i class="fab fa-twitter-square text-light"></i>
                     </a>
                     <a class="fs-3 text-dark text-decoration-none" href="https://linkedin.com">
-                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-linkedin text-light"></i>
                     </a>
                     <a class="fs-3 text-dark text-decoration-none" href="https://youtube.com">
-                        <i class="fab fa-youtube-square"></i>
+                        <i class="fab fa-youtube-square text-light"></i>
                     </a>
                     <a class="fs-3 text-dark text-decoration-none" href="https://facebook.com">
-                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-facebook-square text-light"></i>
                     </a>
                 </div>
 
             </div>
         </div>
 
-        <div style="text-align: center">
+        <div class="nav-link text-light" style="text-align: center">
             &copy; 2022 - NewsApp.FantasticFive
         </div>
-
     </footer>
 
 
@@ -244,31 +258,40 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+         $(document).ready(function () {
 
-    @*@section scripts{
-        
-        
-        <script type="text/javascript">
-            $(document).ready(function () {
-            document.getElementById("searchbutton").onclick = function () {
-
-                console.log("sdfgh");
-                searchSite();
-                //window.location = 'Article' + document.getElementById('test').value;
-                return false;
-            }
-
-            function searchSite() {
-                var inputted = document.getElementById("search").value;
-                var searchForm = document.getElementById("searchForm");
-                searchForm.action = "Article";
-                searchForm.submit();
-            }
-
+            if (@weatherData.TemperatureC > 10) {
+                    document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+                }
+             else {
+                    document.getElementById('wicon').src = "/Image/weather/sun.png";
+                  
+                }
+                
+            $('[data-bs-toggle="popover"]').popover({
+                trigger: 'hover',
+                html: true,
+                content:
+                    `<div class="flex-container">
+                                  <div class="flex-child">
+                                       <p>City:</p>
+                                       <p>Summary:</p>
+                                       <p>Temperature:&nbsp&nbsp</p>
+                                  </div>
+                                  <div class="flex-child">
+                                      <p>@weatherData.City</p>
+                                      <p>@weatherData.Summary</p>
+                                      <p>@weatherData.TemperatureC &#8451</p>
+                                  </div>
+                            </div>`
             });
-        </script>
-    }*@
+
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+   
+    
 
 </body>
 </html>

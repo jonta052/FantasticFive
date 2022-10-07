@@ -27,6 +27,7 @@ builder.Services.AddControllersWithViews();
 //Add services here
 builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<IWeatherService, WeatherService>();
 
 builder.Services.AddHttpClient("stockMarket", config => {
 
@@ -37,6 +38,12 @@ builder.Services.AddHttpClient("stockMarket", config => {
 builder.Services.AddHttpClient("weatherForecast", config => {
 
     config.BaseAddress = new("https://weatherapi.dreammaker-it.se/");
+
+});
+
+builder.Services.AddHttpClient("getUserLocationInfo", config => {
+
+    config.BaseAddress = new("https://ipinfo.io/");
 
 });
 

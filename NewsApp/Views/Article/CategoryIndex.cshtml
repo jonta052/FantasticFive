@@ -2,11 +2,24 @@
 
 @{
     ViewData["Title"] = "CategoryIndex";
+
+    var tmp = @Model.FirstOrDefault(c => c.Category.Name == "Business");
+
+    if (tmp != null)
+    {
+        if (tmp.Category.Name == "Business")
+        {
+            <div style="border: 1px solid gray">
+               <vc:stock></vc:stock>
+            </div>
+            <br />
+        }
+    }
 }
 
-
-@foreach(var item in Model)
+@foreach (var item in Model)
 {
+
     <div class="card text-center col-md-10">
   <div class="card-header bg-dark text-lg-center text-light text-uppercase ">
     @item.Category.Name
@@ -25,6 +38,7 @@
   </div>
    <br />
    <br />
+
 
 }
 
