@@ -28,6 +28,7 @@
                     <h2 style="font-weight: bold; text-shadow: 2px 2px #808080;color: white;"><img height="50" width="50" src="~/image/news 5.jpg" />NewsApp</h2>
 
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
+                        <img id="wicon" class="mr-3" alt="Sample Image" style="width:50px;" data-bs-toggle="popover" data-bs-placement="bottom">
                         <p style="color: white; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="datetime"></span></p>
 
                         <script>
@@ -37,20 +38,8 @@
                                 document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2)) + ":" + (("0" + dt.getSeconds()).slice(-2));
                             }
                         </script>
-
+                        </div>
                     </div>
-                    <!--START-->
-                    
-                    <img id="wicon" class="mr-3" alt="Sample Image" style="width:50px;" data-bs-toggle="popover" data-bs-placement="bottom">
-
-
-                        <!--
-                    <button type="button" class="btn btn-primary" data-toggle="popover" title="User Info">Popover with Title</button>
-                    -->
-                        
-
-                    <!--STOP-->
-                </div>
             </div>
 
             <div style="text-align: right">
