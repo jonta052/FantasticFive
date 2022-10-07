@@ -40,6 +40,12 @@ builder.Services.AddHttpClient("weatherForecast", config => {
 
 });
 
+builder.Services.AddHttpClient("getUserLocationInfo", config => {
+
+    config.BaseAddress = new("https://ipinfo.io/");
+
+});
+
 var app = builder.Build();
 
 //Adds the required data to the database
