@@ -26,16 +26,24 @@ namespace NewsApp.Controllers
 
 
         // GET: Article
-        public IActionResult Index(string search)
+        public IActionResult Index()
+        {
+            
+            var allArticles = _articleService.GetArticles().ToList();
+
+            return View(allArticles);
+        }
+
+        public IActionResult SearchArticles(string search)
         {
             var selectedArticles = (from a in _db.Articles where a.Content.Contains(search) || a.Title.Contains(search) select a).ToList();
 
             if (selectedArticles.IsNullOrEmpty())
             {
-                selectedArticles = _articleService.GetArticles().ToList();
+                return View("NotFound");
             }
 
-            return View(selectedArticles);
+            return View("Index", selectedArticles);
         }
 
         // GET: ArticleController/Details/5
