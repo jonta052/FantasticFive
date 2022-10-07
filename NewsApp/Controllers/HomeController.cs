@@ -45,9 +45,6 @@ namespace NewsApp.Controllers
               .FirstOrDefault();
             return View(latest);
         }
-
-        
-
         public IActionResult Privacy()
         {
             return View();
