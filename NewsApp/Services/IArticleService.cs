@@ -12,5 +12,8 @@ namespace NewsApp.Services
         Article CreateArticle(Article article);
         Article UpdateArticle(Article article);
         void DeleteArticle(int id);
+
+        IEnumerable<Article> PopularArticles();
+        IEnumerable<Article> LatestArticles();
     }
 }

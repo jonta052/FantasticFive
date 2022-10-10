@@ -1,0 +1,30 @@
+﻿@model IEnumerable<NewsApp.Models.Article>
+
+<table class="table">
+    
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+              @*@Html.DisplayFor(modelItem => item.Title)*@
+              <a class="text-link" style="text-decoration: none" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="@item.Category.Name">@item.Title</a>
+
+            </td>
+            
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Views)
+            </td>
+           
+            <td>
+                    <h5 style="font-family:'Times New Roman', Times, serif; color:white; background-color:red; text-align:center">@item.Category.Name</h5>
+
+                    @*<img src="@item.ImageLink" style="width:100%"  />*@
+                    <a class="text-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" style="width:100%"  /></a>
+
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

@@ -27,12 +27,22 @@ namespace NewsApp.Controllers
           
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string CategoryName)
         {
+            if (string.IsNullOrEmpty(CategoryName))
+            {
             var popular = _db.Articles
               .OrderByDescending(m => m.Likes.Count)
               .Take(5).ToList();
-            return View(popular);
+                return View(popular);
+            }
+            //Get category from category name
+            var category = _db.Categories.Where(c => c.Name == CategoryName).FirstOrDefault();
+            //Get articles belonging to that category
+            var catagoryArticles = from a in _db.Articles where a.CategoryId == category.Id select a;
+
+            return View(catagoryArticles);
+
         }
 
         public IActionResult PopularArticles()
@@ -40,7 +50,7 @@ namespace NewsApp.Controllers
             var popular = _db.Articles
               .OrderByDescending(m => m.Likes.Count)
               .Take(5).ToList();
-            return View(popular);
+            return PartialView("~/Home/PopularArticles", popular);
         }
 
         public IActionResult LatestArticles()

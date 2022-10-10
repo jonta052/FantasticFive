@@ -140,7 +140,9 @@ namespace NewsApp.Controllers
             }
         }
 
-        public IActionResult CategoryIndex(string CategoryName)
+        //Unneccesary
+       public IActionResult CategoryIndex(string CategoryName)
+
         {
             //Get category from category name
             var category = _db.Categories.Where(c => c.Name == CategoryName).FirstOrDefault();
@@ -149,6 +151,14 @@ namespace NewsApp.Controllers
             return View(catagoryArticles);
         }
 
+        public IActionResult EditorsChoice()
+        {
+           
+            //Get articles belonging to that category
+            var editorsArticles = from a in _db.Articles where a.EditorChoice == true select a;
+            return PartialView("~/Shared/_EditorsChoice",editorsArticles);
+        }
+        
         public IActionResult ClickLike(int like, int dislike)
         {
             var currentClick = 0;
