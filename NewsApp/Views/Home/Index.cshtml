@@ -12,6 +12,13 @@
 
 
 <div class="row">
+
+    @*    <div class="col-md-4 card container-fluid">
+    <div><a class="btn btn-primary" href=""><h3>Popular News</h3></a></div><hr />
+    <div><a class="btn btn-primary" href=""><h3>Latest News</h3></a></div><hr />
+    <div><a class="btn btn-primary" href=""><h3>Editor choice</h3></a></div><hr />
+    </div>
+    *@
      
     <div class="col-md-4"> 
         <div style="background-color:palegoldenrod;">
@@ -28,7 +35,7 @@
         {
            <div class="row" style="margin:10px 0px">
                <div class="col-md-4">
-                   @article.Likes
+                   @article.Likes.Count
                    <img src="@article.ImageLink" style="width:100%"  />
                    <hr />
                  </div> 
@@ -86,10 +93,8 @@
         
        </div>
     </div>
-
+    
     <div class="col-md-8">
-         
-
         
        @* <div class="card-body" style="padding:0px">
             <a class="text-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" style="width:100%"  /></a>
@@ -99,6 +104,7 @@
         @*<div class="card-header">
             <h1 class="card-title text-center m-5" style="font-family:Georgia, 'Times New Roman', Times, seri; font-size: 40px">Royal Family greet Queen Elizabeth II's coffin </h1>
             <h5 style="font-family:'Times New Roman', Times, serif; ">Thursday, 6 October 2022</h5>
+
         </div>
         <div class="card-body" style="padding:0px">
             <img src="https://c.files.bbci.co.uk/12E97/production/_126736477_gettyimages-1423631022.jpg" class="card-img-top" alt="Queen Elizabeth">

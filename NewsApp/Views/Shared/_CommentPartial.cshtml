@@ -8,17 +8,19 @@
 
 <a asp-action="Details" asp-controller="Comment" asp-route-id="@Model.Id" class="text-decoration-none text-dark">
 
-<div class="card mt-2" style="width: 53rem;">
+<div class="card mt-2" style="width: 67rem;">
   <div class="card-body">
     <h5 class="card-title">@Model.User.GetFullName()</h5>
+    <div>@Model.DateStamp</div>
+    <p class="card-text">@Model.Body</p>
      <div>
         @if (Model.User.Id==userId)
         {
-            <a asp-action="Delete" asp-controller="Comment" asp-route-id="@Model.Id" class="card-link text-danger">Delete</a>
+            <a asp-action="Delete" asp-controller="Comment" asp-route-id="@Model.Id" class="card-link text-danger text-sm-end">Delete</a>
         }
-       </div>
+     </div>
     
-    <p class="card-text">@Model.Body</p>
+    
        
 
   </div>

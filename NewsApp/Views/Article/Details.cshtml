@@ -1,56 +1,65 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @model NewsApp.Models.Article
 @inject SignInManager<User> SignInManager
-
+@inject UserManager<User> UserManager
 
 @{
     ViewData["Title"] = "Details";
+    var userId = UserManager.GetUserId(User);
 }
 
     <div class="container main-content">
       <div class="row">
-        <div class="col-md-8">
-            <h1 class="text-center bg-secondary">@Model.Category.Name</h1>
-            <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title" width="830" height="500" />
-            <h2 style="text-align:center">@Model.Title</h2><br />
-            <div>@Model.Content</div>
-          <br><br>
+        <div class="col-md-10">
+            <h2 class="title-style">@Model.Title</h2><br />
+            <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title" width="100%" height="600" />
+            <br /><br />
+            <div class="content-style">@Model.Content</div>
+            <br><br>
+            <hr />
+                 @Model.DateStamp.ToLongDateString()
+            
         </div>
       </div>
    </div>
-   <hr />
-   @Model.DateStamp
-   <hr />
 
-   <div>
+   @if (SignInManager.IsSignedIn(User))
+   {
+    <hr />
+    <div>
         <h2 style="vertical-align:inherit">What do you think of the news?</h2>
         <div class="opinion-wrapper">
-             <div class="button-container">
-                <button class="like-button" id="like-button" onclick="like()">
-                <img src="/wp-content/themes/8sidor/images/like.png" alt="">
+            <div class="button-container">
+                   <a class="like-button"  id="like-button" asp-controller="Article" asp-action="ClickLike" asp-route-like=@Model.Id>
+                    <i class="bi bi-hand-thumbs-up"></i>
                 Like
-                </button>
+                </a>
                 <p class="like-text">
                     <span>
-                        @Model.Likes Person
+                        @Model.Likes.Count Person
                     </span>
                 </p>
+        @*        @if(Model.Likes.Any( l=>l.UserId == userId))
+                {<p>like</p>}
+                else
+                {<p>no like</p>}*@
+               
              </div>
            <div class="button-container">
-                <button class="like-button" id="like-button" onclick="Don't like()">
-                <img src="/wp-content/themes/8sidor/images/like.png" alt="">
+                <a class="like-button"  id="dislike-button" asp-controller="Article" asp-action="ClickLike" asp-route-dislike=@Model.Id>
+                <i class="bi bi-hand-thumbs-down"></i>
                 Dislike
-                </button>
+                </a>
                 <p class="like-text">
                     <span>
-                        @Model.Likes Person
+                          @Model.Dislikes.Count Person
                     </span>
                 </p>
-             </div>
+           </div>
         </div>
    </div>
    
-   <h2>Comments</h2>
+   <h2>@Model.Comments.Count()  Comments</h2>
     <div class="my-4">   
         @foreach(var comment in Model.Comments)
         {
@@ -59,17 +68,17 @@
     </div>
      @*<a asp-action="Create" asp-controller="Comment" asp-route-id="@Model.Id">Make a comment.</a>*@
      
-@if (SignInManager.IsSignedIn(User))
-{
+
+
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-10">
         <form asp-action="Create" asp-controller="Comment">
             <div asp-validation-summary="All" class="text-danger"></div>
             <input type="hidden" name="articleId" value="@Model.Id" />
             <p class="comment-form-comment">
-            <div class="form-group" style="font-weight:600">Comment
+            <div class="form-group" style="font-weight:700">Comment
                 <label for="commentBody" class="control-label" ></label>
-                    <textarea id="commentBody" name="commentBody" rows="5" cols="110">
+                <textarea id="commentBody" name="commentBody" rows="5" cols="140">
                     </textarea>
             </div>
             </p>
@@ -85,9 +94,4 @@
 
 
 
-@*</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>*@
 

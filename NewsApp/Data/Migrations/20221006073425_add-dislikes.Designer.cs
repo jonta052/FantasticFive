@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewsApp.Data;
 
@@ -11,9 +12,10 @@ using NewsApp.Data;
 namespace NewsApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221006073425_add-dislikes")]
+    partial class adddislikes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +23,21 @@ namespace NewsApp.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("ArticleUser", b =>
+                {
+                    b.Property<int>("ArticlesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ArticlesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("ArticleUser");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -179,11 +196,17 @@ namespace NewsApp.Data.Migrations
                     b.Property<DateTime>("DateStamp")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Dislikes")
+                        .HasColumnType("int");
+
                     b.Property<bool>("EditorChoice")
                         .HasColumnType("bit");
 
                     b.Property<string>("ImageLink")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
 
                     b.Property<string>("LinkText")
                         .HasColumnType("nvarchar(max)");
@@ -250,29 +273,6 @@ namespace NewsApp.Data.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("NewsApp.Models.Dislike", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArticleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Dislikes");
-                });
-
             modelBuilder.Entity("NewsApp.Models.KlarnaOrder", b =>
                 {
                     b.Property<int>("Id")
@@ -307,29 +307,6 @@ namespace NewsApp.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("KlarnaOrders");
-                });
-
-            modelBuilder.Entity("NewsApp.Models.Like", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArticleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("NewsApp.Models.Subscription", b =>
@@ -477,6 +454,21 @@ namespace NewsApp.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("ArticleUser", b =>
+                {
+                    b.HasOne("NewsApp.Models.Article", null)
+                        .WithMany()
+                        .HasForeignKey("ArticlesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NewsApp.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -558,45 +550,11 @@ namespace NewsApp.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NewsApp.Models.Dislike", b =>
-                {
-                    b.HasOne("NewsApp.Models.Article", "Article")
-                        .WithMany("Dislikes")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NewsApp.Models.User", "User")
-                        .WithMany("Dislikes")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Article");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("NewsApp.Models.KlarnaOrder", b =>
                 {
                     b.HasOne("NewsApp.Models.User", "User")
                         .WithMany("KlarnaOrders")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("NewsApp.Models.Like", b =>
-                {
-                    b.HasOne("NewsApp.Models.Article", "Article")
-                        .WithMany("Likes")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NewsApp.Models.User", "User")
-                        .WithMany("Likes")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Article");
 
                     b.Navigation("User");
                 });
@@ -625,10 +583,6 @@ namespace NewsApp.Data.Migrations
             modelBuilder.Entity("NewsApp.Models.Article", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Dislikes");
-
-                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("NewsApp.Models.Category", b =>
@@ -650,11 +604,7 @@ namespace NewsApp.Data.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Dislikes");
-
                     b.Navigation("KlarnaOrders");
-
-                    b.Navigation("Likes");
 
                     b.Navigation("Subscription");
                 });
