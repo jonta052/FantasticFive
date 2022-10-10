@@ -125,7 +125,7 @@ namespace NewsApp.Controllers
                 return View(article);
             }
         }
-
+        //Unneccesary
        public IActionResult CategoryIndex(string CategoryName)
         {
             //Get category from category name
@@ -135,5 +135,12 @@ namespace NewsApp.Controllers
             return View(catagoryArticles);
         }
 
+        public IActionResult EditorsChoice()
+        {
+           
+            //Get articles belonging to that category
+            var editorsArticles = from a in _db.Articles where a.EditorChoice == true select a;
+            return PartialView("~/Shared/_EditorsChoice",editorsArticles);
+        }
     }
 }

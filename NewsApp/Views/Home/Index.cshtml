@@ -1,4 +1,5 @@
 @model IEnumerable<NewsApp.Models.Article>
+@using NewsApp.ViewComponents
 
 
 @{
@@ -11,20 +12,19 @@
 
 
 <div class="row">
-
-    @*    <div class="col-md-4 card container-fluid">
-    <div><a class="btn btn-primary" href=""><h3>Popular News</h3></a></div><hr />
-    <div><a class="btn btn-primary" href=""><h3>Latest News</h3></a></div><hr />
-    <div><a class="btn btn-primary" href=""><h3>Editor choice</h3></a></div><hr />
-    </div>
-    *@
      
-    <div class="col-md-4" style="background-color:palegoldenrod; margin:0px; border-color:black">
-        <hr />
-        <h3>Popular News</h3>
-        <hr />
+    <div class="col-md-4"> 
+        <div style="background-color:palegoldenrod;">
+         <br />
+         <hr />
+         <h3 style="background-color:red; Text-align:center">Popular News</h3>
+         <hr />
+        
+           <vc:Popular-Articles></vc:Popular-Articles>
        
-       @foreach (var article in Model)
+       </div>
+
+      @* @foreach (var article in Model)
         {
            <div class="row" style="margin:10px 0px">
                <div class="col-md-4">
@@ -44,14 +44,20 @@
 
            </div>
         }
+        <br />*@
         <br />
+         <div style="background-color:palegoldenrod; margin:0px; border-color:black">
+           <br />
+           <hr />
+           <h3 style="background-color:lightgreen; Text-align:center">Latest News</h3>
+           <hr />
 
+          <vc:Latest-Articles></vc:Latest-Articles>
+          
         
-        <hr />
-        <h3>Latest News</h3>
-        <hr />
+         </div>
        
-      @*  @foreach (var article in Model)
+        @*@foreach (var article in Model)
         {
             <div class="row" style="margin:10px 0px">
                 <div class="col-md-4">
@@ -64,36 +70,35 @@
                     <a class="nav-link" asp-controller="Article" asp-action="View full article" asp-route-id="@article.Id">@Html.DisplayFor(modelItem => item.LinkText)</a>
                 </div>
             </div>
-        }
-        <br />*@
+        }*@
+       
+        <br />
 
-
+        <div style="background-color:palegoldenrod; margin:0px; border-color:black">
+         <br />
          <hr />
-        <h3>Editor choice</h3>
-        <hr />
-
-
-        @*                <a class="side-view-link" asp-controller="Home" asp-action="PopularArticles" asp-route-CatagoryName="PopularNews"><h3>Popular News</h3></a><hr />
-        *@
-        <div class="sidebar-item popular-News sidebar-articles">
-@*            <h3>Popular News</h3>
-            <ol>
-                <li><a href="/" target="_self"><img data-img-src="https://c.files.bbci.co.uk/12E97/production/_126736477_gettyimages-1423631022.jpg" width="200" height="150" alt="Times editor Tony Gallagher" class="wpp-thumbnail wpp_featured wpp-lazyload wpp_cached_thumb" /></a> <a href="https://pressgazette.co.uk/tony-gallagher-named-editor-of-the-times/" class="wpp-post-title" target="_self">Royal Family greet Queen Elizabeth II's coffin</a> <span class="wpp-meta post-stats"></span></li>
-                <li><a href="https://pressgazette.co.uk/uk-national-newspaper-editors/" title="Who are the UK&#039;s national newspaper editors?" target="_self"><img data-img-src="https://pressgazette.co.uk/wp-content/uploads/wordpress-popular-posts/188374-featured-200x150.jpg" width="200" height="150" alt="UK national newspaper editors Alison Phillips, Tony Gallagher, Gary Jones and Victoria Newton" class="wpp-thumbnail wpp_featured wpp-lazyload wpp_cached_thumb" /></a> <a href="https://pressgazette.co.uk/uk-national-newspaper-editors/" title="Who are the UK&#039;s national newspaper editors?" class="wpp-post-title" target="_self">Who are the UK's national newspaper editors?</a> <span class="wpp-meta post-stats"></span></li>
-                <li><a href="https://pressgazette.co.uk/most-popular-websites-news-uk-monthly/" target="_self"><img data-img-src="https://pressgazette.co.uk/wp-content/uploads/wordpress-popular-posts/166990-featured-200x150.jpg" width="200" height="150" alt="Express homepage" class="wpp-thumbnail wpp_featured wpp-lazyload wpp_cached_thumb" /></a> <a href="https://pressgazette.co.uk/most-popular-websites-news-uk-monthly/" class="wpp-post-title" target="_self">Top 50 newsbrands in the UK: Daily Express fastest-growing top ten site in August</a> <span class="wpp-meta post-stats"></span></li>
-            </ol>
-*@
-            @*<a class="side-view-link" asp-controller="Home" asp-action="LatestArticles" asp-route-CatagoryName="LatestNews"><h3>Latest News</h3></a><hr />
-
-            <h3>Editor choice</h3><hr />*@
-        </div>
+         <h3 style="background-color:lightblue; Text-align:center">Editor choice <i class="fa-solid fa-pen-fancy"></i></h3>
+         
+         <hr />
+        
+        @await Html.PartialAsync("_EditorsChoice")
+       
+        
+       </div>
     </div>
 
     <div class="col-md-8">
+         
 
+        
+       @* <div class="card-body" style="padding:0px">
+            <a class="text-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" style="width:100%"  /></a>
 
-        <div class="card-header">
-            <h3 class="card-title text-center m-5">Royal Family greet Queen Elizabeth II's coffin </h3>
+        </div>*@
+      
+        @*<div class="card-header">
+            <h1 class="card-title text-center m-5" style="font-family:Georgia, 'Times New Roman', Times, seri; font-size: 40px">Royal Family greet Queen Elizabeth II's coffin </h1>
+            <h5 style="font-family:'Times New Roman', Times, serif; ">Thursday, 6 October 2022</h5>
         </div>
         <div class="card-body" style="padding:0px">
             <img src="https://c.files.bbci.co.uk/12E97/production/_126736477_gettyimages-1423631022.jpg" class="card-img-top" alt="Queen Elizabeth">
@@ -102,9 +107,43 @@
 
         </div>
         <div class="card-footer">
-            <a class="btn btn-primary" href="/Article/FullArticle/23">View full Airticle</a>
-        </div>
+            <a class="btn btn-primary"  asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">View full Article</a>
+        </div>*@
+
+        <hr/>
+        <h1 style="text-align: center"> Articles</h1>
+        <hr/>
+       
+@foreach (var item in Model) {
+     <table class="card">
+        <tr>
+            
+               
+            
+           
+            <td>
+                 <h5 style="font-family:'Times New Roman', Times, serif; color:white; background-color:red; text-align:center">@item.Category.Name</h5>
+                <h5 style="font-family:'Times New Roman', Times, serif; text-align:center">@item.Title</h5>
+                 @* <img src="@item.ImageLink" style="width:100%"  />*@
+                <a class="text-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" style="width:100%"  /></a>
+                @*@Html.DisplayFor(modelItem => item.Title)*@
+               <a class="text-link" style="text-decoration: none" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="@item.Category.Name">@item.Title</a>
+                 <div class="card-footer">
+                     <h5 style="font-family:'Times New Roman', Times, serif; color:black">@item.DateStamp.ToLongDateString()</h5>
+                     <a class="btn btn-primary"  asp-controller="Article" asp-action="Details" asp-route-id=@item.Id>View full Article</a>
+                 </div>
+                
+                @*<a class="article-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-id="article.id">@Html.DisplayFor(modelItem => item.LinkText)</a>*@
+
+            </td>
+            
+        </tr>
+     </table>
+}
+    
+
     </div>
+    
 </div>
     
 

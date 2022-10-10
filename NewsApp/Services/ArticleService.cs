@@ -53,5 +53,22 @@ namespace NewsApp.Services
             _db.SaveChanges();
             return article;
         }
+
+
+        public IEnumerable<Article> PopularArticles()
+        {
+            var popularArticles = _db.Articles
+               .OrderByDescending(m => m.Likes);
+
+            return popularArticles;
+        }
+
+        public IEnumerable<Article> LatestArticles()
+        {
+            var latestArticles = _db.Articles
+                  .OrderByDescending(m => m.DateStamp);
+
+            return latestArticles;  
+        }
     }
 }

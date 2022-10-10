@@ -1,13 +1,8 @@
 ﻿@model IEnumerable<NewsApp.Models.Article>
 
-@{
-    ViewData["Title"] = "PopularArticles";
-}
-
-<h1>Popular Articles</h1>
-
-<h4>Article</h4>
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -38,10 +33,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EditorChoice)
+            </th>
             <th></th>
         </tr>
     </thead>
-   
     <tbody>
 @foreach (var item in Model) {
         <tr>
@@ -73,11 +70,14 @@
                 @Html.DisplayFor(modelItem => item.Category.Id)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @Html.DisplayFor(modelItem => item.EditorChoice)
             </td>
+          
         </tr>
 }
     </tbody>
 </table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
