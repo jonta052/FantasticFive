@@ -7,6 +7,6 @@ namespace NewsApp.Services
     {
         Task<KlarnaSessionResult> CreateSession(int subscriptionType);
 
-        Task<KlarnaOrder> CreateOrder(string authorizationToken, string userId, int subscriptionType = 1);
+        Task<KlarnaOrder> CreateOrder(string authorizationToken, string userId, int subscriptionType);
     }
 }
