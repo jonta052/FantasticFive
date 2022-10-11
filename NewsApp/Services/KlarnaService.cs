@@ -7,21 +7,19 @@ namespace NewsApp.Services
 {
     public class KlarnaService : IKlarnaService
     {
-        private readonly IConfiguration _configuration;
         private ApplicationDbContext _db;
         private readonly UserManager<User> _userManager;
         private readonly HttpClient _httpClient;
         private readonly HttpClient _httpOrderClient;
-        //private readonly ISubscriptionService _subscriptionService;
+        private readonly ISubscriptionService _subscriptionService;
 
-        public KlarnaService(IHttpClientFactory httpClientFactory, IConfiguration configuration, ApplicationDbContext db, UserManager<User> userManager/*, ISubscriptionService subService*/)
+        public KlarnaService(IHttpClientFactory httpClientFactory, ApplicationDbContext db, UserManager<User> userManager, ISubscriptionService subService)
         {
             _httpClient = httpClientFactory.CreateClient("klarna-payment");
             _httpOrderClient = httpClientFactory.CreateClient("klarna-order");
-            _configuration = configuration;
             _db = db;
             _userManager = userManager;
-            //_subscriptionService = subService;
+            _subscriptionService = subService;
         }
 
         public async Task<KlarnaSessionResult> CreateSession(int subscriptionType)
@@ -41,7 +39,7 @@ namespace NewsApp.Services
             };
         }
 
-        public async Task<KlarnaOrder> CreateOrder(string authorizationToken, string userId, int subscriptionType = 1)
+        public async Task<KlarnaOrder> CreateOrder(string authorizationToken, string userId, int subscriptionType)
         {
             var user = await _userManager.FindByIdAsync(userId);
 
@@ -76,10 +74,12 @@ namespace NewsApp.Services
             var successfulOrderCapture = await CaptureOrder(klarnaOrder, order.TotalAmount);
             if (!successfulOrderCapture) return null;
 
-            //_db = _subscriptionService.CreateSubscription(klarnaOrder, order.TotalAmount,user, _db);
             
             _db.Add(klarnaOrder);
             await _db.SaveChangesAsync();
+
+            //Own code
+            _subscriptionService.CreateSubscription(subscriptionType, user, klarnaOrder, order.TotalAmount);
 
             return klarnaOrder;
         }
@@ -108,12 +108,13 @@ namespace NewsApp.Services
             };
         }
 
-        private static KlarnaSessionRequest.OrderLine GetSubscriptionOrderLine(int subscriptionType)
+        private KlarnaSessionRequest.OrderLine GetSubscriptionOrderLine(int subscriptionTypeId)
         {
-            var price = GetKlarnaPrice(subscriptionType == 1 ? 79 : 129); // Calculate price base of the SubscriptionType
+            var subType = _db.SubscriptionTypes.Find(subscriptionTypeId);
+            var price = GetKlarnaPrice((double)subType.Price); // Calculate price base of the SubscriptionType
             return new KlarnaSessionRequest.OrderLine
             {
-                Name = $"Subscription {subscriptionType}",
+                Name = $"Subscription {subType.TypeName}",
                 Type = "digital",
                 TotalAmount = price,
                 UnitPrice = price,

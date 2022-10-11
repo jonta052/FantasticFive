@@ -123,8 +123,8 @@
                     <div class="collapse navbar-collapse container" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                            <li class="nav-item">
-                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>
+                          @*  <li class="nav-item">
+                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>*@
                             <li class="nav-item nav-li">
                                 <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="World">World</a>
                             </li>
@@ -213,7 +213,7 @@
 
 
 
-    <footer class="fixed-bottom" style="background-color: black">
+    <footer style="background-color: black">
         <div class="container body-content">
             <div class="row">
                 <div class="col-4">
@@ -271,7 +271,7 @@
             if (@weatherData.TemperatureC > 10) {
                     document.getElementById('wicon').src = "/Image/weather/cloudy.png";
                 }
-               else if (@weatherData.TemperatureC < 10) {
+               else if (@weatherData.TemperatureC <= 10) {
                     document.getElementById('wicon').src = "/Image/weather/sun.png";
                 }
              else {
