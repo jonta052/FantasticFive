@@ -48,7 +48,7 @@ namespace NewsApp.Models
                     {
                         Name = "Culture"
                     };
-
+                    context.SaveChanges();
                     // Look for any articles.
                     if (!context.Articles.Any())
                     {
@@ -122,6 +122,7 @@ namespace NewsApp.Models
                             ImageLink = "https://i.natgeofe.com/n/ce44d8a8-0a52-436a-8926-145e4792de2a/resized-Hacienda_Yaxcopoil_4x3.jpg",
                             Category = categoryCulture
                         });
+                        context.SaveChanges();
                     }
                 }
                 // Look for any Subscription types.
@@ -139,14 +140,15 @@ namespace NewsApp.Models
                          TypeName = "Premium",
                          Description = "PREMIUM",
                          Price = 199,
-                     }); 
+                     });
+                    context.SaveChanges();
                 }
                 else
                 {
                     return;   // DB has been seeded        
                 }
 
-                context.SaveChanges();
+                
             }
         }
     }

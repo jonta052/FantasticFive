@@ -264,8 +264,11 @@
             if (@weatherData.TemperatureC > 10) {
                     document.getElementById('wicon').src = "/Image/weather/cloudy.png";
                 }
-             else {
+               else if (@weatherData.TemperatureC < 10) {
                     document.getElementById('wicon').src = "/Image/weather/sun.png";
+                }
+             else {
+                document.getElementById('wicon').src = "/Image/weather/under_construction.png";
                   
                 }
                 
