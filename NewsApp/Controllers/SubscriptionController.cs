@@ -81,7 +81,7 @@ namespace NewsApp.Controllers
         // POST: SubscriptionController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateUserSubscription(int subId)
+        public IActionResult CreateUserSubscription(int subId, KlarnaOrder klarnaOrder)
         {
             var subscriptionTypes = _db.SubscriptionTypes.ToList();
             var user = _userManager.GetUserAsync(User).Result;

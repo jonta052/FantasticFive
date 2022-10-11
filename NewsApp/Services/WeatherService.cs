@@ -27,7 +27,7 @@ namespace NewsApp.Services
             forecasts.City = "ERROR";
             forecasts.Lang = "sv";
             forecasts.TemperatureF = 80;
-            forecasts.TemperatureC = 15;
+            forecasts.TemperatureC = 404;
             forecasts.Humidity = 50;
             forecasts.WindSpeed = 3;
             forecasts.Date = DateTime.Now;
