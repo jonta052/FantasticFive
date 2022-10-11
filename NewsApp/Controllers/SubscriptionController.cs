@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
 using NewsApp.Models;
+using NewsApp.Services;
 using NuGet.Protocol;
 
 namespace NewsApp.Controllers
@@ -12,11 +13,16 @@ namespace NewsApp.Controllers
     {
         private readonly ApplicationDbContext _db;
         private readonly UserManager<User> _userManager;
+        private readonly IKlarnaService _klarnaService;
+        private readonly ISubscriptionService _subscriptionService;
 
-        public SubscriptionController(ApplicationDbContext db, UserManager<User> userManager)
+        public SubscriptionController(ApplicationDbContext db, UserManager<User> userManager,
+            IKlarnaService klarnaService, ISubscriptionService subscriptionService)
         {
             _db = db;
             _userManager = userManager;
+            _klarnaService = klarnaService;
+            _subscriptionService = subscriptionService;
         }
         // GET: SubscriptionController
         public IActionResult Index()
@@ -75,15 +81,16 @@ namespace NewsApp.Controllers
             //add price here
             var selectList = new SelectList(subscriptionTypes, "Id", "TypeName");
             ViewBag.SubType = selectList;
+            
             return View();
         }
 
         // POST: SubscriptionController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateUserSubscription(int subId, KlarnaOrder klarnaOrder)
+        public IActionResult CreateUserSubscription(int subId)
         {
-            var subscriptionTypes = _db.SubscriptionTypes.ToList();
+            /*var subscriptionTypes = _db.SubscriptionTypes.ToList();
             var user = _userManager.GetUserAsync(User).Result;
 
             var selectList = new SelectList(subscriptionTypes, "Id", "TypeName");
@@ -105,16 +112,17 @@ namespace NewsApp.Controllers
                     var thisSubscription = (from s in subscriptionTypes
                                             where s.Id == decimal.Parse(item.Value)
                                             select s).FirstOrDefault();
-
+                    
                     subscription.Price = thisSubscription.Price;
 
                     subscription.SubscriptionType = thisSubscription;
 
                     subscription.Name = thisSubscription.TypeName;
                 }
-            }
-            _db.Subscriptions.Add(subscription);
-            _db.SaveChanges();
+            }*/
+            //_db.Subscriptions.Add(subscription);
+            //_db.SaveChanges();
+            _klarnaService.CreateSession(subId);
             
             return View();
 

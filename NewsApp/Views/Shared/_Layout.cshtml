@@ -271,7 +271,7 @@
             if (@weatherData.TemperatureC > 10) {
                     document.getElementById('wicon').src = "/Image/weather/cloudy.png";
                 }
-               else if (@weatherData.TemperatureC < 10) {
+               else if (@weatherData.TemperatureC <= 10) {
                     document.getElementById('wicon').src = "/Image/weather/sun.png";
                 }
              else {
