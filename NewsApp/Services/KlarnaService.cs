@@ -39,12 +39,11 @@ namespace NewsApp.Services
             };
         }
 
-        public async Task<KlarnaOrder> CreateOrder(string authorizationToken, string userId, int subscriptionType)
+        public async Task<KlarnaOrder> CreateOrder(string authorizationToken, string userId, IEnumerable<KlarnaSessionRequest.OrderLine> orderLines)
         {
             var user = await _userManager.FindByIdAsync(userId);
 
-            var orderLines = new List<KlarnaSessionRequest.OrderLine> { GetSubscriptionOrderLine(subscriptionType) };
-
+            
             var order = new KlarnaOrderRequest
             {
                 TotalAmount = orderLines.Sum(ol => ol.TotalAmount),
@@ -79,7 +78,7 @@ namespace NewsApp.Services
             await _db.SaveChangesAsync();
 
             //Own code
-            _subscriptionService.CreateSubscription(subscriptionType, user, klarnaOrder, order.TotalAmount);
+            _subscriptionService.CreateSubscription(1, user, klarnaOrder, order.TotalAmount);
 
             return klarnaOrder;
         }

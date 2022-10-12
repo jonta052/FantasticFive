@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
+using NewsApp.Helpers;
 using NewsApp.Models;
+using NewsApp.Models.Klarna;
 using NewsApp.Services;
 using NuGet.Protocol;
+using System.Security.Claims;
 
 namespace NewsApp.Controllers
 {
@@ -122,10 +125,28 @@ namespace NewsApp.Controllers
             }*/
             //_db.Subscriptions.Add(subscription);
             //_db.SaveChanges();
-            _klarnaService.CreateSession(subId);
-            
-            return View();
+            var klarnaSession = _klarnaService.CreateSession(subId).Result;
+            HttpContext.Session.Set("KlarnaSession", klarnaSession);
+            ViewBag.KlarnaSession = klarnaSession;
+            KlarnaPaymentViewModel klarnaPaymentViewModel = new KlarnaPaymentViewModel();
+            klarnaPaymentViewModel.KlarnaSession = klarnaSession.SessionResponse;
+            klarnaPaymentViewModel.OrderLines = klarnaSession.OrderLines;
+            return View("Klarna_Order", klarnaPaymentViewModel); 
 
+        }
+
+        public async Task<IActionResult>ProcessOrder(string autorizationToken)
+        {
+            var klarnaSession = HttpContext.Session.Get<KlarnaSessionResult>("KlarnaSession");
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var order = await _klarnaService.CreateOrder(autorizationToken, userId, klarnaSession.OrderLines);
+            HttpContext.Session.Remove("KlarnaSession");
+
+            if(order== null)
+            {
+                return RedirectToAction("PaymentFailed");
+            }
+            return RedirectToAction("PaymentCompleted");
         }
 
         // GET: SubscriptionController/Edit/5
@@ -178,6 +199,16 @@ namespace NewsApp.Controllers
             {
                 return View();
             }
+        }
+        public IActionResult PaymentFailed()
+        {
+
+            return View();
+        }
+        public IActionResult PaymentCompleted()
+        {
+
+            return View();
         }
     }
 }
