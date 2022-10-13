@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
+using NewsApp.Helpers;
 using NewsApp.Models;
+using NewsApp.Models.Klarna;
 using NewsApp.Services;
 using NuGet.Protocol;
+using System.Security.Claims;
 
 namespace NewsApp.Controllers
 {
@@ -77,6 +80,11 @@ namespace NewsApp.Controllers
         // GET: SubscriptionController/Create
         public IActionResult CreateUserSubscription()
         {
+            if (_subscriptionService.HasSubscription(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var subscriptionTypes = _db.SubscriptionTypes.ToList();
             //add price here
             var selectList = new SelectList(subscriptionTypes, "Id", "TypeName");
@@ -90,42 +98,35 @@ namespace NewsApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateUserSubscription(int subId)
         {
-            /*var subscriptionTypes = _db.SubscriptionTypes.ToList();
-            var user = _userManager.GetUserAsync(User).Result;
-
-            var selectList = new SelectList(subscriptionTypes, "Id", "TypeName");
-
-            ViewBag.SubType = selectList;
-
-            var usr = User;
-            Subscription subscription = new Subscription();
-            var created = subscription.Created;
-            subscription.Expires = created.AddDays(30);
-            subscription.User = user;
-            //subscription.KlarnaOrder = true;
-            subscription.Active = true;
-
-            foreach (var item in selectList)
-            {
-                if (item.Value == subId.ToString())
-                {
-                    var thisSubscription = (from s in subscriptionTypes
-                                            where s.Id == decimal.Parse(item.Value)
-                                            select s).FirstOrDefault();
-                    
-                    subscription.Price = thisSubscription.Price;
-
-                    subscription.SubscriptionType = thisSubscription;
-
-                    subscription.Name = thisSubscription.TypeName;
-                }
-            }*/
-            //_db.Subscriptions.Add(subscription);
-            //_db.SaveChanges();
-            _klarnaService.CreateSession(subId);
+            HttpContext.Session.SetString("SessionId", subId.ToString());
             
-            return View();
+            if (_subscriptionService.HasSubscription(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
+            var klarnaSession = _klarnaService.CreateSession(subId).Result;
+            HttpContext.Session.Set("KlarnaSession", klarnaSession);
+            ViewBag.KlarnaSession = klarnaSession;
+            KlarnaPaymentViewModel klarnaPaymentViewModel = new KlarnaPaymentViewModel();
+            klarnaPaymentViewModel.KlarnaSession = klarnaSession.SessionResponse;
+            klarnaPaymentViewModel.OrderLines = klarnaSession.OrderLines;
+            return View("Klarna_Order", klarnaPaymentViewModel); 
+
+        }
+
+        public async Task<IActionResult>ProcessOrder(string authorizationToken)
+        {
+            var klarnaSession = HttpContext.Session.Get<KlarnaSessionResult>("KlarnaSession");
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var order = await _klarnaService.CreateOrder(authorizationToken, userId, klarnaSession.OrderLines);
+            HttpContext.Session.Remove("KlarnaSession");
+
+            if(order== null)
+            {
+                return RedirectToAction(nameof(PaymentFailed));
+            }
+            return RedirectToAction(nameof(PaymentCompleted));
         }
 
         // GET: SubscriptionController/Edit/5
@@ -178,6 +179,16 @@ namespace NewsApp.Controllers
             {
                 return View();
             }
+        }
+        public IActionResult PaymentFailed()
+        {
+
+            return View();
+        }
+        public IActionResult PaymentCompleted()
+        {
+
+            return View();
         }
     }
 }
