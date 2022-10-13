@@ -1,4 +1,5 @@
-﻿using NewsApp.Data;
+﻿using Microsoft.IdentityModel.Protocols;
+using NewsApp.Data;
 using NewsApp.Models;
 using Newtonsoft.Json.Linq;
 
@@ -12,12 +13,12 @@ namespace NewsApp.Services
         private readonly HttpClient _userLocationInfo;
 
         public WeatherService(ApplicationDbContext db, IHttpClientFactory httpClientFactory,
-            IHttpContextAccessor httpContextAccessor, HttpClient userLocationInfo)
+            IHttpContextAccessor httpContextAccessor)
         {
             _db = db;
             _httpClient = httpClientFactory.CreateClient("weatherForecast");
             _httpContextAccessor = httpContextAccessor;
-            _userLocationInfo = userLocationInfo;
+            _userLocationInfo = httpClientFactory.CreateClient("getUserLocationInfo");
         }
 
         public async Task<WeatherForecast> WeatherApp()
@@ -32,11 +33,13 @@ namespace NewsApp.Services
             forecasts.WindSpeed = 3;
             forecasts.Date = DateTime.Now;
 
+            //var request = HelperIp.GetRemoteIPAddress(_httpContextAccessor.HttpContext).ToString();
+
             var request = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
             //https://ipinfo.io/213.80.110.182?token=bde75ceacf2669
 
             string city = "";
-            //Only getting local IP
+            //Ip is not local IP
             if (request.Length > 8)
             {
                 var userInfo = await _userLocationInfo.GetAsync($"{request}?token=bde75ceacf2669");

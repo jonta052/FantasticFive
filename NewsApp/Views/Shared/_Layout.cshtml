@@ -267,7 +267,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
          $(document).ready(function () {
-
+             
             if (@weatherData.TemperatureC > 10) {
                     document.getElementById('wicon').src = "/Image/weather/cloudy.png";
                 }
@@ -296,8 +296,9 @@
                                   </div>
                             </div>`
             });
-
+            
         });
+        
     </script>
     @await RenderSectionAsync("Scripts", required: false)
    
