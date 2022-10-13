@@ -98,6 +98,7 @@ namespace NewsApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateUserSubscription(int subId)
         {
+            HttpContext.Session.SetString("SessionId", subId.ToString());
             
             if (_subscriptionService.HasSubscription(User))
             {

@@ -12,14 +12,16 @@ namespace NewsApp.Services
         private readonly HttpClient _httpClient;
         private readonly HttpClient _httpOrderClient;
         private readonly ISubscriptionService _subscriptionService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public KlarnaService(IHttpClientFactory httpClientFactory, ApplicationDbContext db, UserManager<User> userManager, ISubscriptionService subService)
+        public KlarnaService(IHttpClientFactory httpClientFactory, ApplicationDbContext db, UserManager<User> userManager, ISubscriptionService subService, IHttpContextAccessor httpContextAccessor)
         {
             _httpClient = httpClientFactory.CreateClient("klarna-payment");
             _httpOrderClient = httpClientFactory.CreateClient("klarna-order");
             _db = db;
             _userManager = userManager;
             _subscriptionService = subService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<KlarnaSessionResult> CreateSession(int subscriptionType)
@@ -28,6 +30,7 @@ namespace NewsApp.Services
             var klarnaSessionRequest = GetKlarnaSessionRequest(orderLines);
 
             var response = await _httpClient.PostAsJsonAsync("sessions", klarnaSessionRequest);
+            
 
             if (!response.IsSuccessStatusCode) return null;
 
@@ -37,6 +40,7 @@ namespace NewsApp.Services
                 OrderLines = orderLines,
                 SessionResponse = data
             };
+            
         }
 
         public async Task<KlarnaOrder> CreateOrder(string authorizationToken, string userId, IEnumerable<KlarnaSessionRequest.OrderLine> orderLines)
@@ -76,9 +80,10 @@ namespace NewsApp.Services
             
             _db.Add(klarnaOrder);
             await _db.SaveChangesAsync();
-
+            
+            var subscriptionId = Int32.Parse(_httpContextAccessor.HttpContext.Session.GetString("SessionId"));
             //Own code
-            _subscriptionService.CreateSubscription(1, user, klarnaOrder, order.TotalAmount);
+            _subscriptionService.CreateSubscription(subscriptionId, user, klarnaOrder, order.TotalAmount);
 
             return klarnaOrder;
         }
