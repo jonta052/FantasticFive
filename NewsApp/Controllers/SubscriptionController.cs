@@ -80,6 +80,11 @@ namespace NewsApp.Controllers
         // GET: SubscriptionController/Create
         public IActionResult CreateUserSubscription()
         {
+            if (_subscriptionService.HasSubscription(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var subscriptionTypes = _db.SubscriptionTypes.ToList();
             //add price here
             var selectList = new SelectList(subscriptionTypes, "Id", "TypeName");
@@ -93,38 +98,12 @@ namespace NewsApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateUserSubscription(int subId)
         {
-            /*var subscriptionTypes = _db.SubscriptionTypes.ToList();
-            var user = _userManager.GetUserAsync(User).Result;
-
-            var selectList = new SelectList(subscriptionTypes, "Id", "TypeName");
-
-            ViewBag.SubType = selectList;
-
-            var usr = User;
-            Subscription subscription = new Subscription();
-            var created = subscription.Created;
-            subscription.Expires = created.AddDays(30);
-            subscription.User = user;
-            //subscription.KlarnaOrder = true;
-            subscription.Active = true;
-
-            foreach (var item in selectList)
+            
+            if (_subscriptionService.HasSubscription(User))
             {
-                if (item.Value == subId.ToString())
-                {
-                    var thisSubscription = (from s in subscriptionTypes
-                                            where s.Id == decimal.Parse(item.Value)
-                                            select s).FirstOrDefault();
-                    
-                    subscription.Price = thisSubscription.Price;
+                return RedirectToAction("Index", "Home");
+            }
 
-                    subscription.SubscriptionType = thisSubscription;
-
-                    subscription.Name = thisSubscription.TypeName;
-                }
-            }*/
-            //_db.Subscriptions.Add(subscription);
-            //_db.SaveChanges();
             var klarnaSession = _klarnaService.CreateSession(subId).Result;
             HttpContext.Session.Set("KlarnaSession", klarnaSession);
             ViewBag.KlarnaSession = klarnaSession;
