@@ -135,18 +135,18 @@ namespace NewsApp.Controllers
 
         }
 
-        public async Task<IActionResult>ProcessOrder(string autorizationToken)
+        public async Task<IActionResult>ProcessOrder(string authorizationToken)
         {
             var klarnaSession = HttpContext.Session.Get<KlarnaSessionResult>("KlarnaSession");
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var order = await _klarnaService.CreateOrder(autorizationToken, userId, klarnaSession.OrderLines);
+            var order = await _klarnaService.CreateOrder(authorizationToken, userId, klarnaSession.OrderLines);
             HttpContext.Session.Remove("KlarnaSession");
 
             if(order== null)
             {
-                return RedirectToAction("PaymentFailed");
+                return RedirectToAction(nameof(PaymentFailed));
             }
-            return RedirectToAction("PaymentCompleted");
+            return RedirectToAction(nameof(PaymentCompleted));
         }
 
         // GET: SubscriptionController/Edit/5

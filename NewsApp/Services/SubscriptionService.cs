@@ -35,5 +35,7 @@ namespace NewsApp.Services
             _db.SaveChanges();
             return subscription;
         }
+
+
     }
 }
