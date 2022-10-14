@@ -121,8 +121,9 @@ namespace NewsApp.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var order = await _klarnaService.CreateOrder(authorizationToken, userId, klarnaSession.OrderLines);
             HttpContext.Session.Remove("KlarnaSession");
+            HttpContext.Session.Remove("subscriptionId");
 
-            if(order== null)
+            if (order== null)
             {
                 return RedirectToAction(nameof(PaymentFailed));
             }

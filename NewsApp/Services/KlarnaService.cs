@@ -84,7 +84,7 @@ namespace NewsApp.Services
             var subscriptionId = Int32.Parse(_httpContextAccessor.HttpContext.Session.GetString("SessionId"));
             //Own code
             _subscriptionService.CreateSubscription(subscriptionId, user, klarnaOrder, order.TotalAmount);
-
+            
             return klarnaOrder;
         }
 
