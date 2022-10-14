@@ -9,6 +9,7 @@ namespace NewsApp.Services
     {
         private readonly ApplicationDbContext _db;
         private readonly UserManager<User> _userManager;
+        
 
         public SubscriptionService(ApplicationDbContext db, UserManager<User> userManager)
         {
@@ -43,7 +44,6 @@ namespace NewsApp.Services
         public bool HasSubscription(ClaimsPrincipal user)
         {
             var userId = _userManager.GetUserId(user);
-
             return _db.Subscriptions.Any(s => s.User.Id == userId);
         }
   
