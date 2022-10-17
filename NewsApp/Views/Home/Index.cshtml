@@ -5,6 +5,7 @@
 @{
     ViewData["Title"] = "Home Page";
 
+
     var tmp = @Model.FirstOrDefault(c => c.Category.Name == "Business");
 
     if (tmp != null)
@@ -12,7 +13,9 @@
         if (tmp.Category.Name == "Business")
         {
             <div style="border: 1px solid gray">
-                <vc:stock></vc:stock>
+
+               <vc:stock></vc:stock>
+
             </div>
             <br />
         }
@@ -25,144 +28,68 @@
 
 
 <div class="row">
-
-    @*    <div class="col-md-4 card container-fluid">
-    <div><a class="btn btn-primary" href=""><h3>Popular News</h3></a></div><hr />
-    <div><a class="btn btn-primary" href=""><h3>Latest News</h3></a></div><hr />
-    <div><a class="btn btn-primary" href=""><h3>Editor choice</h3></a></div><hr />
-    </div>
-    *@
-     
-    <div class="col-md-4"> 
+    <div class="col-md-4">
         <div style="background-color:palegoldenrod;">
-         <br />
-         <hr />
-         <h3 style="background-color:red; Text-align:center">Popular News</h3>
-         <hr />
-        
-           <vc:Popular-Articles></vc:Popular-Articles>
-       
-       </div>
+            <br />
+            <hr />
+            <h3 style="background-color:red; Text-align:center">Popular News</h3>
+            <hr />
+            <vc:Popular-Articles></vc:Popular-Articles>
+        </div>
 
-      @* @foreach (var article in Model)
-        {
-           <div class="row" style="margin:10px 0px">
-               <div class="col-md-4">
-                   @article.Likes.Count
-                   <img src="@article.ImageLink" style="width:100%"  />
-                   <hr />
-                 </div> 
-
-               <div class="col-md-8">
-                   @article.Title
-                   
-                   <a class="nav-link" asp-controller="Article" asp-action="Details" asp-route-id=@article.Id >Details</a>
-                   <br />
-
-                   <hr />
-               </div>
-
-           </div>
-        }
-        <br />*@
         <br />
-         <div style="background-color:palegoldenrod; margin:0px; border-color:black">
-           <br />
-           <hr />
-           <h3 style="background-color:lightgreen; Text-align:center">Latest News</h3>
-           <hr />
-
-          <vc:Latest-Articles></vc:Latest-Articles>
-          
-        
-         </div>
-       
-        @*@foreach (var article in Model)
-        {
-            <div class="row" style="margin:10px 0px">
-                <div class="col-md-4">
-                    @article.DateStamp
-                    <img src="@article.ImageLink" style="width:100%" />
-                </div>
-                <div class="col-md-8">.
-                    @article.Title
-
-                    <a class="nav-link" asp-controller="Article" asp-action="View full article" asp-route-id="@article.Id">@Html.DisplayFor(modelItem => item.LinkText)</a>
-                </div>
-            </div>
-        }*@
-       
-        <br />
-
         <div style="background-color:palegoldenrod; margin:0px; border-color:black">
-         <br />
-         <hr />
-         <h3 style="background-color:lightblue; Text-align:center">Editor choice <i class="fa-solid fa-pen-fancy"></i></h3>
-         
-         <hr />
-        
-        @await Html.PartialAsync("_EditorsChoice")
-       
-        
-       </div>
+            <br />
+            <hr />
+            <h3 style="background-color:lightgreen; Text-align:center">Latest News</h3>
+            <hr />
+            <vc:Latest-Articles></vc:Latest-Articles>
+        </div>
+
+
+        <br />
+        <div style="background-color:palegoldenrod; margin:0px; border-color:black">
+            <br />
+            <hr />
+            <h3 style="background-color:lightblue; Text-align:center">Editor choice <i class="fa-solid fa-pen-fancy"></i></h3>
+
+            <hr />
+
+            @await Html.PartialAsync("_EditorsChoice")
+
+
+        </div>
     </div>
-    
+
     <div class="col-md-8">
-        
-       @* <div class="card-body" style="padding:0px">
-            <a class="text-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" style="width:100%"  /></a>
 
-        </div>*@
-      
-        @*<div class="card-header">
-            <h1 class="card-title text-center m-5" style="font-family:Georgia, 'Times New Roman', Times, seri; font-size: 40px">Royal Family greet Queen Elizabeth II's coffin </h1>
-            <h5 style="font-family:'Times New Roman', Times, serif; ">Thursday, 6 October 2022</h5>
 
-        </div>
-        <div class="card-body" style="padding:0px">
-            <img src="https://c.files.bbci.co.uk/12E97/production/_126736477_gettyimages-1423631022.jpg" class="card-img-top" alt="Queen Elizabeth">
 
-            <p class="card-text">The Queen's children and grandchildren greeted her coffin on its arrival at Buckingham Palace.</p>
+        @foreach (var item in Model)
+        {
+            <table class="card text-center">
+                <tr>
+                    <td>
+                        <div class="card-header bg-dark text-lg-center text-light text-uppercase">@item.Category.Name</div>
+                        <div class="card-body">
+                            <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="100%" height="500" />
+                            <h5 class="card-title title-style">@item.Title</h5>
+                            <p class="card-text content-style">@item.ContentSummary</p>
+                            <a class="btn btn-primary" asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
+                        </div>
+                        <div class="text-sm-end text-muted" style="margin:12px">
+                            <i class="bi bi-chat-text-fill" style="margin:12px">@item.Comments.Count()</i>
+                            <i class="bi bi-eye-fill ">@item.Views</i>
+                        </div>
+                    </td>
 
-        </div>
-        <div class="card-footer">
-            <a class="btn btn-primary"  asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">View full Article</a>
-        </div>*@
+                </tr>
+            </table>
+        }
 
-        <hr/>
-        <h1 style="text-align: center"> Articles</h1>
-        <hr/>
-       
-@foreach (var item in Model) {
-     <table class="card">
-        <tr>
-            
-               
-            
-           
-            <td>
-                 <h5 style="font-family:'Times New Roman', Times, serif; color:white; background-color:red; text-align:center">@item.Category.Name</h5>
-                <h5 style="font-family:'Times New Roman', Times, serif; text-align:center">@item.Title</h5>
-                 @* <img src="@item.ImageLink" style="width:100%"  />*@
-                <a class="text-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" style="width:100%"  /></a>
-                @*@Html.DisplayFor(modelItem => item.Title)*@
-               <a class="text-link" style="text-decoration: none" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="@item.Category.Name">@item.Title</a>
-                 <div class="card-footer">
-                     <h5 style="font-family:'Times New Roman', Times, serif; color:black">@item.DateStamp.ToLongDateString()</h5>
-                     <a class="btn btn-primary"  asp-controller="Article" asp-action="Details" asp-route-id=@item.Id>View full Article</a>
-                 </div>
-                
-                @*<a class="article-link" asp-controller="Article" asp-action="CategoryIndex" asp-route-id="article.id">@Html.DisplayFor(modelItem => item.LinkText)</a>*@
-
-            </td>
-            
-        </tr>
-     </table>
-}
-    
 
     </div>
-    
+
 </div>
-    
+
 

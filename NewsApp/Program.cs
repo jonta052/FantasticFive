@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using NewsApp.Data;
 using NewsApp.Models;
 using NewsApp.Services;
+using System.Net.Http.Headers;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +30,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IWeatherService, WeatherService>();
+builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
 
 builder.Services.AddHttpClient("stockMarket", config => {
 
@@ -46,7 +49,34 @@ builder.Services.AddHttpClient("getUserLocationInfo", config => {
     config.BaseAddress = new("https://ipinfo.io/");
 
 });
+//KLARNA STUFF START//
+var klarnaUid = builder.Configuration["KlarnaUid"];
+var klarnaPass = builder.Configuration["KlarnaPassword"];
+var bytes = Encoding.UTF8.GetBytes($"{klarnaUid}:{klarnaPass}");
+var auth = Convert.ToBase64String(bytes);
+builder.Services.AddHttpClient("klarna-payment", config =>
+{
+    config.BaseAddress = new("https://api.playground.klarna.com/payments/v1/");
+    config.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", auth);
+    config.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+});
+builder.Services.AddHttpClient("klarna-order", config =>
+{
+    config.BaseAddress = new("https://api.playground.klarna.com/ordermanagement/v1/");
+    config.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", auth);
+    config.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+});
+builder.Services.AddScoped<IKlarnaService, KlarnaService>();
 
+builder.Services.AddSession(
+    options =>
+    {
+        options.Cookie.HttpOnly = true;
+        options.IdleTimeout = TimeSpan.FromSeconds(600);
+        options.Cookie.IsEssential = true;
+    });
+
+//KLARNA STUFF END//
 var app = builder.Build();
 
 //Adds the required data to the database
@@ -76,6 +106,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();

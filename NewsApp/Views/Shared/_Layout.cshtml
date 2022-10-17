@@ -79,8 +79,10 @@
                     </button>
                     <div class="collapse navbar-collapse container" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-@*
-                            <li class="nav-item">
+
+
+                          @*  <li class="nav-item">
+
                                 <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>*@
                             <li class="nav-item nav-li">
                                 <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="World">World</a>
@@ -108,43 +110,43 @@
                                     More
                                 </a>
                                 <!-- Dropdown menu -->
-                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0; ">
+                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:wheat"  >
                                     <div class="container">
                                         <div class="row my-4">
-                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0" style: contenteditable=" ">
                                                 <div class="list-group list-group-flush">
-                                                    <a href="" class="list-group-item list-group-item-action">Tech</a>
+                                                    <a href="https://localhost:7111/?categoryName=Tech" class="list-group-item list-group-item-action" style="background-color:wheat">   Tech</a>
 
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a href="" class="list-group-item list-group-item-action">Fashion</a>
+                                                    <a href="https://localhost:7111/Article/CategoryIndex?categoryName=Fashion" class="list-group-item list-group-item-action" style="background-color:wheat">Fashion</a>
 
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a href="" class="list-group-item list-group-item-action">Travel</a>
+                                                    <a href="https://localhost:7111/Article/CategoryIndex?categoryName=Travel" class="list-group-item list-group-item-action" style="background-color:wheat">Travel</a>
 
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3">
                                                 <div class="list-group list-group-flush">
-                                                    <a href="" class="list-group-item list-group-item-action">Science</a>
+                                                    <a href="https://localhost:7111/Article/CategoryIndex?categoryName=Science" class="list-group-item list-group-item-action" style="background-color:wheat">Science</a>
 
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a href="https://localhost:7111/home/stockmarket" class="list-group-item list-group-item-action">Stockmarket</a>
+                                                    <a href="https://localhost:7111/home/stockmarket" class="list-group-item list-group-item-action" style="background-color:wheat">Stockmarket</a>
 
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3">
                                                 <div class="list-group list-group-flush">
-                                                    <a href="https://localhost:7111/Home/weatherapp" class="list-group-item list-group-item-action">Wheater</a>
+                                                    <a href="https://localhost:7111/Home/weatherapp" class="list-group-item list-group-item-action" style="background-color:wheat">Wheater</a>
 
                                                 </div>
                                             </div>
@@ -181,7 +183,7 @@
 
 
 
-    <footer class="fixed-bottom" style="background-color: black">
+    <footer style="background-color: black">
         <div class="container body-content">
             <div class="row">
                 <div class="col-4">
@@ -235,12 +237,15 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
          $(document).ready(function () {
-
+             
             if (@weatherData.TemperatureC > 10) {
                     document.getElementById('wicon').src = "/Image/weather/cloudy.png";
                 }
-             else {
+               else if (@weatherData.TemperatureC <= 10) {
                     document.getElementById('wicon').src = "/Image/weather/sun.png";
+                }
+             else {
+                document.getElementById('wicon').src = "/Image/weather/under_construction.png";
                   
                 }
                 
@@ -261,8 +266,9 @@
                                   </div>
                             </div>`
             });
-
+            
         });
+        
     </script>
     @await RenderSectionAsync("Scripts", required: false)
    
