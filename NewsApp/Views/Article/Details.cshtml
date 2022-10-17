@@ -8,8 +8,8 @@
     var userId = UserManager.GetUserId(User);
 }
 
-    <div class="container main-content">
-      <div class="row">
+<div class="container main-content">
+    <div class="row">
         <div class="col-md-10">
             <h2 class="title-style">@Model.Title</h2><br />
             <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title" width="100%" height="600" />
@@ -17,77 +17,94 @@
             <div class="content-style">@Model.Content</div>
             <br><br>
             <hr />
-                 @Model.DateStamp.ToLongDateString()
-            
-        </div>
-      </div>
-   </div>
+            @Model.DateStamp.ToLongDateString()
 
-   @if (SignInManager.IsSignedIn(User))
-   {
+        </div>
+    </div>
+</div>
+
+@if (SignInManager.IsSignedIn(User))
+{
     <hr />
     <div>
         <h2 style="vertical-align:inherit">What do you think of the news?</h2>
         <div class="opinion-wrapper">
             <div class="button-container">
-                   <a class="like-button"  id="like-button" asp-controller="Article" asp-action="ClickLike" asp-route-like=@Model.Id>
-                    <i class="bi bi-hand-thumbs-up"></i>
-                Like
-                </a>
+                @if (Model.Likes.Any(l => l.UserId == userId))
+                {
+                    <a class="like-button" id="like-button" asp-controller="Article" asp-action="ClickLike" asp-route-like=@Model.Id>
+                        <i class="bi bi-hand-thumbs-up-fill"></i>
+                        Like
+                    </a>
+                }
+                else
+                {
+                    <a class="like-button" id="like-button" asp-controller="Article" asp-action="ClickLike" asp-route-like=@Model.Id>
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        Like
+                    </a>
+                }
                 <p class="like-text">
                     <span>
                         @Model.Likes.Count Person
                     </span>
                 </p>
-        @*        @if(Model.Likes.Any( l=>l.UserId == userId))
-                {<p>like</p>}
+            </div>
+
+            <div class="button-container">
+                @if (Model.Dislikes.Any(l => l.UserId == userId))
+                {
+                    <a class="like-button" id="dislike-button" asp-controller="Article" asp-action="ClickLike" asp-route-dislike=@Model.Id>
+                        <i class="bi bi-hand-thumbs-down-fill"></i>
+                        Dislike
+                    </a>
+                }
                 else
-                {<p>no like</p>}*@
-               
-             </div>
-           <div class="button-container">
-                <a class="like-button"  id="dislike-button" asp-controller="Article" asp-action="ClickLike" asp-route-dislike=@Model.Id>
-                <i class="bi bi-hand-thumbs-down"></i>
-                Dislike
+                {
+                <a class="like-button" id="dislike-button" asp-controller="Article" asp-action="ClickLike" asp-route-dislike=@Model.Id>
+                    <i class="bi bi-hand-thumbs-down"></i>
+                    Dislike
                 </a>
+                }
                 <p class="like-text">
                     <span>
-                          @Model.Dislikes.Count Person
+                        @Model.Dislikes.Count Person
                     </span>
                 </p>
-           </div>
+            </div>
         </div>
-   </div>
-   
-   <h2>@Model.Comments.Count()  Comments</h2>
-    <div class="my-4">   
-        @foreach(var comment in Model.Comments)
+    </div>
+
+    <h2>@Model.Comments.Count()  Comments</h2>
+    <div class="my-4">
+        @foreach (var comment in Model.Comments)
         {
-            <partial name="_CommentPartial" model="comment"/>
+            <partial name="_CommentPartial" model="comment" />
         }
     </div>
-     @*<a asp-action="Create" asp-controller="Comment" asp-route-id="@Model.Id">Make a comment.</a>*@
-     
+    @*<a asp-action="Create" asp-controller="Comment" asp-route-id="@Model.Id">Make a comment.</a>*@
+
 
 
     <div class="row">
         <div class="col-md-10">
-        <form asp-action="Create" asp-controller="Comment">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <input type="hidden" name="articleId" value="@Model.Id" />
-            <p class="comment-form-comment">
-            <div class="form-group" style="font-weight:700">Comment
-                <label for="commentBody" class="control-label" ></label>
-                <textarea id="commentBody" name="commentBody" rows="5" cols="140">
-                    </textarea>
-            </div>
-            </p>
-            <div class="form-group">
-                 <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+            <form asp-action="Create" asp-controller="Comment">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" name="articleId" value="@Model.Id" />
+                <p class="comment-form-comment">
+                    <div class="form-group" style="font-weight:700">
+                        Comment
+                        <label for="commentBody" class="control-label"></label>
+                        <textarea id="commentBody" name="commentBody" rows="5" cols="140">
+                        </textarea>
+                    </div>
+                </p>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
 }
 
