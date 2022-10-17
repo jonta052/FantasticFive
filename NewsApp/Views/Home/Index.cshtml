@@ -4,8 +4,7 @@
 
 @{
     ViewData["Title"] = "Home Page";
-    
-    
+
 
     var tmp = @Model.FirstOrDefault(c => c.Category.Name == "Business");
 
@@ -14,7 +13,9 @@
         if (tmp.Category.Name == "Business")
         {
             <div style="border: 1px solid gray">
+
                <vc:stock></vc:stock>
+
             </div>
             <br />
         }

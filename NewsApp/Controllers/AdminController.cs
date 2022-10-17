@@ -21,6 +21,49 @@ namespace NewsApp.Controllers
             _userManager = userManager;
             _db = db;
         }
+
+
+        [HttpGet]
+        public IActionResult ListUsers()
+        {
+            var users = _userManager.Users;
+            return View(users);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User With Id = {id} cannot be found";
+                return NotFound();
+            }
+            //var userRoles = await _userManager.GetRolesAsync(user);
+            var model = new EditUserViewModel
+            {
+                Id = user.Id,
+                EmailAddress = user.Email,
+                FirstName = user.FirstName,
+                //PhoneNumber = user.PhoneNumber,
+                //LasstName = user.LastName,
+                //Roles = userRoles,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditUser(User user)
+        {
+
+
+
+
+
+            return View();
+        }
+
+
         public IActionResult Index()
         {
             return View();

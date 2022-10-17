@@ -3,7 +3,12 @@
 @using NewsApp.Services
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
-@inject ISubscriptionService subscriptionService
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+
+
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
@@ -36,7 +41,7 @@
             </li>
         }
         <li class="nav-item">
-            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.FirstName</a>
         </li>
         @if (!subscriptionService.HasSubscription(User))
         {

@@ -137,5 +137,11 @@ namespace NewsApp.Controllers
             return View();
         }
 
+        //[HttpGet]
+        //public ViewResult Edit()
+        //{
+        //    return View();
+        //}
+
     }
 }

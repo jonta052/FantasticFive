@@ -1,0 +1,32 @@
+﻿@model IEnumerable<NewsApp.Models.User>
+@{
+    ViewData["Title"] = "ListUser";
+}
+
+<h1>ListUser</h1>
+
+
+<div>
+    @foreach (var user in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                User Id : @user-Id
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@user.UserName</h5>
+            </div>
+            <div class="card-footer">
+                <a asp-action="EditUser" asp-controller="Admin"
+               asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
