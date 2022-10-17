@@ -12,10 +12,21 @@
         <form id="profile-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-floating">
-                @*   <input asp-for="Username" class="form-control" disabled />*@
+            @*<div class="form-floating">
+                <input asp-for="Username" class="form-control" disabled />
                 <input asp-for="Username" class="form-control" />
                 <label asp-for="Username" class="form-label"></label>
+            </div>*@
+            <div class="form-floating">
+                <input asp-for="Input.FirstName" class="form-control" />
+                <label asp-for="Input.FirstName" class="form-label"></label>
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.LastName" class="form-control" />
+                <label asp-for="Input.LastName" class="form-label"></label>
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
             </div>
 
             <div class="form-floating">
@@ -23,38 +34,13 @@
                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <button id="update-profile-button" type="submit" class="btn btn-primary btn-lg btn btn-warning">Edit</button>
+
             <button id="update-profile-button" type="submit" class="btn btn-primary btn-lg btn btn-success">Save</button>
         </form>
     </div>
 
-
-  @*  <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
-        <div class="card-header">
-            <h3>@User.Name</h3>
-        </div>
-
-        <div class="card-footer text-center">
-            <a asp-controller="home" asp-action="details"
-               asp-route-id="@User.Id" class="btn btn-primary m-1">View</a>
-            <a href="#" asp-action="edit" asp-controller="home"
-               asp-route-id="@User.Id" class="btn btn-primary m-1">Edit</a>
-            <a href="#" class="btn btn-danger m-1">Delete</a>
-        </div>
-    </div>*@
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-
-
-
-
-
-
-
-
-
-    @*    <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary btn btn-primary btn-sm">Edit</button>
-*@
