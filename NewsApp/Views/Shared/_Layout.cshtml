@@ -53,10 +53,7 @@
 
                  </form>-->
 
-                <form asp-action="SearchArticles" asp-controller="Article">
-
-                  
-                </form>
+                
                 
             </div>
 
@@ -159,15 +156,19 @@
                     </div>
                 </div>
 
-                <div style="text-align: right">
-                    <button class="btn btn-darck" style="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                        <i class="fa-solid fa-magnifying-glass" style="color: white;"></i>
-                    </button>
+           @*     <form asp-action="SearchNews" asp-controller="Home" style="text-align: right">
+                </form>*@
+                    <form asp-action="SearchArticles" asp-controller="Article">
+                        <button class="btn btn-darck" style="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                            <i class="fa-solid fa-magnifying-glass" style="color: white;"></i>
+                        </button>
 
-                    <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                        <input placeholder="search..." name="search" type="text" class="form-control me-2" />
-                    </div>
-                </div>
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                            <input placeholder="search..." name="search" type="text" class="form-control me-2" />
+                        </div>
+                    </form>
+                    
+                
 
             </nav>
         </div>
