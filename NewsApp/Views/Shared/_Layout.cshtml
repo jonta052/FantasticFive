@@ -16,19 +16,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-
-    <!--
-          <style>
-               .search-toggle input[type=text] {
-                width: 25px; border: none;background: none;
-            }
-
-                .search-toggle input[type=text]:focus {
-                width: 150px; background:#fff;
-                }
-    </style>
-    -->
-
 </head>
 <body>
    
@@ -68,37 +55,7 @@
 
                 <form asp-action="SearchArticles" asp-controller="Article">
 
-
-                    <div>
-                        <button class="btn btn-darck" style="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                            <i class="fa-solid fa-magnifying-glass" style="color: white;"></i>
-                        </button>
-                    
-                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                            <input  placeholder="search..." name="search" type="text" class="form-control me-2" />
-                        </div>
-                    </div>
-
-                    <!--second search-->
-                    @*<div class="form-group d-flex search-toggle" style="search-toggle i-position: relative;top: 12px;color: #fff;">
-
-                        <input value="search" name="search" type="text" class="form-control me-2" placeholder="search" />
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-*@
-
-
-
-@*
-                    <div class="form-group d-flex">
-
-
-                        <input value="" name="search" type="text" class="form-control me-2" />
-                        <button class="btn btn-outline-warning" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-
-                        <!--<input type="submit" value="Search" class="fa-solid fa-magnifying-glass" />-->
-                    </div>*@
-
+                  
                 </form>
                 
             </div>
@@ -114,7 +71,7 @@
 
         <!-- second navbar -->
         <div>
-            <nav class="navbar navbar-expand-lg" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: wheat">
+            <nav class="navbar navbar-expand-lg" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: lightgray">
                 <div class="container-fluid">
                     <a class="navbar-link navbar-brand text-warning" asp-controller="Article" asp-action="Index">News </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,9 +79,9 @@
                     </button>
                     <div class="collapse navbar-collapse container" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
+@*
                             <li class="nav-item">
-                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>
+                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>*@
                             <li class="nav-item nav-li">
                                 <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="World">World</a>
                             </li>
@@ -199,6 +156,17 @@
 
                     </div>
                 </div>
+
+                <div style="text-align: right">
+                    <button class="btn btn-darck" style="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                        <i class="fa-solid fa-magnifying-glass" style="color: white;"></i>
+                    </button>
+
+                    <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                        <input placeholder="search..." name="search" type="text" class="form-control me-2" />
+                    </div>
+                </div>
+
             </nav>
         </div>
 
