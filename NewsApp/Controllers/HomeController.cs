@@ -5,6 +5,8 @@ using NewsApp.Models;
 using System.Diagnostics;
 using NuGet.Protocol;
 using Newtonsoft.Json.Linq;
+using NewsApp.Models.Email;
+using NewsApp.Services;
 
 namespace NewsApp.Controllers
 {
@@ -15,16 +17,20 @@ namespace NewsApp.Controllers
         private readonly HttpClient _httpClient;
         private readonly HttpClient _stockMarket;
         private readonly HttpClient _userLocationInfo;
+        private readonly IEmailService _emailService;
 
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext db,
-            IHttpClientFactory httpClientFactory, IHttpClientFactory stockMarket, IHttpClientFactory userLocationInfo)
+            IHttpClientFactory httpClientFactory, IHttpClientFactory stockMarket, IHttpClientFactory userLocationInfo,
+            IEmailService emailService)
         {
             _logger = logger;
             _db = db;
             _httpClient = httpClientFactory.CreateClient("weatherForecast");
             _stockMarket = stockMarket.CreateClient("stockMarket");
             _userLocationInfo = userLocationInfo.CreateClient("getUserLocationInfo");
-          
+            _emailService = emailService;
+
+
         }
 
         public IActionResult Index(string CategoryName)
@@ -136,6 +142,18 @@ namespace NewsApp.Controllers
             
             return View();
         }
+        public IActionResult SendSubscriptionEmail()
+        {
+            SubscriptionEmail subscriptionEmail = new SubscriptionEmail()
+            {
+                SubscriberEmail = "jonta72@hotmail.com",
+                SubscriberName = "Jonas Tärnemark",
+                SubscriptionTypeName = "Basic"
+            };
+            TempData["Response"] = _emailService.SendEmail(subscriptionEmail).Result;
+            return RedirectToAction("Privacy");
+        }
 
+      
     }
 }
