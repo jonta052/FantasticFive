@@ -31,6 +31,7 @@ builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IWeatherService, WeatherService>();
 builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddHttpClient("stockMarket", config => {
 
@@ -47,6 +48,12 @@ builder.Services.AddHttpClient("weatherForecast", config => {
 builder.Services.AddHttpClient("getUserLocationInfo", config => {
 
     config.BaseAddress = new("https://ipinfo.io/");
+
+});
+
+builder.Services.AddHttpClient("ConfirmHttp", config => {
+
+    config.BaseAddress = new(builder.Configuration["MyLocalFuncAddress"]);
 
 });
 //KLARNA STUFF START//
