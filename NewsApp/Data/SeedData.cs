@@ -72,7 +72,7 @@ namespace NewsApp.Models
                         Name = "Travel"
                     };
 
-                    context.SaveChanges();
+                    //context.SaveChanges();
                     // Look for any articles.
                     if (!context.Articles.Any())
                     {
@@ -282,8 +282,9 @@ namespace NewsApp.Models
                             Category = categoryCulture
                                                     
                         });
-                        context.SaveChanges();
+                        
                     }
+                    context.SaveChanges();
                 }
                 // Look for any Subscription types.
                 if (!context.SubscriptionTypes.Any())
