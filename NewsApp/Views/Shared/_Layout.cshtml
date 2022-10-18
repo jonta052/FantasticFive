@@ -94,44 +94,27 @@
                                     More
                                 </a>
                                 <!-- Dropdown menu -->
-                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:wheat"  >
+                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:wheat">
                                     <div class="container">
                                         <div class="row my-4">
-                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0" style: contenteditable=" ">
+                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a href="https://localhost:7111/?categoryName=Tech" class="list-group-item list-group-item-action" style="background-color:wheat">   Tech</a>
-
+                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">Tech</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a href="https://localhost:7111/Article/CategoryIndex?categoryName=Fashion" class="list-group-item list-group-item-action" style="background-color:wheat">Fashion</a>
-
+                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">Fashion</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a href="https://localhost:7111/Article/CategoryIndex?categoryName=Travel" class="list-group-item list-group-item-action" style="background-color:wheat">Travel</a>
-
+                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">Travel</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3">
                                                 <div class="list-group list-group-flush">
-                                                    <a href="https://localhost:7111/Article/CategoryIndex?categoryName=Science" class="list-group-item list-group-item-action" style="background-color:wheat">Science</a>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
-                                                <div class="list-group list-group-flush">
-                                                    <a href="https://localhost:7111/home/stockmarket" class="list-group-item list-group-item-action" style="background-color:wheat">Stockmarket</a>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-lg-3">
-                                                <div class="list-group list-group-flush">
-                                                    <a href="https://localhost:7111/Home/weatherapp" class="list-group-item list-group-item-action" style="background-color:wheat">Wheater</a>
-
+                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Science">Science</a>
                                                 </div>
                                             </div>
                                         </div>
