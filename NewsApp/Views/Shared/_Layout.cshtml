@@ -24,10 +24,12 @@
             <div class="container-fluid">
                 <div>
                     <a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; font-size:30px" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img height="50" width="50" src="~/image/news 5.jpg" />NewsApp</a>
+                    <img id="wicon" class="mr-3" alt="Sample Image" style="width:50px;" data-bs-toggle="popover" data-bs-placement="bottom">
                     
+
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
-                        <img id="wicon" class="mr-3" alt="Sample Image" style="width:50px;" data-bs-toggle="popover" data-bs-placement="bottom">
-                        <p style="color: white; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="datetime"></span></p>
+                        
+                    
 
                         <script>
                             setInterval(timer, 1000);
@@ -36,8 +38,11 @@
                                 document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2)) + ":" + (("0" + dt.getSeconds()).slice(-2));
                             }
                         </script>
+                        
                         </div>
+          
                     </div>
+                <p style="color: white; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="datetime"></span></p>
             </div>
 
             <div style="text-align: right; padding-right:15px">
