@@ -74,6 +74,15 @@ builder.Services.AddHttpClient("klarna-order", config =>
     config.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 });
 builder.Services.AddScoped<IKlarnaService, KlarnaService>();
+
+builder.Services.AddSession(
+    options =>
+    {
+        options.Cookie.HttpOnly = true;
+        options.IdleTimeout = TimeSpan.FromSeconds(600);
+        options.Cookie.IsEssential = true;
+    });
+
 //KLARNA STUFF END//
 var app = builder.Build();
 
@@ -104,6 +113,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NewsApp.Data;
 using NewsApp.Models;
@@ -142,6 +142,7 @@ namespace NewsApp.Controllers
             
             return View();
         }
+
         public IActionResult SendSubscriptionEmail()
         {
             SubscriptionEmail subscriptionEmail = new SubscriptionEmail()
@@ -154,6 +155,5 @@ namespace NewsApp.Controllers
             return RedirectToAction("Privacy");
         }
 
-      
     }
 }

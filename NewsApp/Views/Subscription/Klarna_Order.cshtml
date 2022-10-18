@@ -1,0 +1,46 @@
+﻿@using System.Text.Json
+
+@model NewsApp.Models.Klarna.KlarnaPaymentViewModel
+
+<div id="klarna-payments-container"></div>
+
+<button id="purchase-button">Purchase</button>
+
+@section Scripts {
+<script>
+
+const orderLines = @Html.Raw(Json.Serialize(Model.OrderLines));
+const purchaseButton = document.querySelector("#purchase-button");
+
+    window.klarnaAsyncCallback = function () {
+
+      Klarna.Payments.init({
+        client_token: '@Model.KlarnaSession.ClientToken'
+      })
+
+      Klarna.Payments.load({
+          container: '#klarna-payments-container',
+          payment_method_category: 'pay_later'
+        }, function (res) {
+          console.debug(res);
+        })
+        purchaseButton.addEventListener("click", () => {
+            Klarna.Payments.authorize({
+                payment_method_category: "@Model.KlarnaSession.PaymentMethodCategories.First().Identifier"
+            }, {
+                purchase_country: "SE",
+                purchase_currency: "SEK",
+                locale: "en-GB",
+                order_amount: @Model.OrderLines.Sum(ol => ol.TotalAmount),
+                order_tax_amount: @Model.OrderLines.Sum(ol => ol.TotalTaxAmount),
+                order_lines: orderLines,
+            }, function (res) {
+                const token = res.authorization_token;
+                if (!token) return window.location.href = "/Subscription/PaymentFailed";
+                window.location.href = `/Subscription/ProcessOrder?authorizationToken=${token}`;
+            })
+        });
+    };
+</script>
+<script src="https://x.klarnacdn.net/kp/lib/v1/api.js" async></script>
+}
