@@ -79,6 +79,8 @@ namespace NewsApp.Controllers
             var selectList = new SelectList(categories, "Id", "Name");
 
             ViewBag.CategoryName = selectList;
+            
+            
             try
             {
                 _articleService.CreateArticle(article);
@@ -86,8 +88,11 @@ namespace NewsApp.Controllers
             }
             catch
             {
+                //ViewBag.NoCategory = "You need to choose a category";
+                ModelState.AddModelError("CategoryId", "Category already exists");
                 return View(article);
             }
+
         }
 
         // GET: ArticleController/Edit/5

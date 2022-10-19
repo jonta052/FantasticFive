@@ -143,6 +143,30 @@ namespace NewsApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ViewResult Edit(string id)
+        {
+
+            var user = _db.Users.Where(u => u.Id == id).FirstOrDefault();
+            User uzer = new User();
+            uzer.Id = user.Id;
+            uzer.FirstName = user.FirstName;
+            uzer.Email = user.Email;
+
+            return View(uzer);
+        }
+
+        [HttpGet]
+        public ViewResult Create()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ViewResult Detail()
+        {
+            return View();
+        }
         public IActionResult SendSubscriptionEmail()
         {
             SubscriptionEmail subscriptionEmail = new SubscriptionEmail()
