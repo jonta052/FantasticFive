@@ -46,7 +46,7 @@
                 @Html.ActionLink("AssignUserRole", "AssignUserRole", "Admin", new { id=item.Id }) |
                 @*@Html.ActionLink("LockoutUser", "LockoutUser", "Admin", new { id=item.Id }) |*@
                 @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
-                @*@Html.ActionLink("Edit", "edit", new { id=item.Id })*@
+                @Html.ActionLink("Edit", "EditUser","Admin", new { id=item.Id })
             </td>
         </tr>
 }

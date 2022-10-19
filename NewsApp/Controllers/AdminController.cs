@@ -6,61 +6,32 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
 using NewsApp.Models;
+using NewsApp.Services;
 
 namespace NewsApp.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _db;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<User> _userManager;
-        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager, ApplicationDbContext db)
+        private readonly IUserService _userService;
+        private readonly SignInManager<User> _signInManager;
+
+        public AdminController(
+            RoleManager<IdentityRole> roleManager,
+            UserManager<User> userManager, 
+            ApplicationDbContext db, 
+            IUserService userService, 
+            SignInManager<User> signInManager
+            )
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _db = db;
-        }
-
-
-        [HttpGet]
-        public IActionResult ListUsers()
-        {
-            var users = _userManager.Users;
-            return View(users);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> EditUser(string id)
-        {
-            var user = await _userManager.FindByIdAsync(id);
-            if (user == null)
-            {
-                ViewBag.ErrorMessage = $"User With Id = {id} cannot be found";
-                return NotFound();
-            }
-            //var userRoles = await _userManager.GetRolesAsync(user);
-            var model = new EditUserViewModel
-            {
-                Id = user.Id,
-                EmailAddress = user.Email,
-                FirstName = user.FirstName,
-                //PhoneNumber = user.PhoneNumber,
-                //LasstName = user.LastName,
-                //Roles = userRoles,
-            };
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult EditUser(User user)
-        {
-
-
-
-
-
-            return View();
+            _userService = userService;
+            _signInManager = signInManager;
         }
 
 
@@ -117,7 +88,7 @@ namespace NewsApp.Controllers
         public async Task<IActionResult> AssignUserRole(string roleId, string Id)
         {
             var userId = Id;
-   
+
             var theUser = (from u in _db.Users where u.Id == userId.ToString() select u).FirstOrDefault();
 
             //Create list of roles for the dropdown
@@ -141,7 +112,7 @@ namespace NewsApp.Controllers
                     await _userManager.AddToRoleAsync(theUser, item.Text);
                 }
             }
-            
+
             return View();
         }
 
@@ -220,6 +191,61 @@ namespace NewsApp.Controllers
             }
         }
 
-        
+        [HttpGet]
+        public IActionResult ListUsers()
+        {
+            var users = _userManager.Users;
+            return View(users);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMassage = $"User with Id ={id} cannot be found";
+                //return View("NotFound");
+                return NotFound();
+            }
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            var model = new EditUserViewModel
+            {
+                Id = user.Id,
+                EmailAddress = user.Email,
+                UserName = user.UserName,
+                Roles = userRoles,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditUser(User  user)
+        {
+            var existingUsers = _db.Users.ToList();
+            foreach (var item in existingUsers)
+            {
+                if (item.Email == user.Email && item.Id != user.Id)
+                {
+                    ModelState.AddModelError("Email", "Email already exists");
+                    return View();
+                }
+               
+            }
+
+            var updatedUser = _userService.UpdateUser(user);
+            if (user.Id == _userManager.GetUserId(User))
+            {
+                _signInManager.RefreshSignInAsync(updatedUser).Wait();
+            }
+            return View();
+        }
+
+      
+
     }
 }

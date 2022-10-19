@@ -11,16 +11,26 @@ namespace NewsApp.Models
         [DisplayName("Some Title")]
         [Required(ErrorMessage = "The title is required!")]
         public string Title { get; set; } /*= String.Empty;*/
+        
         [Required]
         public DateTime DateStamp { get; protected set; } = DateTime.Now;
-       
+
+        [Required]
         public string LinkText { get; set; }
+
+        [Required]
         public string ContentSummary { get; set; }
+       
+        [Required]
         public string Content { get; set; }
         public int Views { get; set; }
        
+        [Required]
         public string ImageLink { get; set; }
+
+        [Required]
         public int CategoryId { get; set; }
+
         public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
 

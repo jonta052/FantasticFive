@@ -11,13 +11,23 @@ namespace NewsApp.Models
     public class EditUserViewModel
     {
 
+        public EditUserViewModel()
+        {
+            Roles = new List<string>();
+        }
+
         public string Id { get; set; }
 
         [Required]
         public string FirstName { get; set; }
-       
+
         [Required]
         [EmailAddress]
         public string EmailAddress { get; set; }
+
+        [Required]
+        public string UserName { get; set; }
+
+        public IList<string> Roles { get; set; }
     }
 }
