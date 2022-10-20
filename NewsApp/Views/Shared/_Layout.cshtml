@@ -209,11 +209,17 @@
     <script>
          $(document).ready(function () {
              
-            if (@weatherData.TemperatureC > 10) {
+            if ("@weatherData.Summary" == "clear sky") {
                     document.getElementById('wicon').src = "/Image/weather/cloudy.png";
                 }
-               else if (@weatherData.TemperatureC <= 10) {
-                    document.getElementById('wicon').src = "/Image/weather/sun.png";
+               else if ("@weatherData.Summary" == "light intensity shower rain") {
+                    document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
+                }
+                else if ("@weatherData.Summary" == "moderate rain") {
+                    document.getElementById('wicon').src = "/Image/weather/rainy-day";
+                }
+                else if ("@weatherData.Summary" == "overcast clouds") {
+                    document.getElementById('wicon').src = "/Image/weather/cloudy.png";
                 }
              else {
                 document.getElementById('wicon').src = "/Image/weather/under_construction.png";
