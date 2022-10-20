@@ -77,7 +77,7 @@ namespace NewsApp.Controllers
         {
             var categories = _db.Categories.ToList();
             var selectList = new SelectList(categories, "Id", "Name");
-
+            //DialogResult result = openFileDialog1.ShowDialog();
             ViewBag.CategoryName = selectList;
             
             
