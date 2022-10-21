@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NewsApp.Models
 {
-    
     public class Article
     {
         public int Id { get; set; }
@@ -30,14 +29,12 @@ namespace NewsApp.Models
 
         [Required]
         public int CategoryId { get; set; }
-
+        public bool Archived { get; set; }
         public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
 
         public bool EditorChoice { get; set; }
         public virtual ICollection<Like> Likes { get; set; }
         public virtual ICollection<Dislike> Dislikes { get; set; }
-
     }
-    
 }
