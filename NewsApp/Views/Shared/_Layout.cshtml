@@ -99,27 +99,28 @@
                                     More
                                 </a>
                                 <!-- Dropdown menu -->
-                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:wheat">
+                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:lightgray">
                                     <div class="container">
-                                        <div class="row my-4">
-                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
-                                                <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">Tech</a>
+                                        <div class="row my-4" >
+                                            
+                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0"    >
+                                                <div class="list-group list-group-flush"> 
+                                                    <a class="dropdown-item" style="background-color:lightgrey" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">TECH</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">Fashion</a>
+                                                    <a class="dropdown-item" style="background-color:lightgrey" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">FASHION</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">Travel</a>
+                                                    <a class="dropdown-item" style="background-color:lightgrey" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">TRAVEL</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3">
                                                 <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Science">Science</a>
+                                                    <a class="dropdown-item" style="background-color:lightgrey" asp-controller="Home" asp-action="Index" asp-route-categoryName="Science">SCIENCE</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -221,7 +222,13 @@
                 else if ("@weatherData.Summary" == "overcast clouds") {
                     document.getElementById('wicon').src = "/Image/weather/cloudy.png";
                 }
-             else {
+                else if ("@weatherData.Summary" == "broken clouds") {
+                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+                }
+                else if ("@weatherData.Summary" == "light rain") {
+                document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
+                }
+                else {
                 document.getElementById('wicon').src = "/Image/weather/under_construction.png";
                   
                 }
