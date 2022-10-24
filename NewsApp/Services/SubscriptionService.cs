@@ -25,7 +25,7 @@ namespace NewsApp.Services
                                             where s.Id == subscriptionId
                                             select s).FirstOrDefault();
 
-                    subscription.Price = (decimal)totalAmount;
+                    subscription.Price = (decimal)totalAmount/100;
                     subscription.SubscriptionType = subscriptionTypes;
                     subscription.Name = subscriptionTypes.TypeName;
 
