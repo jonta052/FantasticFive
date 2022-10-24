@@ -210,17 +210,26 @@
          $(document).ready(function () {
              
             if ("@weatherData.Summary" == "clear sky") {
-                    document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+                    document.getElementById('wicon').src = "/Image/weather/sun.png";
                 }
                else if ("@weatherData.Summary" == "light intensity shower rain") {
                     document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
                 }
                 else if ("@weatherData.Summary" == "moderate rain") {
-                    document.getElementById('wicon').src = "/Image/weather/rainy-day";
+                    document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
                 }
                 else if ("@weatherData.Summary" == "overcast clouds") {
                     document.getElementById('wicon').src = "/Image/weather/cloudy.png";
                 }
+            else if ("@weatherData.Summary" == "broken clouds") {
+                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+            }
+            else if ("@weatherData.Summary" == "light rain") {
+                document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
+            }
+            else if ("@weatherData.Summary" == "mist") {
+                document.getElementById('wicon').src = "/Image/weather/mist.png";
+            }
              else {
                 document.getElementById('wicon').src = "/Image/weather/under_construction.png";
                   
