@@ -61,11 +61,11 @@
                 @Html.DisplayFor(modelItem => item.Views)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Likes)
+                    @Html.DisplayFor(modelItem => item.Likes.Count)
             </td>
             
             <td>
-                @Html.DisplayFor(modelItem => item.Category.Id)
+                @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EditorChoice)
