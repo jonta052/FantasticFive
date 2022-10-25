@@ -1,4 +1,8 @@
-﻿using NewsApp.Data;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using NewsApp.Data;
 using NewsApp.Models;
 
 namespace NewsApp.Services
@@ -7,10 +11,12 @@ namespace NewsApp.Services
     public class ArticleService : IArticleService
     {
         private readonly ApplicationDbContext _db;
+        private readonly IConfiguration _configuration;
 
-        public ArticleService(ApplicationDbContext db)
+        public ArticleService(ApplicationDbContext db, IConfiguration configuration)
         {
             _db = db;
+            _configuration = configuration;
         }
         public Article CreateArticle(Article article)
         {
@@ -20,11 +26,25 @@ namespace NewsApp.Services
         }
 
       
-        public void DeleteArticle(int id)
+        public async void DeleteArticle(int id)
         {
+
             var article = GetArticle(id);
             _db.Remove(article);
             _db.SaveChanges();
+            var fileName = article.ImageLink.Substring(article.ImageLink.LastIndexOf('/') + 1);
+
+            string blobstorageconnection = _configuration.GetValue<string>("BlobConnectionString");
+            CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(blobstorageconnection);
+            CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            string strContainerName = _configuration.GetValue<string>("BlobContainerName");
+            CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference(strContainerName);
+            var blob = cloudBlobContainer.GetBlobReference(fileName);
+            await blob.DeleteIfExistsAsync();
+
+            
+
+            
         }
 
         public Article GetArticle(int id)
@@ -70,5 +90,31 @@ namespace NewsApp.Services
 
             return latestArticles;  
         }
+
+
+
+        //public BlobContainerClient InitBlobService()
+        //{
+        //    BlobServiceClient blobServiceClient = new BlobServiceClient("AzureWebJobsStorage");
+        //    string containerName = "blobimages";
+        //    return blobServiceClient.GetBlobContainerClient(containerName);
+        //}
+        //public async void UploadToBlob(IFormFile file)
+        //{
+        //    string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/Article-Images");
+        //    string fileNameWithPath = Path.Combine(path, file.FileName);
+
+        //    BlobClient blobClient = InitBlobService().GetBlobClient(fileNameWithPath);
+
+        //    await blobClient.UploadAsync(fileNameWithPath, true);
+        //    await blobClient.UploadAsync(file.OpenReadStream(), true);
+        //}
+        //public Uri GetBlobImage(string imageUrl)
+        //{
+        //    var uri = InitBlobService().GetBlobClient(imageUrl).Uri;
+        //    return uri;
+        //}
+
     }
 }
+ 

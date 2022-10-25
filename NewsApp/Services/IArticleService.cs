@@ -1,4 +1,5 @@
-﻿using NewsApp.Models;
+﻿using Azure.Storage.Blobs;
+using NewsApp.Models;
 
 
 
@@ -15,5 +16,7 @@ namespace NewsApp.Services
 
         IEnumerable<Article> PopularArticles();
         IEnumerable<Article> LatestArticles();
+        //BlobContainerClient InitBlobService();
+        //void UploadToBlob(string fileName);
     }
 }
