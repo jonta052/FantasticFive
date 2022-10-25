@@ -1,11 +1,17 @@
-﻿namespace NewsApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace NewsApp.Models
 {
     public class KlarnaOrder
     {
         public int Id { get; set; }
+
+        [Required]
         public string KlarnaOrderId { get; set; }
         public int NumberOfDays { get; set; }
         public int NumberOfInstallments { get; set; }
+
+        [Required]
         public string Type { get; set; }
         public string FraudStatus { get; set; }
         public string RedirectUrl { get; set; }
