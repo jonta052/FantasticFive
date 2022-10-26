@@ -18,61 +18,37 @@
 
 </head>
 <body>
-   
+
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark" border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <div>
                     <a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; font-size:30px" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img height="50" width="50" src="~/image/news 5.jpg" />NewsApp</a>
                     <img id="wicon" class="mr-3" alt="Sample Image" style="width:50px;" data-bs-toggle="popover" data-bs-placement="bottom">
-                    
-
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
-                        
-                    
-
-                        <script>
-                            setInterval(timer, 1000);
-                            function timer() {
-                                var dt = new Date();
-                                document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2)) + ":" + (("0" + dt.getSeconds()).slice(-2));
-                            }
-                        </script>
-                        
-                        </div>
-          
-                    </div>
-                <p style="color: white; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="datetime"></span></p>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="nav-1">
+                    <partial name="_LoginPartial" />
+                </div>
             </div>
 
-            <div style="text-align: right; padding-right:15px">
-                <partial name="_LoginPartial" />
-            </div>
 
         </nav>
-
-        
-
-        <!--////////////////// -->
-        @*<nav class="navbar navbar-expand-lg" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: wheat">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: wheat">*@
 
 
         <!-- second navbar -->
         <div>
-            <nav class="navbar navbar-expand-lg" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: lightgray">
+            <nav class="navbar navbar-expand-lg navbar-light" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: lightgray">
                 <div class="container-fluid">
                     <a class="navbar-link navbar-brand text-warning" asp-controller="Article" asp-action="Index">News </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse container" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-
-                          @*  <li class="nav-item">
-
-                                <a class="nav-link text-light " asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="World">World</a>*@
                             <li class="nav-item nav-li">
                                 <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="World">World</a>
                             </li>
@@ -99,27 +75,28 @@
                                     More
                                 </a>
                                 <!-- Dropdown menu -->
-                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:wheat">
+                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:lightgray">
                                     <div class="container">
-                                        <div class="row my-4">
-                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
-                                                <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">Tech</a>
+                                        <div class="row my-4" >
+                                            
+                                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0"    >
+                                                <div class="list-group list-group-flush"> 
+                                                    <a class="dropdown-item" style="background-color:lightgrey" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">TECH</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">Fashion</a>
+                                                    <a class="dropdown-item" style="background-color:lightgrey" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">FASHION</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">Travel</a>
+                                                    <a class="dropdown-item" style="background-color:lightgrey" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">TRAVEL</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3">
                                                 <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Science">Science</a>
+                                                    <a class="dropdown-item" style="background-color:lightgrey" asp-controller="Home" asp-action="Index" asp-route-categoryName="Science">SCIENCE</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,18 +105,17 @@
                             </li>
                         </ul>
 
+                        <form asp-action="SearchArticles" asp-controller="Article" class="d-flex ms-5">
+                            <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                                <input placeholder="search..." name="search" type="text" class="form-control me-2" style="width: 200px" />
+                            </div>
+                            <button class="btn" style="box-shadow: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                                <i class="fa-solid fa-magnifying-glass" style="color: white;"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
 
-                    <form asp-action="SearchArticles" asp-controller="Article">
-                        <button class="btn btn-darck" style="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                            <i class="fa-solid fa-magnifying-glass" style="color: white;"></i>
-                        </button>
-
-                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                            <input placeholder="search..." name="search" type="text" class="form-control me-2" />
-                        </div>
-                    </form>
             </nav>
         </div>
 
@@ -165,30 +141,23 @@
                     <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">About Us</a>
                 </div>
 
-                <div class="col-4" style="text-align: center">
-                    <h5 style="text-align: center;font-weight: bold; display: inline-block">Follow Us&nbsp&nbsp&nbsp&nbsp<br /></h5>
-                    <a class="fs-3 text-decoration-none" style="background:#233067; color: white" href="https://instagram.com">
-                        <i class="fa fa-instagram"></i>
+                <div class="col-4 text-light" style="text-align: center">
+                    <h6 style="text-align: center; display: inline-block">Follow Us&nbsp&nbsp&nbsp&nbsp<br /></h6>
+                    <a class="fs-3 text-decoration-none" style="color: white" href="https://instagram.com">
+                        <i class="fa fa-instagram" style="font-size:20px"></i>&nbsp
                     </a>
-                    <a class="fs-3 text-decoration-none" style="background:#007bb5; color: white;" href="https://twitter.com">
-                        <i class="fa fa-twitter"></i>
+                    <a class="fs-3 text-decoration-none" style="color: white" href="https://twitter.com">
+                        <i class="fa fa-twitter" style="font-size:20px"></i>&nbsp
                     </a>
-
-                    <a class="fs-3 text-decoration-none" style="background: #bb0000; color: white" href="https://youtube.com">         
-                       <i class="fa fa-youtube"></i>
+                    <a class="fs-3 text-decoration-none" style="color: white" href="https://youtube.com">
+                        <i class="fa fa-youtube" style="font-size:20px"></i>&nbsp
                     </a>
-
-                    <a class="fs-3 text-decoration-none" style="background: #007bb5; color: white" href="https://linkedin.com">
-                        <i class="fa-brands fa-linkedin"></i>
+                    <a class="fs-3 text-decoration-none" style="color: white" href="https://facebook.com">
+                        <i class="fa fa-facebook" style="font-size:20px"></i>&nbsp
                     </a>
-                    
-                    <a class="fs-3 text-decoration-none" style="background:#3B5998; color: white" href="https://facebook.com">
-                        <i class="fa fa-facebook" ></i>
+                    <a class="fs-3 text-decoration-none" style="color: white" href="https://linkedin.com">
+                        <i class="fa-brands fa-linkedin" style="font-size:20px"></i>&nbsp
                     </a>
-                        @*<a class="fs-3 text-dark text-decoration-none" href="https://instagram.com">
-                        <i class="fab fa-instagram-square"></i>*@
-                         @*<a href="#" class="facebook"><i class="fa fa-facebook"></i></a> *@
-                   
                 </div>
 
             </div>
@@ -207,43 +176,51 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
-         $(document).ready(function () {
-             
-            if (@weatherData.TemperatureC > 10) {
-                    document.getElementById('wicon').src = "/Image/weather/cloudy.png";
-                }
-               else if (@weatherData.TemperatureC <= 10) {
+        $(document).ready(function () {
+
+            if ("@weatherData.Summary" == "clear sky") {
+
+
                     document.getElementById('wicon').src = "/Image/weather/sun.png";
+                }
+               else if ("@weatherData.Summary" == "light intensity shower rain") {
+                    document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
+                }
+                else if ("@weatherData.Summary" == "moderate rain") {
+                    document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
+                }
+                else if ("@weatherData.Summary" == "overcast clouds") {
+                    document.getElementById('wicon').src = "/Image/weather/cloudy.png";
                 }
              else {
                 document.getElementById('wicon').src = "/Image/weather/under_construction.png";
-                  
-                }
-                
+
+            }
+
             $('[data-bs-toggle="popover"]').popover({
                 trigger: 'hover',
                 html: true,
                 content:
                     `<div class="flex-container">
-                                  <div class="flex-child">
-                                       <p>City:</p>
-                                       <p>Summary:</p>
-                                       <p>Temperature:&nbsp&nbsp</p>
-                                  </div>
-                                  <div class="flex-child">
-                                      <p>@weatherData.City</p>
-                                      <p>@weatherData.Summary</p>
-                                      <p>@weatherData.TemperatureC &#8451</p>
-                                  </div>
-                            </div>`
+                                          <div class="flex-child">
+                                               <p>City:</p>
+                                               <p>Summary:</p>
+                                               <p>Temperature:&nbsp&nbsp</p>
+                                          </div>
+                                          <div class="flex-child">
+                                              <p>@weatherData.City</p>
+                                              <p>@weatherData.Summary</p>
+                                              <p>@weatherData.TemperatureC &#8451</p>
+                                          </div>
+                    </div>`
             });
-            
+
         });
-        
+
     </script>
     @await RenderSectionAsync("Scripts", required: false)
-   
-    
+
+
 
 </body>
 </html>

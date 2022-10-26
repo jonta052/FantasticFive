@@ -167,17 +167,7 @@ namespace NewsApp.Controllers
         {
             return View();
         }
-        public IActionResult SendSubscriptionEmail()
-        {
-            SubscriptionEmail subscriptionEmail = new SubscriptionEmail()
-            {
-                SubscriberEmail = "jonta72@hotmail.com",
-                SubscriberName = "Jonas Tärnemark",
-                SubscriptionTypeName = "Basic"
-            };
-            TempData["Response"] = _emailService.SendEmail(subscriptionEmail).Result;
-            return RedirectToAction("Privacy");
-        }
+        
 
     }
 }

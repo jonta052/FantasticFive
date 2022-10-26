@@ -79,6 +79,16 @@ namespace NewsApp.Models
                         context.Articles.AddRange(
                          new Article
                          {
+                             Title = "Iran woman protests 2022",
+                             LinkText = "Iran woman protests 2022",
+                             Content = "Protesters have gathered in cities around the world in recent days in a show of solidarity with women in Iran.The gatherings are an echo of the protests that have erupted in Iran since the death of 22-year-old Mahsa Amini, who had been detained by the country's so-called morality police. Whether in Istanbul or Los Angeles, protests are marked by the striking words and images that have typified the protests rocking Iran: chants of \"Women, life, freedom!\" and in some cases, women taking scissors to their hair.\"This time is different because, in my opinion, is led by the women. Women are the revolutionaries at this time, at this time in history,said protester Aref Alvandi at the D.C. rally, according to ABC News.",
+                             ContentSummary = "streets in solidarity with Iranian women",
+                             ImageLink = "https://www.idsa.org/sites/default/files/field_main_image/article/Iranian%20protest%20banner%20image%20-%20Copy.jpg",
+                             Category = categoryWorld
+                         },
+
+                         new Article
+                         {
                              Title = "Royal Family greet Queen Elizabeth II's coffin",
                              LinkText = "Royal Family greet Queen Elizabeth II's coffin",
                              Content = "The King was there with Royal Family members including his wife Camilla, the Queen Consort, Princes William and Harry and their wives, Catherine and Meghan.The hearse, accompanied by the Queen's daughter Princess Anne, travelled by road after a flight from Edinburgh.Despite the rain, crowds gathered along the route to pay their respects.There was applause from the thousands gathered outside as the hearse arrived at the palace.Many people lining the street put down their umbrellas as a sign of respect while phone cameras lit up the crowds as people documented the historic moment.The procession to the palace marks one of the final stages of a solemn journey, which began on Sunday at the Queen's Balmoral estate where she died aged 96 on Thursday.Thousands paid their respects as the Queen lay at rest in St Giles' Cathedral, in Edinburgh overnight, before her coffin was flown to RAF Northolt, in north-west London this evening.",
@@ -280,9 +290,9 @@ namespace NewsApp.Models
                             ContentSummary = "Representatives for Madonna did not immediately respond to NBC News’ request for comment.",
                             ImageLink = "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/rockcms/2022-10/221010-madonna-al-1319-2015d1.jpg",
                             Category = categoryCulture
-                                                    
+
                         });
-                        
+
                     }
                     context.SaveChanges();
                 }
@@ -309,7 +319,7 @@ namespace NewsApp.Models
                     return;   // DB has been seeded        
                 }
 
-                
+
             }
         }
     }

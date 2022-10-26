@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using NewsApp.Data;
 using NewsApp.Helpers;
 using NewsApp.Models;
+using NewsApp.Models.Email;
 using NewsApp.Models.Klarna;
 using NewsApp.Services;
 using NuGet.Protocol;
@@ -18,14 +19,18 @@ namespace NewsApp.Controllers
         private readonly UserManager<User> _userManager;
         private readonly IKlarnaService _klarnaService;
         private readonly ISubscriptionService _subscriptionService;
+        private readonly IEmailService _emailService;
+
 
         public SubscriptionController(ApplicationDbContext db, UserManager<User> userManager,
-            IKlarnaService klarnaService, ISubscriptionService subscriptionService)
+            IKlarnaService klarnaService, ISubscriptionService subscriptionService,
+            IEmailService emailService)
         {
             _db = db;
             _userManager = userManager;
             _klarnaService = klarnaService;
             _subscriptionService = subscriptionService;
+            _emailService = emailService;
         }
         // GET: SubscriptionController
         public IActionResult Index()
@@ -188,6 +193,17 @@ namespace NewsApp.Controllers
         }
         public IActionResult PaymentCompleted()
         {
+            var user = _userManager.GetUserAsync(User).Result;
+            var sub = user.Subscription.OrderBy(s => s.Created).LastOrDefault();
+            var subscriptionEmail = new SubscriptionEmail
+            {
+                SubscriberEmail = user.Email,
+                SubscriberName = user.GetFullName(),
+                SubscriptionTypeName = sub.Name
+
+            };
+                           
+            TempData["Response"] = _emailService.SendEmail(subscriptionEmail).Result;
 
             return View();
         }

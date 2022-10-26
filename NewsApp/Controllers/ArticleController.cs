@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using NewsApp.Data;
 using NewsApp.Models;
 using NewsApp.Services;
@@ -15,14 +17,42 @@ namespace NewsApp.Controllers
 
         private readonly ApplicationDbContext _db;
         private readonly UserManager<User> _userManager;
+        private readonly IConfiguration _configuration;
 
-
-        public ArticleController(IArticleService articleService, ApplicationDbContext db, UserManager<User> userManager)
+        public ArticleController(IArticleService articleService, ApplicationDbContext db, UserManager<User> userManager, IConfiguration configuration)
         {
             _articleService = articleService;
             _db = db;
             _userManager = userManager;
+            _configuration = configuration;
         }
+
+   
+
+        //[HttpPost(nameof(UploadFile))]
+        //public async Task<IActionResult> UploadFile(CreateArticleVM files)
+        //{
+            
+        //    string systemFileName = files.File.FileName;
+        //    systemFileName = _db.Articles.FirstOrDefault().Id+ "_"+systemFileName;
+
+        //    string blobstorageconnection = _configuration.GetValue<string>("BlobConnectionString");
+        //    // Retrieve storage account from connection string.    
+        //    CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(blobstorageconnection);
+        //    // Create the blob client.    
+        //    CloudBlobClient blobClient = cloudStorageAccount.CreateCloudBlobClient();
+        //    // Retrieve a reference to a container.    
+        //    CloudBlobContainer container = blobClient.GetContainerReference(_configuration.GetValue<string>("BlobContainerName"));
+        //    // This also does not make a service call; it only creates a local object.    
+        //    CloudBlockBlob blockBlob = container.GetBlockBlobReference(systemFileName);
+        //    await using (var data = files.File.OpenReadStream())
+        //    {
+        //        await blockBlob.UploadFromStreamAsync(data);
+        //    }
+        //    var uri = blockBlob.Uri.ToString();
+        //    _db.SaveChanges();
+        //    return View();
+        //}
 
 
         // GET: Article
@@ -57,7 +87,7 @@ namespace NewsApp.Controllers
             return View(article);
         }
 
-        [Authorize(Roles = $"{Roles.Administrator},{Roles.Editor}")]
+        
         // GET: ArticleController/Create
         [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
         public IActionResult Create()
@@ -65,6 +95,7 @@ namespace NewsApp.Controllers
             var categories = _db.Categories.ToList();
             var selectList = new SelectList(categories, "Id", "Name");
 
+            //_articleService.UploadToBlob()
             ViewBag.CategoryName = selectList;
             return View();
         }
@@ -73,28 +104,47 @@ namespace NewsApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
-        public IActionResult Create(Article article)
+        public async Task<IActionResult> Create(CreateArticleVM articleVM)
         {
+            
+
             var categories = _db.Categories.ToList();
             var selectList = new SelectList(categories, "Id", "Name");
-
+            //DialogResult result = openFileDialog1.ShowDialog();
             ViewBag.CategoryName = selectList;
-            
-            
+
+            string systemFileName = articleVM.File.FileName;
+            systemFileName = _db.Articles.Select(a => a.Id).OrderByDescending(x=>x).FirstOrDefault()+1 + "_" + systemFileName;
+
+            string blobstorageconnection = _configuration.GetValue<string>("BlobConnectionString");
+            // Retrieve storage account from connection string.    
+            CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(blobstorageconnection);
+            // Create the blob client.    
+            CloudBlobClient blobClient = cloudStorageAccount.CreateCloudBlobClient();
+            // Retrieve a reference to a container.    
+            CloudBlobContainer container = blobClient.GetContainerReference(_configuration.GetValue<string>("BlobContainerName"));
+            // This also does not make a service call; it only creates a local object.    
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(systemFileName);
+            await using (var data = articleVM.File.OpenReadStream())
+            {
+                await blockBlob.UploadFromStreamAsync(data);
+            }
+            var uri = blockBlob.Uri.ToString();
+            articleVM.Article.ImageLink = uri;
+
             try
             {
-                _articleService.CreateArticle(article);
+                _articleService.CreateArticle(articleVM.Article);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
                 //ViewBag.NoCategory = "You need to choose a category";
                 ModelState.AddModelError("CategoryId", "Category already exists");
-                return View(article);
+                return View(articleVM);
             }
 
         }
-
         // GET: ArticleController/Edit/5
         [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
         public IActionResult Edit(int id)

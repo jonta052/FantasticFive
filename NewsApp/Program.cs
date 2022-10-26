@@ -54,7 +54,7 @@ builder.Services.AddHttpClient("getUserLocationInfo", config => {
 
 builder.Services.AddHttpClient("ConfirmHttp", config => {
 
-    config.BaseAddress = new(builder.Configuration["MyLocalFuncAddress"]);
+    config.BaseAddress = new(builder.Configuration["MyAzureFuncAddress"]);
 
 });
 //KLARNA STUFF START//
