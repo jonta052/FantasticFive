@@ -7,21 +7,29 @@
         <tr>
            
             <td>
-                @*@Html.DisplayFor(modelItem => item.Title)*@
-    
-                <a class="text-link" style="text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name">@item.Title</a>
+                @if (item.Title.Length > 35)
+                {    
+                    <a title="@item.Title" class="text-link" style="text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name">@item.Title.Substring(0, 35)...</a>
+                }
+                else
+                {
+                    <a class="text-link" style="text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name">@item.Title</a>  
+                }
+                             
+                <div class="text-sm-start text-muted d-flex gap-2 justify-content-start align-items-center me-2">
+                        <div data-bs-toggle="tooltip" data-bs-title="Views">
+                                    <i class="bi bi-eye-fill "></i>
+                                    <span>@item.Views</span>
+                        </div>
+                </div>
             </td>
-            
+           
+          
            
             <td>
-                @Html.DisplayFor(modelItem => item.Views)
-            </td>
-           
-            <td>
-                <h5 style="font-family:'Times New Roman', Times, serif; color:white; background-color:Red; text-align:center">@item.Category.Name</h5>
-                
-                @*<a class="nav-link nav-a" asp-controller="Article" asp-action="CategoryIndex" asp-route-categoryName="ImageLink"></a>*@
-                <a class="text-link" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" style="width:100%"  /></a>
+                <h6 class="text-uppercase" style="font-family:'Times New Roman', Times, serif; color:white; background-color:Red; text-align:center">@item.Category.Name</h6>
+                <div class="zoom " asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" alt="zoom_image" style="width:150px; height:100px" /></div>
+
             </td>
             
         </tr>
