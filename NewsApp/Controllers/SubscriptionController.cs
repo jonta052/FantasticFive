@@ -132,7 +132,7 @@ namespace NewsApp.Controllers
             {
                 return RedirectToAction(nameof(PaymentFailed));
             }
-            return RedirectToAction("PaymentCompleted", new { userId = userId });
+            return RedirectToAction(nameof(PaymentCompleted));
         }
 
         // GET: SubscriptionController/Edit/5
