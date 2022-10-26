@@ -147,3 +147,24 @@ body {
         font-weight: bold;
     }
 
+
+a:hover, a:active {
+    color: red;
+}
+
+
+.zoom {
+    
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+    .zoom img {
+        width: 100%;
+        transition: 0.5s all ease-in-out;
+    }
+
+    .zoom:hover img {
+        transform: scale(1.5);
+        /*box-shadow: 2px 2px;*/
+    }
