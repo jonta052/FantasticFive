@@ -12,6 +12,7 @@ namespace NewsApp.Models
         public string Name { get; set; }
 
         public virtual ICollection<Article> Articles { get; set; }
+        public virtual ICollection<UserCategories> UserCategories { get; set; }
 
     }
     

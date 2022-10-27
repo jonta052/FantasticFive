@@ -207,5 +207,31 @@ namespace NewsApp.Controllers
 
             return View();
         }
+
+        [Authorize]
+        public IActionResult SubDetails()
+        {
+            if (_subscriptionService.HasSubscription(User))
+            {
+                var user = _userManager.GetUserAsync(User).Result;
+                var details = _db.Subscriptions.Where(x => x.User.Id == user.Id).ToList();
+
+                return View(details);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        //[Authorize]
+        //public IActionResult SelectCategories()
+        //{
+        //    var categories = _db.Categories.ToList();
+        //    var user = _userManager.GetUserAsync(User).Result;
+
+
+
+
+        //    return View();
+        //}
+
     }
 }

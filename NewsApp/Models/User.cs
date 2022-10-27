@@ -26,7 +26,7 @@ namespace NewsApp.Models
 
         public virtual ICollection<Like> Likes { get; set; }
         public virtual ICollection<Dislike> Dislikes { get; set; }
-
+        public virtual ICollection<UserCategories> UserCategories { get; set; }
         public string GetFullName()
         {
             return $"{FirstName} {LastName}";
