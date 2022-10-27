@@ -23,13 +23,17 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <div>
-                    <a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; font-size:30px" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img height="50" width="50" src="~/image/news 5.jpg" />NewsApp</a>
+                    <a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; font-size:30px" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img height="50" width="50" src="~/image/news 5.jpg" />
+                        <span class="d-none d-sm-inline">NewsApp</span>
+                    </a>
                     <img id="wicon" class="mr-3" alt="Sample Image" style="width:50px;" data-bs-toggle="popover" data-bs-placement="bottom">
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="nav-1">
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -40,9 +44,9 @@
 
         <!-- second navbar -->
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: lightgray">
+            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: darkred">
                 <div class="container-fluid">
-                    <a class="navbar-link navbar-brand text-warning" asp-controller="Article" asp-action="Index">News </a>
+                    <a class="navbar-link navbar-brand text-warning text-uppercase" asp-controller="Article" asp-action="Index">News </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -71,31 +75,32 @@
                                 <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Culture">Culture</a>
                             </li>
                             <li class="nav-item nav-li dropdown position-static">
-                                <a class="nav-link nav-a dropdown-toggle position-relative " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link nav-a dropdown-toggle position-relative text-warning" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     More
                                 </a>
                                 <!-- Dropdown menu -->
-                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:wheat">
+                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:darkred">
                                     <div class="container">
                                         <div class="row my-4">
+
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">Tech</a>
+                                                    <a class="dropdown-item" style="background-color: darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">TECH</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">Fashion</a>
+                                                    <a class="dropdown-item" style="background-color:darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">FASHION</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">Travel</a>
+                                                    <a class="dropdown-item" style="background-color:darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">TRAVEL</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3">
                                                 <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index" asp-route-categoryName="Science">Science</a>
+                                                    <a class="dropdown-item" style="background-color:darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Science">SCIENCE</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -122,7 +127,7 @@
         <!--////////////////// -->
 
     </header>
-    <div class="container">
+    <div class="container flex-grow-1">
         @RenderBody()
     </div>
     <br />
@@ -180,29 +185,18 @@
             if ("@weatherData.Summary" == "clear sky") {
 
 
-                    document.getElementById('wicon').src = "/Image/weather/sun.png";
-                }
-               else if ("@weatherData.Summary" == "light intensity shower rain") {
-                    document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
-                }
-                else if ("@weatherData.Summary" == "moderate rain") {
-                    document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
-                }
-                else if ("@weatherData.Summary" == "overcast clouds") {
-                    document.getElementById('wicon').src = "/Image/weather/cloudy.png";
-                }
-            else if ("@weatherData.Summary" == "broken clouds") {
-                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+                document.getElementById('wicon').src = "/Image/weather/sun.png";
             }
-            else if ("@weatherData.Summary" == "light rain") {
+            else if ("@weatherData.Summary" == "light intensity shower rain") {
                 document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
             }
-            else if ("@weatherData.Summary" == "mist") {
-                document.getElementById('wicon').src = "/Image/weather/mist.png";
+            else if ("@weatherData.Summary" == "moderate rain") {
+                document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
             }
-             else {
-
-
+            else if ("@weatherData.Summary" == "overcast clouds") {
+                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+            }
+            else {
                 document.getElementById('wicon').src = "/Image/weather/under_construction.png";
 
             }
@@ -212,17 +206,17 @@
                 html: true,
                 content:
                     `<div class="flex-container">
-                                          <div class="flex-child">
-                                               <p>City:</p>
-                                               <p>Summary:</p>
-                                               <p>Temperature:&nbsp&nbsp</p>
-                                          </div>
-                                          <div class="flex-child">
-                                              <p>@weatherData.City</p>
-                                              <p>@weatherData.Summary</p>
-                                              <p>@weatherData.TemperatureC &#8451</p>
-                                          </div>
-                    </div>`
+                                                          <div class="flex-child">
+                                                               <p>City:</p>
+                                                               <p>Summary:</p>
+                                                               <p>Temperature:&nbsp&nbsp</p>
+                                                          </div>
+                                                          <div class="flex-child">
+                                                              <p>@weatherData.City</p>
+                                                              <p>@weatherData.Summary</p>
+                                                              <p>@weatherData.TemperatureC &#8451</p>
+                                                          </div>
+                                    </div>`
             });
 
         });

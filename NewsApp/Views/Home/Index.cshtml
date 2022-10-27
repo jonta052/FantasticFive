@@ -14,7 +14,7 @@
         {
             <div style="border: 1px solid gray">
 
-               <vc:stock></vc:stock>
+                <vc:stock></vc:stock>
 
             </div>
             <br />
@@ -29,31 +29,32 @@
 
 <div class="row">
     <div class="col-md-4">
-        <div style="background-color:palegoldenrod;">
-            <br />
-            <hr />
-            <h3 style="background-color:red; Text-align:center">Popular News</h3>
-            <hr />
+        <div style="background-color:#ecebeb;">
+            @*<br />
+            <hr />*@
+            <h3 style="background-color:black; border: 1px solid gray; color:white; font-family:Arial, Helvetica, sans-serif; Text-align:center; padding: 8px;">POPULAR NEWS<br /></h3>
+
+
             <vc:Popular-Articles></vc:Popular-Articles>
         </div>
 
         <br />
-        <div style="background-color:palegoldenrod; margin:0px; border-color:black">
-            <br />
-            <hr />
-            <h3 style="background-color:lightgreen; Text-align:center">Latest News</h3>
-            <hr />
+        <div style="background-color:#ecebeb;">
+            @*<br />
+            <hr />*@
+            <h3 style="background-color:black; border: 1px solid gray; color:white; font-family:Arial, Helvetica, sans-serif; Text-align:center; padding: 8px;">LATEST NEWS<br /></h3>
+
             <vc:Latest-Articles></vc:Latest-Articles>
         </div>
 
 
         <br />
-        <div style="background-color:palegoldenrod; margin:0px; border-color:black">
-            <br />
-            <hr />
-            <h3 style="background-color:lightblue; Text-align:center">Editor choice <i class="fa-solid fa-pen-fancy"></i></h3>
+        <div style="background-color:#ecebeb;">
+            @*<br />
+            <hr />*@
+            <h3 style="background-color:blue; border: 1px solid gray; color:white; font-family:Arial, Helvetica, sans-serif; Text-align:center; padding: 8px;">EDITOR CHOICE<i class="fa-solid fa-pen-fancy"></i><br /></h3>
 
-            <hr />
+
 
             @await Html.PartialAsync("_EditorsChoice")
 
@@ -70,26 +71,40 @@
             <table class="card text-center">
                 <tr>
                     <td>
-                        <div class="card-header bg-dark text-lg-center text-light text-uppercase">@item.Category.Name</div>
+                        <div class="card-header text-lg-center text-light text-uppercase" style="background-color:darkred">@item.Category.Name</div>
+                        <img class="card-img-top rounded-0" src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" />
+                        <div class="me-1" style="text-align:left; color:gray"><b>Published on @item.DateStamp.ToLongDateString()</b></div>
                         <div class="card-body">
-                           <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="100%" height="500" />
+
                             <h5 class="card-title title-style">@item.Title</h5>
                             <p class="card-text content-style">@item.ContentSummary</p>
                             <a class="btn btn-primary" asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
                         </div>
-                        <div class="text-sm-end text-muted" style="margin:12px">
-                            <i class="bi bi-chat-text-fill" style="margin:12px">@item.Comments.Count()</i>
-                            <i class="bi bi-eye-fill ">@item.Views</i>
+                        <div class="text-sm-end text-muted d-flex gap-2 justify-content-end align-items-center me-2">
+                            <div data-bs-toggle="tooltip" data-bs-title="Comments">
+                                <i class="bi bi-chat-text-fill"></i>
+                                <span>@item.Comments.Count()</span>
+                            </div>
+
+                            <div data-bs-toggle="tooltip" data-bs-title="Views">
+                                <i class="bi bi-eye-fill "></i>
+                                <span>@item.Views</span>
+                            </div>
+                            <div>
+                                <div data-bs-toggle="tooltip" data-bs-title="Likes">
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                    <span>@item.Likes.Count()</span>
+                                </div>
+                            </div>
                         </div>
                     </td>
 
                 </tr>
             </table>
+            <br />
         }
 
 
     </div>
 
 </div>
-
-
