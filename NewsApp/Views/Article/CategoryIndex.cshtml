@@ -10,7 +10,7 @@
         if (tmp.Category.Name == "Business")
         {
             <div style="border: 1px solid gray">
-               <vc:stock></vc:stock>
+                <vc:stock></vc:stock>
             </div>
             <br />
         }
@@ -25,7 +25,10 @@
             @item.Category.Name
         </div>
         <div class="card-body">
-            <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="100%" height="500" />
+
+            <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="100" height="500" />
+
+
             <h5 class="card-title title-style">@item.Title</h5>
             <p class="card-text content-style">@item.ContentSummary</p>
             <a class="btn btn-primary" asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
@@ -34,11 +37,13 @@
             <i class="bi bi-chat-text-fill" style="margin:12px">@item.Comments.Count()</i>
             <i class="bi bi-eye-fill ">@item.Views</i>
 
+            <i class="fa-solid fa-thumbs-up">@item.Likes.Count()</i>
+
+
         </div>
     </div>
     <br />
     <br />
-
 
 }
 

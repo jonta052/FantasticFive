@@ -167,6 +167,7 @@ a:hover, a:active {
 
 
 .zoom {
+
     overflow: hidden;
     margin: 0 auto;
 }
@@ -179,6 +180,7 @@ a:hover, a:active {
     .zoom:hover img {
         transform: scale(1.5);
         /*box-shadow: 2px 2px;*/
+
     }
 
 .card {
@@ -188,3 +190,4 @@ a:hover, a:active {
 .card-header {
     background-color: darkred;
 }
+

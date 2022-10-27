@@ -79,6 +79,7 @@
                                     More
                                 </a>
                                 <!-- Dropdown menu -->
+
                                 <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:darkred">
                                     <div class="container">
                                         <div class="row my-4">
@@ -86,21 +87,28 @@
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
                                                     <a class="dropdown-item" style="background-color: darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">TECH</a>
+
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
+
                                                     <a class="dropdown-item" style="background-color:darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">FASHION</a>
+
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
                                                 <div class="list-group list-group-flush">
+
                                                     <a class="dropdown-item" style="background-color:darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">TRAVEL</a>
+
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3">
                                                 <div class="list-group list-group-flush">
+
                                                     <a class="dropdown-item" style="background-color:darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Science">SCIENCE</a>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -185,6 +193,7 @@
             if ("@weatherData.Summary" == "clear sky") {
 
 
+
                 document.getElementById('wicon').src = "/Image/weather/sun.png";
             }
             else if ("@weatherData.Summary" == "light intensity shower rain") {
@@ -197,6 +206,7 @@
                 document.getElementById('wicon').src = "/Image/weather/cloudy.png";
             }
             else {
+
                 document.getElementById('wicon').src = "/Image/weather/under_construction.png";
 
             }
