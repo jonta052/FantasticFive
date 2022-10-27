@@ -14,7 +14,9 @@ html {
 }
 
 body {
-    margin-bottom: 0px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .like-button {
@@ -61,62 +63,73 @@ body {
     resize: none;
     overflow: auto;
 }
-.nav{
-    background:#fff;
-    box-shadow:0 0 15px 0 rgba(0,0,0,10)
+
+.nav {
+    background: #fff;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,10)
 }
-.nav-ul{
-    margin:0;
-    padding:0;
-    list-style:none;
-    position:relative;
+
+.nav-ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
 }
+
 .nav-li {
     display: inline-block;
     margin-left: 50px;
     padding: 3px;
-    position:relative;
+    position: relative;
 }
-.nav-a{
-    color:#444;
-    text-decoration:none;
-    text-transform:uppercase;
-    font-size:16px;
+
+.navbar-dark .navbar-nav .nav-link.nav-a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
 }
-.nav-a:hover{
-    color:#000;
+
+.nav-a:hover {
+    color: #000;
 }
-.nav-a::before{
-    content:'';
+
+.nav-a::before {
+    content: '';
     display: block;
-    height:5px;
+    height: 5px;
     width: 100%;
     background-color: #000;
-    position:absolute;
-    top:-8px;
-    width:0%;
+    position: absolute;
+    top: -8px;
+    width: 0%;
     transition: all ease-in-out 250ms;
 }
+
 #navbarDropdown::before {
     top: -11px;
 }
+
 .nav-a:hover::before {
     width: 100%;
 }
-.menu-sub{
-    position:absolute
+
+.menu-sub {
+    position: absolute
 }
 
-.content-style{
-    font-size:20px;
-    font-family:'Times New Roman', Times, serif
+.content-style {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif
 }
-.title-style{
-    font-size:30px;
-    font-weight:bold;
-    text-align:center;
-    font-family:'Times New Roman', Times, serif
+
+.title-style {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif
 }
+
 .form-control {
     display: block;
     width: 100%;
@@ -154,7 +167,7 @@ a:hover, a:active {
 
 
 .zoom {
-    
+
     overflow: hidden;
     margin: 0 auto;
 }
@@ -167,4 +180,14 @@ a:hover, a:active {
     .zoom:hover img {
         transform: scale(1.5);
         /*box-shadow: 2px 2px;*/
+
     }
+
+.card {
+    background-color: #ecebeb;
+}
+
+.card-header {
+    background-color: darkred;
+}
+

@@ -14,7 +14,9 @@
         {
     <div style="border: 1px solid gray">
 
-                            <vc:stock></vc:stock>
+
+                <vc:stock></vc:stock>
+
 
     </div>
     <br />
@@ -29,7 +31,9 @@
 
 <div class="row">
     <div class="col-md-4">
-        <div style="background-color:palegoldenrod;">
+
+        <div style="background-color:#ecebeb;">
+
             @*<br />
             <hr />*@
             <h3 style="background-color:black; border: 1px solid gray; color:white; font-family:Arial, Helvetica, sans-serif; Text-align:center; padding: 8px;">POPULAR NEWS<br /></h3>
@@ -39,7 +43,9 @@
         </div>
 
         <br />
-        <div style="background-color:palegoldenrod;">
+
+        <div style="background-color:#ecebeb;">
+
             @*<br />
             <hr />*@
             <h3 style="background-color:black; border: 1px solid gray; color:white; font-family:Arial, Helvetica, sans-serif; Text-align:center; padding: 8px;">LATEST NEWS<br /></h3>
@@ -49,7 +55,9 @@
 
 
         <br />
-        <div style="background-color:palegoldenrod;">
+
+        <div style="background-color:#ecebeb;">
+
             @*<br />
             <hr />*@
             <h3 style="background-color:blue; border: 1px solid gray; color:white; font-family:Arial, Helvetica, sans-serif; Text-align:center; padding: 8px;">EDITOR CHOICE<i class="fa-solid fa-pen-fancy"></i><br /></h3>
@@ -71,9 +79,11 @@
             <table class="card text-center">
                 <tr>
                     <td>
-                        <div class="card-header bg-dark text-lg-center text-light text-uppercase">@item.Category.Name</div>
+
+                        <div class="card-header text-lg-center text-light text-uppercase" style="background-color:darkred">@item.Category.Name</div>
                         <img class="card-img-top rounded-0" src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" />
-                         <div class="me-1" style="text-align:left; color:gray"><b>Published on @item.DateStamp.ToLongDateString()</b></div>
+                        <div class="me-1" style="text-align:left; color:gray"><b>Published on @item.DateStamp.ToLongDateString()</b></div>
+
                         <div class="card-body">
 
                             <h5 class="card-title title-style">@item.Title</h5>
@@ -85,27 +95,28 @@
                                 <i class="bi bi-chat-text-fill"></i>
                                 <span>@item.Comments.Count()</span>
                             </div>
-                            
-                                <div data-bs-toggle="tooltip" data-bs-title="Views">
-                                    <i class="bi bi-eye-fill "></i>
-                                    <span>@item.Views</span>
+
+
+                            <div data-bs-toggle="tooltip" data-bs-title="Views">
+                                <i class="bi bi-eye-fill "></i>
+                                <span>@item.Views</span>
+                            </div>
+                            <div>
+                                <div data-bs-toggle="tooltip" data-bs-title="Likes">
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                    <span>@item.Likes.Count()</span>
                                 </div>
-                                <div>
-                                    <div data-bs-toggle="tooltip" data-bs-title="Likes">
-                                        <i class="fa-solid fa-thumbs-up"></i>
-                                        <span>@item.Likes.Count()</span>
-                                    </div>
-                                </div>
+                            </div>
+
                         </div>
                     </td>
 
                 </tr>
             </table>
+            <br />
         }
 
 
     </div>
 
 </div>
-
-
