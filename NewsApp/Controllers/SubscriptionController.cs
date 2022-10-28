@@ -207,5 +207,86 @@ namespace NewsApp.Controllers
 
             return View();
         }
+
+        [Authorize]
+        public IActionResult SubDetails()
+        {
+            if (_subscriptionService.HasSubscription(User))
+            {
+                var user = _userManager.GetUserAsync(User).Result;
+                var details = _db.Subscriptions.Where(x => x.User.Id == user.Id).ToList();
+
+                return View(details);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult SelectCategories()
+        {
+            if (_subscriptionService.HasSubscription(User))
+            {
+                var user = _userManager.GetUserAsync(User).Result;
+                var categories = _db.Categories.ToList();
+                var userCategories = _db.UserCategories.Where(x => x.User.Id == user.Id).ToList();
+
+
+                var query = (from c in categories
+                             join u in userCategories
+                             on c.Id equals u.CategoryId
+                             into uc
+                             from u in uc.DefaultIfEmpty()
+                             select new UserCategoryVM
+                             {
+                                 Id = c.Id,
+                                 CategoryName = c?.Name,
+                                 UserCategoryId = u?.UserId
+                             }).ToList();
+
+                // List<UserCategoryVM> userCategoriesList = new List<UserCategoryVM>();
+
+                return View(query);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult SelectCategories(List<int> categoriesId)
+        {
+            if (_subscriptionService.HasSubscription(User))
+            {
+
+                var categories = _db.Categories.ToList();
+
+                var user = _userManager.GetUserAsync(User).Result;
+                var userCategories = _db.UserCategories.Where(x => x.User.Id == user.Id).ToList();
+
+                List<UserCategories> userCategoriesList = new List<UserCategories>();
+                foreach (var cId in categoriesId)
+                {
+                    if (!(userCategories.Any(uc => uc.UserId == user.Id) && userCategories.Any(uc => uc.CategoryId == cId)))
+                    {
+                        userCategoriesList.Add(new UserCategories()
+                        {
+                            UserId = user.Id,
+                            CategoryId = cId
+                        });
+                    }
+
+                }
+
+                _db.UserCategories.AddRange(userCategoriesList);
+
+
+                _db.SaveChanges();
+
+                return RedirectToAction("SubDetails", "Subscription");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewsApp.Data;
 
@@ -11,9 +12,10 @@ using NewsApp.Data;
 namespace NewsApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221026100603_required-fields")]
+    partial class requiredfields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -490,30 +492,6 @@ namespace NewsApp.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("NewsApp.Models.UserCategories", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserCategories");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -663,25 +641,6 @@ namespace NewsApp.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NewsApp.Models.UserCategories", b =>
-                {
-                    b.HasOne("NewsApp.Models.Category", "Category")
-                        .WithMany("UserCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NewsApp.Models.User", "User")
-                        .WithMany("UserCategories")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("NewsApp.Models.Article", b =>
                 {
                     b.Navigation("Comments");
@@ -694,8 +653,6 @@ namespace NewsApp.Data.Migrations
             modelBuilder.Entity("NewsApp.Models.Category", b =>
                 {
                     b.Navigation("Articles");
-
-                    b.Navigation("UserCategories");
                 });
 
             modelBuilder.Entity("NewsApp.Models.KlarnaOrder", b =>
@@ -719,8 +676,6 @@ namespace NewsApp.Data.Migrations
                     b.Navigation("Likes");
 
                     b.Navigation("Subscription");
-
-                    b.Navigation("UserCategories");
                 });
 #pragma warning restore 612, 618
         }
