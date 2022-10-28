@@ -19,13 +19,13 @@
     }
 </script>
 <ul class="navbar-nav ms-auto">
-    <li class="text-light nav-item m-0 m-lg-auto" id="datetime"></li>
+    <li class="text-light nav-item a  m-0 m-lg-auto" a style="font-weight: bold; text-shadow: 1px 1px" id="datetime"></li>
     @if (SignInManager.IsSignedIn(User))
     {
         @if (User.IsInRole(Roles.Administrator))
         {
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" a style="font-weight: bold; text-shadow: 1px 1px">
                     Administrator
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -40,7 +40,7 @@
         @if (User.IsInRole(Roles.Editor))
         {
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" a style="font-weight: bold; text-shadow: 1px 1px">
                     Editor
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -50,18 +50,18 @@
             </li>
         }
         <li class="nav-item">
-            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.FirstName</a>
+            <a class="nav-link text-light" a style="font-weight: bold; text-shadow: 1px 1px" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.FirstName</a>
         </li>
         @if (!subscriptionService.HasSubscription(User))
         {
             <li class="nav-item">
-                <a class="nav-link text-light" asp-controller="Subscription" asp-action="CreateUserSubscription">Subscribe Now</a>
+                <a class="nav-link text-light" a style="font-weight: bold; text-shadow: 1px 1px" asp-controller="Subscription" asp-action="CreateUserSubscription">Subscribe Now</a>
             </li>
         }
 
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")">
-                <button type="submit" class="nav-link btn btn-link text-light">Logout</button>
+                <button type="submit" class="nav-link btn btn-link text-light" a style="font-weight: bold; text-shadow: 1px 1px">Logout</button>
             </form>
         </li>
 

@@ -4,6 +4,18 @@
     var weatherData = _weatherService.WeatherApp().Result;
 }
 
+<style>
+    body {
+        background-image: url("/Image/old-newspaper.jpg");
+    }
+
+    #navigation, .navbar .navbar-default {
+        background-image: url("Image/pergament.jpg");
+        background: url('/Image/pergament.jpg');
+    }
+
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,9 +56,9 @@
 
         <!-- second navbar -->
         <div>
-            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Fourth navbar example" style="margin-bottom:30px;background-color: darkred">
+            <nav class="navbar navbar-expand-lg navbar-dark" id="navigation" role="navigation" aria-label="Fourth navbar example" style="margin-bottom:30px">
                 <div class="container-fluid">
-                    <a class="navbar-link navbar-brand text-warning text-uppercase" asp-controller="Article" asp-action="Index">News </a>
+                    <a class="navbar-link navbar-brand text-warning text-uppercase" asp-controller="Article" a style="font-weight: bold; text-shadow: 1px 1px" asp-action="Index">News </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -54,60 +66,55 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="World">World</a>
+                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="World">World</a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Sweden">Sweden</a>
+                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="Sweden">Sweden</a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Art">Art</a>
+                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="Art">Art</a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Sports">Sports</a>
+                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="Sports">Sports</a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Health">Health</a>
+                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="Health">Health</a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Business">Business</a>
+                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="Business">Business</a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Culture">Culture</a>
+                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="Culture">Culture</a>
                             </li>
                             <li class="nav-item nav-li dropdown position-static">
-                                <a class="nav-link nav-a dropdown-toggle position-relative text-warning" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link nav-a dropdown-toggle position-relative text-warning" href="#" id="navbarDropdown" style="font-weight: bold; text-shadow: 2px 2px" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     More
                                 </a>
                                 <!-- Dropdown menu -->
 
-                                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:darkred">
+                                <div class="dropdown-menu w-100 mt-0" id="navigation" role="navigation" aria-labelledby="navbarDropdown" style=" border-top-left-radius: 0; border-top-right-radius: 0;  background-color:darkred">
                                     <div class="container">
                                         <div class="row my-4">
 
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
-                                                    <a class="dropdown-item" style="background-color: darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">TECH</a>
-
+                                                    <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">TECH</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
-
-                                                    <a class="dropdown-item" style="background-color:darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">FASHION</a>
-
+                                                   <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">FASHION</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
                                                 <div class="list-group list-group-flush">
-
-                                                    <a class="dropdown-item" style="background-color:darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">TRAVEL</a>
+                                                  <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">TRAVEL</a>
 
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3">
                                                 <div class="list-group list-group-flush">
-
-                                                    <a class="dropdown-item" style="background-color:darkred; color:white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Science">SCIENCE</a>
+                                                    <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="SCIENCE">SCIENCE</a>
 
                                                 </div>
                                             </div>
@@ -191,10 +198,7 @@
         $(document).ready(function () {
 
             if ("@weatherData.Summary" == "clear sky") {
-
-
-
-                document.getElementById('wicon').src = "/Image/weather/sun.png";
+            document.getElementById('wicon').src = "/Image/weather/sun.png";
             }
             else if ("@weatherData.Summary" == "light intensity shower rain") {
                 document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
@@ -203,6 +207,9 @@
                 document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
             }
             else if ("@weatherData.Summary" == "overcast clouds") {
+                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+            }
+            else if ("@weatherData.Summary" == "broken clouds") {
                 document.getElementById('wicon').src = "/Image/weather/cloudy.png";
             }
             else {
