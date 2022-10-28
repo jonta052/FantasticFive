@@ -22,7 +22,7 @@ namespace NewsApp.Services
             }
             return "Something went wrong";
         }
-
+       
 
     }
 }
