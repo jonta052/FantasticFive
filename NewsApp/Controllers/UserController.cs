@@ -12,28 +12,28 @@ namespace NewsApp.Controllers
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;
-
+      
         public UserController(ApplicationDbContext db)
         {
             _db = db;
+            
         }
         // GET: UserController
         public IActionResult Index()
         {
-            //List<UserViewModel> users = new List<UserViewModel>();
-            
-            //foreach (var user in _db.Users.ToList())
-            //{
-            //    users.Add(new UserViewModel()
-            //    {
-            //        UserId = user.Id,
-            //        FirstName = user.FirstName,
-            //        LastName = user.LastName,
-            //        Email = user.Email,
-            //        PhoneNumber = user.PhoneNumber,
-            //        DOB = user.DOB
-            //    });
-            //}
+            //List<UserRoleVM> users = new List<UserRoleVM>();
+            //var user = _userManager.GetUserAsync(User).Result;
+            //var role = _db.UserRoles.Where(x => x.RoleId == user.Id).ToList();
+
+            //var query = (from u in user
+            //             join r in role
+            //             on u.Id equals r.UserId
+            //             select new UserRoleVM
+            //             {
+            //                 Id = c.Id,
+                            
+            //             }).ToList();
+
             return View(_db.Users.ToList());
         }
 

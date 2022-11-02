@@ -5,7 +5,7 @@
 }
 
 
-<h1>Manage Subscription</h1>
+<h1>Manage Subscriptions</h1>
 
 
 <table class="table">
@@ -27,70 +27,71 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td id="namn">
-                @Html.DisplayFor(modelItem => item.TypeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-        
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td id="namn">
+                    @Html.DisplayFor(modelItem => item.TypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                </td>
+            </tr>
+
+        }
     </tbody>
 </table>
 <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 <script>
-  
-   //alert(@Html.Raw(Json.Serialize(@ViewBag.Subscriptions[0].Active)));
-   var xValues = [];
-   var yValues = [];
 
-    @for(var i=0; i < ViewBag.Length; i++)
-    { 
-       <text>xValues.push(@Html.Raw(Json.Serialize(@ViewBag.Subscriptions[i].TypeName)));
-       yValues.push(@Html.Raw(Json.Serialize(@ViewBag.Subscriptions[i].Active)));
-       </text>
-    }
-  //alert(xValues[1]);
-    
-//var xValues = ["January", "", "Spain", "USA", "Argentina"];
-//var yValues = [55, 49, 44, 24, 15];
-var barColors = [
-  "#b91d47",
-  "#00aba9",
-  "#2b5797",
-  "#e8c3b9",
-  "#1e7145"
-];
+    //alert(@Html.Raw(Json.Serialize(@ViewBag.Subscriptions[0].Active)));
+    var xValues = [];
+    var yValues = [];
 
-new Chart("myChart", {
-  type: "pie",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "World Wide Wine Production 2022"
+    @for (var i = 0; i < ViewBag.Length; i++)
+    {
+        <text>xValues.push(@Html.Raw(Json.Serialize(@ViewBag.Subscriptions[i].TypeName)));
+        yValues.push(@Html.Raw(Json.Serialize(@ViewBag.Subscriptions[i].Active)));
+        </text>
     }
-  }
-});</script>
+      //alert(xValues[1]);
+
+    //var xValues = ["January", "", "Spain", "USA", "Argentina"];
+    //var yValues = [55, 49, 44, 24, 15];
+    var barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145"
+    ];
+
+    new Chart("myChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Distribution of subscription type 2022"
+            }
+        }
+    });</script>
 
 
