@@ -34,8 +34,6 @@
 
         <div style="background-color:#ecebeb;">
 
-            @*<br />
-            <hr />*@
             <h3 style="background-color:black; border: 1px solid gray; color:white; font-family:Arial, Helvetica, sans-serif; Text-align:center; padding: 8px;">POPULAR NEWS<br /></h3>
 
 
@@ -80,7 +78,7 @@
                 <tr>
                     <td>
 
-                        <div class="card-header text-lg-center text-light text-uppercase" style="background-color:darkred">@item.Category.Name</div>
+                        <div class="card-header text-lg-center text-light text-uppercase" style="font-family:'Times New Roman', Times, serif;font-weight: bold;background-color:darkred">@item.Category.Name</div>
                         <img class="card-img-top rounded-0" src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" />
                         <div class="me-1" style="text-align:left; color:gray"><b>Published on @item.DateStamp.ToLongDateString()</b></div>
 
