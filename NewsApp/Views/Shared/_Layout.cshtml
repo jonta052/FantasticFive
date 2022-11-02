@@ -212,6 +212,12 @@
             else if ("@weatherData.Summary" == "scattered clouds") {
                 document.getElementById('wicon').src = "/Image/weather/cloudy.png";
             }
+             else if ("@weatherData.Summary" == "fog") {
+                document.getElementById('wicon').src = "/Image/weather/fog.png";
+            }
+             else if ("@weatherData.Summary" == "few clouds") {
+                document.getElementById('wicon').src = "/Image/weather/few-clouds.png";
+            }
             else {
 
                 document.getElementById('wicon').src = "/Image/weather/under_construction.png";

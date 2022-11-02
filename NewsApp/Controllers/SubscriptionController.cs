@@ -216,23 +216,23 @@ namespace NewsApp.Controllers
             {
                 var user = _userManager.GetUserAsync(User).Result;
                 var details = _db.Subscriptions.Where(x => x.User.Id == user.Id).ToList();
-                var categories = _db.UserCategories.ToList();
+                //var categories = _db.UserCategories.ToList();
 
-                var query=(from c in categories
-                          join d in details
-                          on c.UserId equals d.User.Id
-                          select new CategorySubVM
-                          {
-                              Id=c.Id,
-                              UserName=d.User.UserName,
-                              CategoriesName=c.Category.Name,
-                              SubTypeName=d.SubscriptionType.TypeName,
-                              Price=d.Price,
-                              Created=d.Created,
-                              Expires=d.Expires,
-                          }).ToList();
+                //var query=(from c in categories
+                //          join d in details
+                //          on c.UserId equals d.User.Id
+                //          select new CategorySubVM
+                //          {
+                //              Id=c.Id,
+                //              UserName=d.User.UserName,
+                //              CategoriesName=c.Category.Name,
+                //              SubTypeName=d.SubscriptionType.TypeName,
+                //              Price=d.Price,
+                //              Created=d.Created,
+                //              Expires=d.Expires,
+                //          }).ToList();
 
-                return View(query);
+                return View(details);
             }
             return RedirectToAction("Index", "Home");
         }
