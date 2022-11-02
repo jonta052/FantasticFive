@@ -9,6 +9,7 @@ using NewsApp.Models.Email;
 using NewsApp.Models.Klarna;
 using NewsApp.Services;
 using NuGet.Protocol;
+using System.Linq;
 using System.Security.Claims;
 
 namespace NewsApp.Controllers
@@ -215,8 +216,23 @@ namespace NewsApp.Controllers
             {
                 var user = _userManager.GetUserAsync(User).Result;
                 var details = _db.Subscriptions.Where(x => x.User.Id == user.Id).ToList();
+                var categories = _db.UserCategories.ToList();
 
-                return View(details);
+                var query=(from c in categories
+                          join d in details
+                          on c.UserId equals d.User.Id
+                          select new CategorySubVM
+                          {
+                              Id=c.Id,
+                              UserName=d.User.UserName,
+                              CategoriesName=c.Category.Name,
+                              SubTypeName=d.SubscriptionType.TypeName,
+                              Price=d.Price,
+                              Created=d.Created,
+                              Expires=d.Expires,
+                          }).ToList();
+
+                return View(query);
             }
             return RedirectToAction("Index", "Home");
         }
@@ -245,9 +261,12 @@ namespace NewsApp.Controllers
                              }).ToList();
 
                 // List<UserCategoryVM> userCategoriesList = new List<UserCategoryVM>();
-
+                //TempData["PreSelect"] = userCategories.Select(uc=>uc.CategoryId).ToList();
+                
                 return View(query);
+
             }
+           
             return RedirectToAction("Index", "Home");
         }
 
@@ -263,23 +282,33 @@ namespace NewsApp.Controllers
 
                 var user = _userManager.GetUserAsync(User).Result;
                 var userCategories = _db.UserCategories.Where(x => x.User.Id == user.Id).ToList();
+                
 
-                List<UserCategories> userCategoriesList = new List<UserCategories>();
-                foreach (var cId in categoriesId)
+                var addToUC = categoriesId.Except(userCategories.Select(uc => uc.CategoryId)).ToList();
+                var removeFromUC = userCategories.Select(uc => uc.CategoryId).Except(categoriesId).ToList();
+
+              
+
+                List<UserCategories> removeCate = new List<UserCategories>();
+                List<UserCategories> addCate = new List<UserCategories>();
+
+                foreach (var item in removeFromUC)
                 {
-                    if (!(userCategories.Any(uc => uc.UserId == user.Id) && userCategories.Any(uc => uc.CategoryId == cId)))
+                    removeCate.Add( _db.UserCategories.FirstOrDefault(uc => uc.CategoryId == item));
+                }
+                foreach (var item in addToUC)
+                {
+                    addCate.Add(new UserCategories()
                     {
-                        userCategoriesList.Add(new UserCategories()
-                        {
-                            UserId = user.Id,
-                            CategoryId = cId
-                        });
-                    }
-
+                        UserId = user.Id,
+                        CategoryId = item
+                    });
                 }
 
-                _db.UserCategories.AddRange(userCategoriesList);
-
+              
+                _db.UserCategories.AddRange(addCate);
+                
+                _db.UserCategories.RemoveRange(removeCate);
 
                 _db.SaveChanges();
 

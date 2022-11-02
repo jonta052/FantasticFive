@@ -1,14 +1,14 @@
-﻿@model IEnumerable<NewsApp.Models.Subscription>
+﻿@model IEnumerable<NewsApp.Models.CategorySubVM>
 
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubscriptionType)
+                @Html.DisplayNameFor(model => model.SubTypeName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.Expires)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Active)
+                @Html.DisplayNameFor(model => model.CategoriesName)
             </th>
         </tr>
     </thead>
@@ -29,10 +29,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.User.UserName)
+                    @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SubscriptionType.TypeName)
+                    @Html.DisplayFor(modelItem => item.SubTypeName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
@@ -44,7 +44,7 @@
                     @Html.DisplayFor(modelItem => item.Expires)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Active)
+                    @Html.DisplayFor(modelItem => item.CategoriesName)
 
                 </td>
             </tr>
