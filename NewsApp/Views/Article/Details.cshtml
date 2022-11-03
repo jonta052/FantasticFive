@@ -11,104 +11,94 @@
 <div class="container main-content">
     <div class="row">
         <div class="col-md-10" style="margin:auto">
-            <h2 class="title-style">@Model.Title</h2><br />
             <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title" width="100%" height="600" />
+             @Model.DateStamp.ToLongDateString()
             <br /><br />
+            <h2 class="title-style">@Model.Title</h2>
             <div class="content-style">@Model.Content</div>
-            <br><br>
-            <hr />
-            @Model.DateStamp.ToLongDateString()
-
+            <br>
         </div>
     </div>
 </div>
+ <hr />
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <hr />
-    <div>
-        <h2 style="vertical-align:inherit">What do you think of the news?</h2>
-        <div class="opinion-wrapper">
-            <div class="button-container">
-                @if (Model.Likes.Any(l => l.UserId == userId))
-                {
-                    <a class="like-button" id="like-button" asp-controller="Article" asp-action="ClickLike" asp-route-like=@Model.Id>
-                        <i class="bi bi-hand-thumbs-up-fill"></i>
-                        Like
-                    </a>
-                }
-                else
-                {
-                    <a class="like-button" id="like-button" asp-controller="Article" asp-action="ClickLike" asp-route-like=@Model.Id>
-                        <i class="bi bi-hand-thumbs-up"></i>
-                        Like
-                    </a>
-                }
-                <p class="like-text">
-                    <span>
-                        @Model.Likes.Count Person
-                    </span>
-                </p>
+    <div class="row" style="align: center; margin:auto">
+        <div class="col-md-10" style=" box-shadow:2px 2px 5px 5px #ced9d3; align: center; margin:auto">
+            <div>
+                <div class="opinion-wrapper">
+
+                    <h3 style="vertical-align:inherit">What do you think of the news?</h3>
+                    <div class="button-container">
+                        @if (Model.Likes.Any(l => l.UserId == userId))
+                        {
+                            <a class="like-button btn btn-success" id="like-button" asp-controller="Article" asp-action="ClickLike" asp-route-like=@Model.Id>
+                                <i class="bi bi-hand-thumbs-up-fill"></i>
+                                Like
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="like-button btn btn-success" id="like-button" asp-controller="Article" asp-action="ClickLike" asp-route-like=@Model.Id>
+                                <i class="bi bi-hand-thumbs-up"></i>
+                                Like
+                            </a>
+                        }
+                        <p class="like-text">
+                            <span>
+                                @Model.Likes.Count Person
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="button-container">
+                        @if (Model.Dislikes.Any(l => l.UserId == userId))
+                        {
+                            <a class="like-button btn btn-danger" id="dislike-button" asp-controller="Article" asp-action="ClickLike" asp-route-dislike=@Model.Id>
+                                <i class="bi bi-hand-thumbs-down-fill"></i>
+                                Dislike
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="like-button btn btn-danger" id="dislike-button" asp-controller="Article" asp-action="ClickLike" asp-route-dislike=@Model.Id>
+                                <i class="bi bi-hand-thumbs-down"></i>
+                                Dislike
+                            </a>
+                        }
+                        <p class="like-text">
+                            <span>
+                                @Model.Dislikes.Count Person
+                            </span>
+                        </p>
+                    </div>
+                </div>
             </div>
+            <hr />
 
-            <div class="button-container">
-                @if (Model.Dislikes.Any(l => l.UserId == userId))
-                {
-                    <a class="like-button" id="dislike-button" asp-controller="Article" asp-action="ClickLike" asp-route-dislike=@Model.Id>
-                        <i class="bi bi-hand-thumbs-down-fill"></i>
-                        Dislike
-                    </a>
-                }
-                else
-                {
-                <a class="like-button" id="dislike-button" asp-controller="Article" asp-action="ClickLike" asp-route-dislike=@Model.Id>
-                    <i class="bi bi-hand-thumbs-down"></i>
-                    Dislike
-                </a>
-                }
-                <p class="like-text">
-                    <span>
-                        @Model.Dislikes.Count Person
-                    </span>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <h2>@Model.Comments.Count()  Comments</h2>
-    <div class="my-4">
-        @foreach (var comment in Model.Comments)
-        {
-            <partial name="_CommentPartial" model="comment" />
-        }
-    </div>
-    @*<a asp-action="Create" asp-controller="Comment" asp-route-id="@Model.Id">Make a comment.</a>*@
-
-
-
-    <div class="row">
-        <div class="col-md-10">
             <form asp-action="Create" asp-controller="Comment">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <input type="hidden" name="articleId" value="@Model.Id" />
                 <p class="comment-form-comment">
-                    <div class="form-group" style="font-weight:700">
-                        Comment
-                        <label for="commentBody" class="control-label"></label>
-                        <textarea id="commentBody" name="commentBody" rows="5" cols="140">
-                        </textarea>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                        <label for="floatingTextarea">Comments</label>
                     </div>
                 </p>
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <input type="submit" value="Submit your comment" class="btn btn-primary" />
                 </div>
             </form>
+
+            <h2>@Model.Comments.Count()  Comments </h2>
+            <div class="my-4">
+                @foreach (var comment in Model.Comments)
+                {
+                    <partial name="_CommentPartial" model="comment" />
+                }
+            </div>
         </div>
     </div>
-
 }
-
-
-
-
 

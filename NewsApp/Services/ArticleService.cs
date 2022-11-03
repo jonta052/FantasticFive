@@ -91,6 +91,21 @@ namespace NewsApp.Services
             return latestArticles;  
         }
 
+        public IEnumerable<Article> GetOneArticleForCategories()
+        {
+            var categories = _db.Categories.ToList();
+            var result = new List<Article>();
+            foreach (var item in categories)
+            {
+                var article = item.Articles.OrderByDescending(a => a.DateStamp).FirstOrDefault();
+                if (article != null)
+                {
+                    result.Add(article);
+                }
+            }
+            return result;
+        }
+
 
 
         //public BlobContainerClient InitBlobService()
