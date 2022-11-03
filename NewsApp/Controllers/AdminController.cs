@@ -217,32 +217,37 @@ namespace NewsApp.Controllers
                 Id = user.Id,
                 EmailAddress = user.Email,
                 UserName = user.UserName,
-                Roles = userRoles,
+                FirstName=user.FirstName,
+               
             };
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditUser(User  user)
+        public IActionResult EditUser(EditUserViewModel user)
         {
             var existingUsers = _db.Users.ToList();
             foreach (var item in existingUsers)
             {
-                if (item.Email == user.Email && item.Id != user.Id)
+                if (item.Email == user.EmailAddress && item.Id != user.Id)
                 {
                     ModelState.AddModelError("Email", "Email already exists");
-                    return View();
+                    return View(user);
                 }
                
             }
+            var existingUser = _userManager.FindByIdAsync(user.Id).Result;
+            existingUser.Email = user.EmailAddress;
+            existingUser.UserName = user.UserName;
+            existingUser.FirstName = user.FirstName;
 
-            var updatedUser = _userService.UpdateUser(user);
+            var updatedUser = _userService.UpdateUser(existingUser);
             if (user.Id == _userManager.GetUserId(User))
             {
                 _signInManager.RefreshSignInAsync(updatedUser).Wait();
             }
-            return View();
+            return RedirectToAction("index","user");
         }
 
       
