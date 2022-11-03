@@ -23,20 +23,7 @@ namespace NewsApp.Controllers
         // GET: UserController
         public IActionResult Index()
         {
-            //var userroles = _db.Roles.ToList();
-            //List<UserRoleVM> users = new List<UserRoleVM>();
-            //var user = _userManager.GetUserAsync(User).Result;
-
-            //var user = await UserManager.GetAllRoles(User);
-
-            //var query = (from u in user
-            //             join r in role
-            //             on u.Id equals r.UserId
-            //             select new UserRoleVM
-            //             {
-            //                 Id = c.Id,
-
-            //             }).ToList();
+     
             var user= _db.Users.ToList();
 
 
