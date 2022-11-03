@@ -5,6 +5,9 @@
     <thead>
         <tr>
             <th>
+                 @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
@@ -19,9 +22,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Expires)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Active)
-            </th>
+            
         </tr>
     </thead>
     <tbody>
@@ -29,7 +30,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.User.UserName)
+                     @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FirstName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SubscriptionType.TypeName)
@@ -43,10 +47,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Expires)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Active)
-
-                </td>
+              
             </tr>
         }
     </tbody>

@@ -54,8 +54,7 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                             <li class="nav-item nav-li">
-
-                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white" asp-controller="Home" asp-action="Index" asp-route-categoryName="World">World</a>
+                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="World">World</a>
                             </li>
                             <li class="nav-item nav-li">
                                 <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Sweden">Sweden</a>
@@ -73,8 +72,7 @@
                                 <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Business">Business</a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Culture">Culture</a>
-
+                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white asp-controller="Home" asp-action="Index" asp-route-categoryName="Culture">Culture</a>
                             </li>
                             <li class="nav-item nav-li dropdown position-static">
                                 <a class="nav-link nav-a dropdown-toggle position-relative text-warning" href="#" id="navbarDropdown"  style="font-weight: bold; text-shadow: 1px 1px" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -88,17 +86,21 @@
 
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
+
                                                     <a  style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">TECH</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
+
                                                    <a  style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">FASHION</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
                                                 <div class="list-group list-group-flush">
+
                                                   <a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">TRAVEL</a>
+
 
                                                 </div>
                                             </div>
@@ -199,17 +201,23 @@
             else if ("@weatherData.Summary" == "overcast clouds") {
                 document.getElementById('wicon').src = "/Image/weather/cloudy.png";
             }
+            else if ("@weatherData.Summary" == "light rain") {
+                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+            }
+            else if ("@weatherData.Summary" == "mist") {
+                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+            }
             else if ("@weatherData.Summary" == "broken clouds") {
                 document.getElementById('wicon').src = "/Image/weather/cloudy.png";
             }
-            else if ("@weatherData.Summary" == "light rain") {
-                document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
-            }
-            else if ("@weatherData.Summary" == "mist") {
-                document.getElementById('wicon').src = "/Image/weather/mist.png";
-            }
             else if ("@weatherData.Summary" == "scattered clouds") {
                 document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+            }
+             else if ("@weatherData.Summary" == "fog") {
+                document.getElementById('wicon').src = "/Image/weather/fog.png";
+            }
+             else if ("@weatherData.Summary" == "few clouds") {
+                document.getElementById('wicon').src = "/Image/weather/few-clouds.png";
             }
             else {
 
