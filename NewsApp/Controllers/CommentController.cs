@@ -55,7 +55,6 @@ namespace NewsApp.Controllers
             {
                 ArticleId = article.Id,
                 Article = article
-
             };
             
             return View(comment);
