@@ -58,8 +58,8 @@ namespace NewsApp.Controllers
         // GET: Article
         public IActionResult Index()
         {
-            
-            var allArticles = _articleService.GetArticles().ToList();
+
+            var allArticles = _articleService.GetOneArticleForCategories();
 
             return View(allArticles);
         }
