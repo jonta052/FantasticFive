@@ -11,11 +11,6 @@ namespace NewsApp.Models
     public class EditUserViewModel
     {
 
-        public EditUserViewModel()
-        {
-            Roles = new List<string>();
-        }
-
         public string Id { get; set; }
 
         [Required]
@@ -28,6 +23,6 @@ namespace NewsApp.Models
         [Required]
         public string UserName { get; set; }
 
-        public IList<string> Roles { get; set; }
+    
     }
 }

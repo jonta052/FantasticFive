@@ -1,8 +1,11 @@
-﻿@model IEnumerable<NewsApp.Models.User>
-
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<NewsApp.Models.User>
+@inject UserManager<User> userManager
 @{
     ViewData["Title"] = "Index";
+    //var user = await UserManager.GetAllRoles(User);
 }
+
 
 <h1>Manage Users</h1>
 
@@ -21,6 +24,9 @@
           
             <th>
                 @Html.DisplayNameFor(model => model.Subscription.FirstOrDefault().SubscriptionType)
+            </th>
+            <th> 
+                Roles
             </th>
             <th>Manage User</th>
         </tr>
@@ -42,6 +48,9 @@
                     {
                             @Html.DisplayFor(modelItem => sub.Name)
                     }
+                </td>
+                <td>
+                    @string.Join(',', (await userManager.GetRolesAsync(item)))
                 </td>
                 <td>
                 @Html.ActionLink("AssignUserRole", "AssignUserRole", "Admin", new { id=item.Id }) |
