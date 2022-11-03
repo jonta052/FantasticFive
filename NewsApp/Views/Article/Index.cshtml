@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-  
+
+
 @*//////////////////////////////////////////Carousel////////////////////*@
 
-
-@*<div id="myCarousel" class="carousel slide Mstats" data-bs-ride="carousel" data-interval="1000" style="width:100%">
+<div id="myCarousel" class="carousel slide Mstats" data-bs-ride="carousel" data-interval="1000">
     <div class="carousel-indicators" style="z-index: 100;">
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -15,106 +15,12 @@
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
 
     </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-
-            <img class="d-block w-100" src="https://assets.vogue.com/photos/6338360dbebbac7c636f41bd/16:9/w_1280,c_limit/Halle_Bailey-Julia_Marino_8.jpg" alt="Fashion" style="width:200px; height:450px"/>
-
-              <div class="container">
-                <div class="carousel-caption">
-                    <h5 style="font-family:Georgia, 'Times New Roman', Times, serif; color:black; background-color:white;"><b>Halle Bailey Is Excited For You to See The Little Mermaid</b></h5>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-item">
-            <img class="d-block w-100" src="https://hackster.imgix.net/uploads/attachments/1504100/image_0joupgYKoY.png?auto=compress%2Cformat&w=740&h=555&fit=max" alt="Tech" style="width:200px; height:450px" />
-
-            <div class="container">
-                <div class="carousel-caption">
-                    <h5 style="font-family:Georgia, 'Times New Roman', Times, serif; color:black; background-color:white;"><b>DroneSeed's Six-Rotor Heavy-Duty Drones Aim to Offer Fast, Affordable Wildfire Reforestation</b></h5>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-item">
-            <img class="d-block w-100" src="https://www.visittheusa.se/sites/default/files/styles/hero_xl_1600x700/public/images/hero_media_image/2016-10/Getty_510067479_Brand_City_SanFrancisco_Rotator_FinalCrop.jpg?itok=FvQ4Q671" alt="Travel" style="width:200px; height:450px" />
-
-           <div class="container">
-                <div class="carousel-caption">
-                    <h5 style="font-family:Georgia, 'Times New Roman', Times, serif; color:black; background-color:white;"><b>25th Tartu Mountain Bike Marathon</b></h5>
-                </div>
-            </div>
-        </div>
-
-         <div class="carousel-item">
-            <img class="d-block w-100" src="https://www.science.org/do/10.1126/science.adf2372/full/_20221007_nid_indonesia.jpg" alt="Science" style="width:200px; height:450px" />
-
-           <div class="container">
-                <div class="carousel-caption">
-                    <h5 style="font-family:Georgia, 'Times New Roman', Times, serif; color:black; background-color:white;"><b>Indonesia bans five foreign scientists, shelves conservation data</b></h5>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-
-</div>
-<br/>
-<br/>*@
-
- @*<br /><br /><br />
-    <div class="row  justify-content-between ">
-
-        <h2 class="offset-4 Mstatsindex"> Latest News</h2>
-
-
-        @foreach (var item in Model)
-        {
-            <div class="col-md-2">
-                @Html.Partial("_StatsMovie", item)
-            </div>
-        }
-
-
-    </div>
-    <br /><br /><br />
-    <div class="row  justify-content-between ">
-        <h2 class="offset-5 Mstatsindex"> Oldest</h2>
-
-        @foreach (var item in Model)
-        {
-            <div class="col-md-2">
-                @Html.Partial("_StatsMovie", item)
-            </div>
-        }
-    </div>*@
-@*/////////////////////////////////*@
-
-@*//////////////////////////////////////////Carousel////////////////////*@
-
-<div id="myCarousel" class="carousel slide Mstats" data-bs-ride="carousel" data-interval="1000" style="width:100%">
-    <div class="carousel-indicators" style="z-index: 100;">
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-
-    </div>
-    <div class="carousel-inner">
+    <div class="carousel-inner border border-warning" style= "box-shadow:2px 2px 5px 5px #ced9d3">
         <div class="carousel-item active">
             <a asp-action="Index" asp-controller="Home" asp-route-categoryName="Fashion">
-                <img class="d-block w-100" src="https://assets.vogue.com/photos/6338360dbebbac7c636f41bd/16:9/w_1280,c_limit/Halle_Bailey-Julia_Marino_8.jpg" alt="Fashion" style="width:200px; height:450px" />
+                <img class="d-block w-100" src="https://assets.vogue.com/photos/6338360dbebbac7c636f41bd/16:9/w_1280,c_limit/Halle_Bailey-Julia_Marino_8.jpg" alt="Fashion" style="width:180px; height:450px;"/>
 
-                <div class="container">
+                <div class="container" style="margin-left:20px; margin-right:50px">
                     <div class="carousel-caption">
                         <h5 style="font-family:Georgia, 'Times New Roman', Times, serif; color:black; background-color:white;"><b>Halle Bailey Is Excited For You to See The Little Mermaid</b></h5>
                     </div>
@@ -126,7 +32,7 @@
             <a asp-action="Index" asp-controller="Home" asp-route-categoryName="Tech">
                 <img class="d-block w-100" src="https://hackster.imgix.net/uploads/attachments/1504100/image_0joupgYKoY.png?auto=compress%2Cformat&w=740&h=555&fit=max" alt="Tech" style="width:200px; height:450px" />
 
-                <div class="container">
+                <div class="container" style="margin-left:25px; margin-right:50px">
                     <div class="carousel-caption">
                         <h5 style="font-family:Georgia, 'Times New Roman', Times, serif; color:black; background-color:white;"><b>DroneSeed's Six-Rotor Heavy-Duty Drones Aim to Offer Fast, Affordable Wildfire Reforestation</b></h5>
                     </div>
@@ -138,7 +44,7 @@
             <a asp-action="Index" asp-controller="Home" asp-route-categoryName="Travel">
                 <img class="d-block w-100" src="https://www.visittheusa.se/sites/default/files/styles/hero_xl_1600x700/public/images/hero_media_image/2016-10/Getty_510067479_Brand_City_SanFrancisco_Rotator_FinalCrop.jpg?itok=FvQ4Q671" alt="Travel" style="width:200px; height:450px" />
 
-                <div class="container">
+                <div class="container" style="margin-left:25px; margin-right:50px">
                     <div class="carousel-caption">
                         <h5 style="font-family:Georgia, 'Times New Roman', Times, serif; color:black; background-color:white;"><b>25th Tartu Mountain Bike Marathon</b></h5>
                     </div>
@@ -150,7 +56,7 @@
             <a asp-action="Index" asp-controller="Home" asp-route-categoryName="Tech">
                 <img class="d-block w-100" src="https://www.science.org/do/10.1126/science.adf2372/full/_20221007_nid_indonesia.jpg" alt="Science" style="width:200px; height:450px" />
 
-                <div class="container">
+                <div class="container" style="margin-left:25px; margin-right:50px">
                     <div class="carousel-caption">
                         <h5 style="font-family:Georgia, 'Times New Roman', Times, serif; color:black; background-color:white;"><b>Indonesia bans five foreign scientists, shelves conservation data</b></h5>
                     </div>
@@ -172,42 +78,46 @@
 </div>
 <br />
 <br />
-@*/////////////////////////////////*@
+@*///////////// Card News////////////////////*@
 
+@*<div class="container">*@
+    <div class="row gy-6 my-5">
 
-@foreach (var item in Model)
-{
-    <div class="card text-center col-md-10 mx-auto">
-        <div class="card-header text-lg-center text-light text-uppercase">
-            @item.Category.Name
-        </div>
-        <div class="card-body">
-            <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="100%" height="500" />
-            <div class="me-1" style="text-align:left; color:gray"><b>Published on @item.DateStamp.ToLongDateString()</b></div>
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card" style="width: 100%; height:300px; box-shadow:2px 2px 5px 5px #ced9d3">
+                    <a class="card-header text-lg-center text-light text-uppercase" style="text-decoration: none; font-family:'Times New Roman', Times, serif;font-weight: bold;background-color:darkred" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name">@item.Category.Name</a>
 
-            <h5 class="card-title title-style">@item.Title</h5>
-            <p class="card-text content-style">@item.ContentSummary</p>
-            <a class="btn btn-primary" asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
-        </div>
+                    <a class="zoom" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" alt="zoom_image" style="width:100%; height:250px"/></a>
 
-        <div class="text-sm-end text-muted d-flex gap-2 justify-content-end align-items-center me-2">
-            <div data-bs-toggle="tooltip" data-bs-title="Comments">
-                <i class="bi bi-chat-text-fill"></i>
-                <span>@item.Comments.Count()</span>
-            </div>
+                <div class="card-body">
+                        @if (item.Title.Length > 25)
+                        {
+                            <a title="@item.Title" style="color:black; font-family:'Times New Roman', Times, serif; font-weight:bold; text-decoration: none" class="text-link d-block">@item.Title.Substring(0,25)...</a>
+                        }
+                        else
+                        {
+                            <a class="text-link" style="color:black; font-family:'Times New Roman', Times, serif; font-weight:bold; text-decoration: none;"><h5>@item.Title</h5></a>
+                        }
 
-            <div data-bs-toggle="tooltip" data-bs-title="Views">
-                <i class="bi bi-eye-fill "></i>
-                <span>@item.Views</span>
-            </div>
-            <div>
-                <div data-bs-toggle="tooltip" data-bs-title="Likes">
-                    <i class="fa-solid fa-thumbs-up"></i>
-                    <span>@item.Likes.Count()</span>
+                        <a class="btn btn-primary" asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
+
+                    </div>
+
                 </div>
+                <br />
+                <br />
             </div>
-        </div>
+
+        }
+
     </div>
-    <br />
-}
+@*</div>*@
+
+
+
+
+@*//////////////////////////////////////////////////*@
+
 
