@@ -56,10 +56,10 @@
 <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 <script>
 
-    //alert(@Html.Raw(Json.Serialize(@ViewBag.Subscriptions[0].Active)));
     var xValues = [];
     var yValues = [];
-
+    var commentText=""
+if (@ViewBag.Length> 0) {commentText="Distribution of subscription type 2022" }
     @for (var i = 0; i < ViewBag.Length; i++)
     {
         <text>xValues.push(@Html.Raw(Json.Serialize(@ViewBag.Subscriptions[i].TypeName)));
@@ -90,7 +90,7 @@
         options: {
             title: {
                 display: true,
-                text: "Distribution of subscription type 2022"
+                text: commentText
             }
         }
     });</script>
