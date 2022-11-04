@@ -84,6 +84,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: SubscriptionController/Create
+        [Authorize]
         public IActionResult CreateUserSubscription()
         {
             if (_subscriptionService.HasSubscription(User))
@@ -102,6 +103,7 @@ namespace NewsApp.Controllers
         // POST: SubscriptionController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult CreateUserSubscription(int subId)
         {
             HttpContext.Session.SetString("SessionId", subId.ToString());
@@ -187,11 +189,13 @@ namespace NewsApp.Controllers
                 return View();
             }
         }
+        [Authorize]
         public IActionResult PaymentFailed()
         {
 
             return View();
         }
+        [Authorize]
         public IActionResult PaymentCompleted()
         {
             var user = _userManager.GetUserAsync(User).Result;

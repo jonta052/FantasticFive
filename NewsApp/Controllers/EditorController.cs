@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsApp.Data;
 using NewsApp.Models;
 using NewsApp.Services;
+using System.Data;
 
 namespace NewsApp.Controllers
 {
+    [Authorize(Roles = $"{Roles.Administrator},{Roles.Editor}")]
     public class EditorController : Controller
     {
         private readonly IArticleService _articleService;
@@ -21,6 +24,7 @@ namespace NewsApp.Controllers
 
 
         // GET: Article
+        
         public IActionResult Index()
         {
 
