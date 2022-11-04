@@ -10,7 +10,7 @@ using NewsApp.Services;
 
 namespace NewsApp.Controllers
 {
-    //[Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -113,7 +113,7 @@ namespace NewsApp.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("Index", "User");
         }
 
         // GET: AdminController/Delete/5
@@ -247,7 +247,7 @@ namespace NewsApp.Controllers
             {
                 _signInManager.RefreshSignInAsync(updatedUser).Wait();
             }
-            return RedirectToAction("index","user");
+            return RedirectToAction("index", "user");
         }
 
       

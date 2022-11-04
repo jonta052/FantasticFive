@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NewsApp.Data;
 using NewsApp.Models;
+using System.Data;
 using System.Xml.Linq;
 
 namespace NewsApp.Controllers
@@ -19,8 +21,9 @@ namespace NewsApp.Controllers
             _db=db;
             _userManager=userManager;
         }
-        
+
         // GET: UserController
+        [Authorize(Roles = "Administrator")]
         public IActionResult Index()
         {
      

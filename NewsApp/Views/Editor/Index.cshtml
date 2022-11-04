@@ -43,13 +43,30 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                    @if (item.Title.Length > 20)
+                    {
+                        @item.Title.Substring(0,20)
+                        <span>...</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Title)
+                    }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateStamp)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LinkText)
+               
+                    @if (item.LinkText.Length > 80)
+                    {
+                        @item.LinkText.Substring(0,80)
+                        <span>...</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.LinkText)
+                    }
             </td>
 
             <td>
