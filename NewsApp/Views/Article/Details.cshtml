@@ -11,8 +11,11 @@
 <div class="container main-content" style="text-align:justify">
     <div class="row">
         <div class="col-md-10" style="margin:auto">
+
             <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title" style="width: 100%"/>
+
              @Model.DateStamp.ToLongDateString()
+            
             <br /><br />
             <h2 class="title-style">@Model.Title</h2>
             <div class="content-style">@Model.Content</div>
@@ -24,12 +27,14 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+
     <div class="row">
         <div class="col-md-10" style=" box-shadow:2px 2px 5px 5px #ced9d3 ; text-aling:center;margin:auto">
+
             <div>
                 <div class="opinion-wrapper">
 
-                    <h3 style="vertical-align:inherit">What do you think of the news?</h3>
+                    <h3 style="text-align:center; color:darkred">What do you think of the news?</h3>
                     <div class="button-container">
                         @if (Model.Likes.Any(l => l.UserId == userId))
                         {
@@ -91,7 +96,7 @@
                 </div>
             </form>
 
-            <h2>@Model.Comments.Count()  Comments </h2>
+            <h2 style="color:darkred">@Model.Comments.Count()  Comments </h2>
             <div class="my-4">
                 @foreach (var comment in Model.Comments.OrderByDescending(c => c.DateStamp))
                 {

@@ -17,6 +17,8 @@ namespace NewsApp.Models
         public DateTime Expires { get; set; }
         //Greyed out Subscription if Active = true
         public bool Active { get; set; }
+        [Required]
+        public string UserId { get; set; }
         public virtual User User { get; set; }
         
     }
