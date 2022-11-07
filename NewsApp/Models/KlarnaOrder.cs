@@ -16,6 +16,8 @@ namespace NewsApp.Models
         public string FraudStatus { get; set; }
         public string RedirectUrl { get; set; }
         public virtual ICollection<Subscription> Subscriptions { get; set; }
+        [Required]
+        public string UserId { get; set; }
         public virtual User User { get; set; }
 
     }
