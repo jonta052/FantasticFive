@@ -5,24 +5,25 @@
     ViewData["Title"] = "Register";
 }*@
 
-<h1 style="color:white">@ViewData["Title"]</h1>
+
 
 <div class="row" style="text-align: center; margin:auto">
     <div class="col-md-7" style=" box-shadow:2px 2px 5px 5px #ced9d3;text-align: center; margin:auto; background-color:#474e5d">
 
+        <h1 style="color:white">@ViewData["Title"]</h1>
         <div class="row" style="text-align: center; margin:auto">
             <div class="col-md-6" style="text-align: center; margin:auto">
                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                    <h3 style="color:white">Create a new account</h3>
+                    <br /><h3 style="color:white">Create a new account</h3>
                     <hr />
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-floating">
-                        <input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true" />
+                        <input asp-for="Input.FirstName" class="form-control" autocomplete="new-username" aria-required="true" />
                         <label asp-for="Input.FirstName"></label>
                         <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                     </div><br />
                     <div class="form-floating">
-                        <input asp-for="Input.LastName" class="form-control" autocomplete="username" aria-required="true" />
+                        <input asp-for="Input.LastName" class="form-control" autocomplete="new-username" aria-required="true" />
                         <label asp-for="Input.LastName"></label>
                         <span asp-validation-for="Input.LastName" class="text-danger"></span>
                     </div><br />
