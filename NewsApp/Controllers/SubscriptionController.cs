@@ -84,6 +84,7 @@ namespace NewsApp.Controllers
         }
 
         // GET: SubscriptionController/Create
+        [Authorize]
         public IActionResult CreateUserSubscription()
         {
             if (_subscriptionService.HasSubscription(User))
@@ -102,6 +103,7 @@ namespace NewsApp.Controllers
         // POST: SubscriptionController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult CreateUserSubscription(int subId)
         {
             HttpContext.Session.SetString("SessionId", subId.ToString());
@@ -187,11 +189,13 @@ namespace NewsApp.Controllers
                 return View();
             }
         }
+        [Authorize]
         public IActionResult PaymentFailed()
         {
 
             return View();
         }
+        [Authorize]
         public IActionResult PaymentCompleted()
         {
             var user = _userManager.GetUserAsync(User).Result;
@@ -243,6 +247,7 @@ namespace NewsApp.Controllers
         {
             if (_subscriptionService.HasSubscription(User))
             {
+                ViewBag.Message = 0;
                 var user = _userManager.GetUserAsync(User).Result;
                 var categories = _db.Categories.ToList();
                 var userCategories = _db.UserCategories.Where(x => x.User.Id == user.Id).ToList();
@@ -275,19 +280,34 @@ namespace NewsApp.Controllers
         [HttpPost]
         public IActionResult SelectCategories(List<int> categoriesId)
         {
+            ViewBag.Message = 0;
             if (_subscriptionService.HasSubscription(User))
             {
-
                 var categories = _db.Categories.ToList();
 
                 var user = _userManager.GetUserAsync(User).Result;
                 var userCategories = _db.UserCategories.Where(x => x.User.Id == user.Id).ToList();
-                
+
+                if (categoriesId.Count > 5)
+                {
+                    var query = (from c in categories
+                                 join u in userCategories
+                                 on c.Id equals u.CategoryId
+                                 into uc
+                                 from u in uc.DefaultIfEmpty()
+                                 select new UserCategoryVM
+                                 {
+                                     Id = c.Id,
+                                     CategoryName = c?.Name,
+                                     UserCategoryId = u?.UserId
+                                 }).ToList();
+
+                    ViewBag.Message = 6;
+                    return View(query);
+                }
 
                 var addToUC = categoriesId.Except(userCategories.Select(uc => uc.CategoryId)).ToList();
                 var removeFromUC = userCategories.Select(uc => uc.CategoryId).Except(categoriesId).ToList();
-
-              
 
                 List<UserCategories> removeCate = new List<UserCategories>();
                 List<UserCategories> addCate = new List<UserCategories>();

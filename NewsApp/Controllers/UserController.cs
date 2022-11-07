@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NewsApp.Data;
 using NewsApp.Models;
+using System.Data;
 using System.Xml.Linq;
 
 namespace NewsApp.Controllers
@@ -12,29 +14,23 @@ namespace NewsApp.Controllers
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;
-      
-        public UserController(ApplicationDbContext db)
+        private readonly UserManager<User> _userManager;
+
+        public UserController(ApplicationDbContext db, UserManager<User> userManager)
         {
-            _db = db;
-            
+            _db=db;
+            _userManager=userManager;
         }
+
         // GET: UserController
+        [Authorize(Roles = "Administrator")]
         public IActionResult Index()
         {
-            //List<UserRoleVM> users = new List<UserRoleVM>();
-            //var user = _userManager.GetUserAsync(User).Result;
-            //var role = _db.UserRoles.Where(x => x.RoleId == user.Id).ToList();
+     
+            var user= _db.Users.ToList();
 
-            //var query = (from u in user
-            //             join r in role
-            //             on u.Id equals r.UserId
-            //             select new UserRoleVM
-            //             {
-            //                 Id = c.Id,
-                            
-            //             }).ToList();
 
-            return View(_db.Users.ToList());
+            return View(user);
         }
 
         // GET: UserController/Details/5
