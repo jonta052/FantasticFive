@@ -1,41 +1,50 @@
 ﻿@page
 @model IndexModel
+
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Manage your account";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row" style="text-align: center; margin:auto">
+    <div class="col-md-7" style=" box-shadow:2px 2px 5px 5px #ced9d3;text-align: center; margin:auto; background-color:#474e5d">
 
-            <div class="form-floating">
-                <input asp-for="Input.FirstName" class="form-control" />
-                <label asp-for="Input.FirstName" class="form-label"></label>
-                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-            </div>
+      
 
-            <div class="form-floating">
-                <input asp-for="Input.LastName" class="form-control" />
-                <label asp-for="Input.LastName" class="form-label"></label>
-                <span asp-validation-for="Input.LastName" class="text-danger"></span>
-            </div>
+        <h3 style="color:white">@ViewData["Title"]</h3>
+        <hr />
+        <partial name="_StatusMessage" for="StatusMessage" />
+        <div class="row" style="text-align: center; margin:auto">
+            <div class="col-md-6" style="text-align: center; margin:auto">
+                <form id="profile-form" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-floating">
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
+                    <div class="form-floating">
+                        <input asp-for="Input.FirstName" class="form-control" />
+                        <label asp-for="Input.FirstName" class="form-label"></label>
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div><br />
 
-            <button id="update-profile-button" type="submit" class="btn btn-primary btn-lg btn btn-success">Save</button>
-        </form>
+                    <div class="form-floating">
+                        <input asp-for="Input.LastName" class="form-control" />
+                        <label asp-for="Input.LastName" class="form-label"></label>
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div><br />
+
+                    <div class="form-floating">
+                        <input asp-for="Input.PhoneNumber" class="form-control" />
+                        <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div><br />
+
+                    <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-warning" style="font-weight: bold;color:white">Save</button>
+                </form>
+            </div><br />
+        </div><br />
     </div>
-
 </div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
