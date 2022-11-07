@@ -11,8 +11,8 @@
 <div class="container main-content" style="text-align:justify">
     <div class="row">
         <div class="col-md-10" style="margin:auto">
-            <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title"  style="width:100%" />
-            <a class="badge text-uppercase" style="font:bold;font-family:'Times New Roman', Times, serif; color:white; background-color:darkred; text-decoration:none" asp-controller="Home" asp-action="Index" asp-route-categoryName="@Model.Category.Name"><b>@Model.Category.Name</b></a>
+
+            <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title" style="width: 100%"/>
 
              @Model.DateStamp.ToLongDateString()
             
@@ -28,8 +28,8 @@
 @if (SignInManager.IsSignedIn(User))
 {
 
-    <div class="row" style="text-align: center; margin:auto">
-        <div class="col-md-10" style=" box-shadow:2px 2px 5px 5px #ced9d3; text-align: center; margin:auto">
+    <div class="row">
+        <div class="col-md-10" style=" box-shadow:2px 2px 5px 5px #ced9d3 ; text-aling:center;margin:auto">
 
             <div>
                 <div class="opinion-wrapper">
