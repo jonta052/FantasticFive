@@ -200,12 +200,14 @@ namespace NewsApp.Controllers
         {
             var user = _userManager.GetUserAsync(User).Result;
             var sub = user.Subscription.OrderBy(s => s.Created).LastOrDefault();
+            List<string> newSubscriber = new List<string>();
+            newSubscriber.Add("newSubscriber");
             var subscriptionEmail = new SubscriptionEmail
             {
                 SubscriberEmail = user.Email,
                 SubscriberName = user.GetFullName(),
-                SubscriptionTypeName = sub.Name
-
+                SubscriptionTypeName = sub.Name,
+                ArticleTitle = newSubscriber
             };
                            
             TempData["Response"] = _emailService.SendEmail(subscriptionEmail).Result;
