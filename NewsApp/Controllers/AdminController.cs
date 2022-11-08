@@ -218,6 +218,7 @@ namespace NewsApp.Controllers
                 EmailAddress = user.Email,
                 UserName = user.UserName,
                 FirstName=user.FirstName,
+                LastName=user.LastName
                
             };
             return View(model);
@@ -241,6 +242,7 @@ namespace NewsApp.Controllers
             existingUser.Email = user.EmailAddress;
             existingUser.UserName = user.UserName;
             existingUser.FirstName = user.FirstName;
+            existingUser.LastName = user.LastName;
 
             var updatedUser = _userService.UpdateUser(existingUser);
             if (user.Id == _userManager.GetUserId(User))
