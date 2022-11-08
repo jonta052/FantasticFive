@@ -16,6 +16,8 @@ namespace NewsApp.Services
 
         IEnumerable<Article> PopularArticles();
         IEnumerable<Article> LatestArticles();
+        IEnumerable<Article> EditorsChoice();
+        
         IEnumerable<Article> GetOneArticleForCategories();
         //BlobContainerClient InitBlobService();
         //void UploadToBlob(string fileName);
