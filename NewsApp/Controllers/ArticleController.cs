@@ -74,7 +74,7 @@ namespace NewsApp.Controllers
                 return View("NotFound");
             }
 
-            return View("Index", selectedArticles);
+            return View(selectedArticles);
         }
 
         // GET: ArticleController/Details/5
@@ -136,7 +136,7 @@ namespace NewsApp.Controllers
             try
             {
                 _articleService.CreateArticle(articleVM.Article);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Editor");
             }
             catch
             {
@@ -205,8 +205,8 @@ namespace NewsApp.Controllers
                     _articleService.UpdateArticle(articleVm.Article);
                 }
 
-                //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Details", new { id = articleVm.Article.Id });
+                return RedirectToAction("Index", "Editor");
+                //return RedirectToAction("Details", new { id = articleVm.Article.Id });
                 
             }
             catch
@@ -233,7 +233,7 @@ namespace NewsApp.Controllers
             try
             {
                 _articleService.DeleteArticle(id);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Editor");
             }
             catch
             {

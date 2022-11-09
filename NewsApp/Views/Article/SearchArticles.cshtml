@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NewsApp.Models.Article>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@*///////////// Card News////////////////////*@
+
+@*<div class="container">*@
+    <div class="row gy-6 my-5">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card" style="width: 100%; height:300px; box-shadow:2px 2px 5px 5px #ced9d3">
+                    <a class="card-header text-lg-center text-light text-uppercase" style="text-decoration: none; font-family:'Times New Roman', Times, serif;font-weight: bold;background-color:darkred" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name">@item.Category.Name</a>
+
+                    <a class="zoom" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" alt="zoom_image" style="width:100%; height:250px"/></a>
+
+                <div class="card-body">
+                        @if (item.Title.Length > 25)
+                        {
+                            <a title="@item.Title" style="color:black; font-family:'Times New Roman', Times, serif; font-weight:bold; text-decoration: none" class="text-link d-block">@item.Title.Substring(0,25)...</a>
+                        }
+                        else
+                        {
+                            <a class="text-link" style="color:black; font-family:'Times New Roman', Times, serif; font-weight:bold; text-decoration: none;"><h5>@item.Title</h5></a>
+                        }
+
+                        <a class="btn btn-primary" asp-action="Details" asp-controller="Article" asp-route-id="@item.Id">Read more....</a>
+
+                    </div>
+
+                </div>
+                <br />
+                <br />
+            </div>
+        }
+
+    </div>
+

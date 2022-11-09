@@ -44,38 +44,38 @@
 
         <!-- second navbar -->
         <div>
-            <nav class="navbar navbar-expand-lg navbar-dark" id="navigation" role="navigation" aria-label="Fourth navbar example" style="margin-bottom:30px; background-color:darkred">
+            <nav class="navbar navbar-expand-lg navbar-dark" id="navigation" role="navigation" aria-label="Fourth navbar example" style="font-family:'Times New Roman', Times, serif; font-weight:bold;margin-bottom:30px; background-color:darkred">
                 <div class="container-fluid">
-                    <a class="navbar-link navbar-brand text-warning text-uppercase" asp-controller="Article" a style="font-weight: bold; text-shadow: 1px 1px" asp-action="Index">News </a>
+                    <a class="navbar-link navbar-brand text-warning text-uppercase" asp-controller="Article" a style="font-size:22px;text-shadow: 1px 1px" asp-action="Index">News </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse" style="color: white" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white" asp-controller="Home" asp-action="Index" asp-route-categoryName="World">World</a>
+                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="World"><i class="fas fa-globe-americas">&nbsp;<span style="font-family:'Times New Roman', Times, serif">World</span></i></a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Sweden">Sweden</a>
+                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Sweden"><i class="fas fa-flag">&nbsp;<span style="font-family:'Times New Roman', Times, serif">Sweden</span></i></a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Art">Art</a>
+                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Art"><i class=" fas fa-paint-brush">&nbsp;<span style="font-family:'Times New Roman', Times, serif">Art</span></i></a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Sports">Sports</a>
+                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Sports"><i class="fas fa-basketball-ball">&nbsp;<span style="font-family:'Times New Roman', Times, serif">Sports</span></i></a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Health">Health</a>
+                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Health"><i class="fas fa-heartbeat">&nbsp;<span style="font-family:'Times New Roman', Times, serif">Health</span></i></a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Business">Business</a>
+                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Business"><i class="fas fa-money-check-alt">&nbsp;<span style="font-family:'Times New Roman', Times, serif">Business</span></i></a>
                             </li>
                             <li class="nav-item nav-li">
-                                <a class="nav-link nav-a" a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white" asp-controller="Home" asp-action="Index" asp-route-categoryName="Culture">Culture</a>
+                                <a class="nav-link nav-a" asp-controller="Home" asp-action="Index" asp-route-categoryName="Culture"><i class="fas fa-users">&nbsp;<span style="font-family:'Times New Roman', Times, serif">Culture</span></i></a>
                             </li>
                             <li class="nav-item nav-li dropdown position-static">
-                                <a class="nav-link nav-a dropdown-toggle position-relative text-warning" href="#" id="navbarDropdown"  style="font-weight: bold; text-shadow: 1px 1px" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link nav-a dropdown-toggle position-relative text-warning" style="font-size:18px" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     More
                                 </a>
                                 <!-- Dropdown menu -->
@@ -87,7 +87,7 @@
                                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
                                                 <div class="list-group list-group-flush">
 
-                                                    <a  style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech">TECH</a>
+                                                    <a style="color: white; text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="Tech"><i class="fas fa-tools">&nbsp;<span style="font-family:'Times New Roman', Times, serif">TECH</span></i></a>
 
                                                 </div>
                                             </div>
@@ -95,7 +95,7 @@
                                                 <div class="list-group list-group-flush">
 
 
-                                                   <a  style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion">FASHION</a>
+                                                    <a style="color: white; text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="Fashion"><i class="fas fa-tshirt">&nbsp;<span style="font-family:'Times New Roman', Times, serif">FASHION</span></i></a>
 
                                                 </div>
                                             </div>
@@ -103,14 +103,14 @@
                                                 <div class="list-group list-group-flush">
 
 
-                                                  <a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel">TRAVEL</a>
+                                                    <a style="color: white; text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="Travel"><i class="fas fa-plane">&nbsp;<span style="font-family:'Times New Roman', Times, serif">TRAVEL</span></i></a>
 
 
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-3">
                                                 <div class="list-group list-group-flush">
-                                                    <a  style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="SCIENCE">SCIENCE</a>
+                                                    <a style="color: white; text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="SCIENCE"><i class="fas fa-flask">&nbsp;<span style="font-family:'Times New Roman', Times, serif">SCIENCE</span></i></a>
 
                                                 </div>
                                             </div>
@@ -121,17 +121,18 @@
                         </ul>
 
                         <form asp-action="SearchArticles" asp-controller="Article" class="d-flex ms-5">
+                            <button class="btn" style="box-shadow: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                                <i class="fa-solid fa-magnifying-glass" style="color: white;"></i>
+                            </button>
                             <div class="collapse collapse-horizontal" id="collapseWidthExample">
+
                                 <div class="d-flex">
                                     <input placeholder="search..." name="search" type="text" class="form-control me-2" style="width: 200px" />
                                     <button class="btn btn-outline-warning" style="box-shadow: none;display:inline" type="submit">Search</button>
+
                                 </div>
                                 
                             </div>
-                            <button class="btn" style="box-shadow: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                                <i class="fa-solid fa-magnifying-glass" style="color: white;"></i>
-                                
-                            </button>
                         </form>
                     </div>
                 </div>

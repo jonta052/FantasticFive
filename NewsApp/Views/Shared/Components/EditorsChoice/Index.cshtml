@@ -11,6 +11,7 @@
                     @if (item.Title.Length > 35)
                     {
                         <a title="@item.Title" class="text-link" style="text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name">@item.Title.Substring(0, 35)...</a>
+
                     }
                     else
                     {
@@ -26,11 +27,9 @@
                 </td>
 
                 <td>
-                    <h6 class="text-uppercase" style="font-family:'Times New Roman', Times, serif; color:white; background-color:darkred; text-align:center">@item.Category.Name</h6>
-                    <div class="zoom " asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" alt="zoom_image" style="width:150px; height:100px" /></div>
-
+                    <a class="text-uppercase d-block" style="font:bold;text-decoration: none; font-family:'Times New Roman', Times, serif; color:white; padding:5px; border-radius:10px; margin-bottom:0px; background-color:darkred; text-align:center;" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name"><span>@item.Category.Name</span></a>
+                    <a class="zoom d-block" asp-action="Index" asp-controller="Home" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" alt="zoom_image" style="width:150px; height:100px; margin-top:5px" /></a>
                 </td>
-
 
             </tr>
         }

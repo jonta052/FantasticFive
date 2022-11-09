@@ -7,7 +7,7 @@ namespace NewsApp.Models
     {
         public int Id { get; set; }
 
-        [DisplayName("Some Title")]
+        [DisplayName("Title")]
         [Required(ErrorMessage = "The title is required!")]
         public string Title { get; set; } /*= String.Empty;*/
         
@@ -18,6 +18,7 @@ namespace NewsApp.Models
         public string LinkText { get; set; }
 
         [Required]
+        [DisplayName("Content Summary")]
         public string ContentSummary { get; set; }
        
         [Required]

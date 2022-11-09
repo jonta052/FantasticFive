@@ -9,10 +9,10 @@
     {
         if (tmp.Category.Name == "Business")
         {
-            <div style="border: 1px solid gray">
-                <vc:stock></vc:stock>
-            </div>
-            <br />
+    <div style="border: 1px solid gray">
+                    <vc:stock></vc:stock>
+    </div>
+    <br />
         }
     }
 }
@@ -26,7 +26,7 @@
         </div>
         <div class="card-body">
 
-            <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" width="100" height="500" />
+            <img src="@Html.DisplayFor(modelItem => item.ImageLink)" alt="@item.Title" style="width:100%; height:400px" />
 
 
             <h5 class="card-title title-style">@item.Title</h5>

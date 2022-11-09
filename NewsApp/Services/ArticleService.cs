@@ -66,7 +66,7 @@ namespace NewsApp.Services
 
         public IEnumerable<Article> GetArticles()
         {
-            return _db.Articles.ToList();
+            return _db.Articles.OrderByDescending(s=>s.DateStamp).ToList();
         }
         public Article UpdateArticle(Article article)
         {

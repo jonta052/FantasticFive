@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.DateStamp)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LinkText)
+                @Html.DisplayNameFor(model => model.ContentSummary)
             </th>
 
             
@@ -58,14 +58,14 @@
             </td>
             <td>
                
-                    @if (item.LinkText.Length > 80)
+                    @if (item.ContentSummary.Length > 80)
                     {
-                        @item.LinkText.Substring(0,80)
+                        @item.ContentSummary.Substring(0,80)
                         <span>...</span>
                     }
                     else
                     {
-                        @Html.DisplayFor(modelItem => item.LinkText)
+                        @Html.DisplayFor(modelItem => item.ContentSummary)
                     }
             </td>
 
