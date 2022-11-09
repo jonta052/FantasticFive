@@ -254,6 +254,7 @@ namespace NewsApp.Controllers
         
         public IActionResult ClickLike(int like, int dislike)
         {
+            TempData["JumpToOpinions"] = "hej";
             var currentClick = 0;
             if (like > dislike)
             {

@@ -28,7 +28,9 @@
 {
 
     <div class="row">
-        <div class="col-md-10" style=" box-shadow:2px 2px 5px 5px #ced9d3 ; text-align:center;margin:auto">
+
+        <div class="col-md-10" id="opinions" style=" box-shadow:2px 2px 5px 5px #ced9d3 ; text-align:center;margin:auto">
+
 
             <div>
                 <div class="opinion-wrapper">
@@ -106,3 +108,15 @@
     </div>
 }
 
+@section Scripts {
+    
+        <script>
+            $(document).ready(function () {
+            var JumpTo = '@TempData["JumpToOpinions"]';
+                console.log(JumpTo);
+                if (JumpTo == "hej") {
+                $(this).scrollTop($('#opinions').position().top);
+                }
+            });
+        </script>
+}
