@@ -205,8 +205,8 @@ namespace NewsApp.Controllers
                     _articleService.UpdateArticle(articleVm.Article);
                 }
 
-                //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Details", new { id = articleVm.Article.Id });
+                return RedirectToAction("Index", "Editor");
+                //return RedirectToAction("Details", new { id = articleVm.Article.Id });
                 
             }
             catch
