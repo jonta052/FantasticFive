@@ -66,16 +66,24 @@ namespace NewsApp.Controllers
         [Authorize]
         public IActionResult Create(int articleId, string commentBody)
         {
-            var comment = new Comment
+            TempData["JumpToOpinions"] = "hej";
+            if (!string.IsNullOrEmpty(commentBody))
             {
-                ArticleId = articleId,
-                Body = commentBody
-            };
-          
-            var user = _userManager.GetUserAsync(User).Result;
-               comment.UserId=user.Id;
-            _commentService.CreateComment(comment);
-            return RedirectToAction("Details", "Article", new {id = articleId});
+                var comment = new Comment
+                {
+                    ArticleId = articleId,
+                    Body = commentBody
+                };
+
+                var user = _userManager.GetUserAsync(User).Result;
+                comment.UserId = user.Id;
+                _commentService.CreateComment(comment);
+                return RedirectToAction("Details", "Article", new { id = articleId });
+            }
+            else
+            {
+                return RedirectToAction("Details", "Article", new { id = articleId });
+            }
         }
 
 
