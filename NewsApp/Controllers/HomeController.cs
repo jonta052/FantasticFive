@@ -66,7 +66,13 @@ namespace NewsApp.Controllers
               .FirstOrDefault();
             return View(latest);
         }
+        public IActionResult EditorsChoice()
+        {
 
+            //Get articles belonging to that category
+            var editorsArticles = from a in _db.Articles where a.EditorChoice == true select a;
+            return PartialView("~/Home/EditorsChoice", editorsArticles);
+        }
         public IActionResult Privacy()
         {
             return View();

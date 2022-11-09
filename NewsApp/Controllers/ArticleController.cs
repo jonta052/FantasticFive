@@ -74,7 +74,7 @@ namespace NewsApp.Controllers
                 return View("NotFound");
             }
 
-            return View("Index", selectedArticles);
+            return View(selectedArticles);
         }
 
         // GET: ArticleController/Details/5
@@ -250,14 +250,6 @@ namespace NewsApp.Controllers
             //Get articles belonging to that category
             var catagoryArticles = from a in _db.Articles where a.CategoryId == category.Id select a;
             return View(catagoryArticles);
-        }
-
-        public IActionResult EditorsChoice()
-        {
-           
-            //Get articles belonging to that category
-            var editorsArticles = from a in _db.Articles where a.EditorChoice == true select a;
-            return PartialView("~/Shared/_EditorsChoice",editorsArticles);
         }
         
         public IActionResult ClickLike(int like, int dislike)

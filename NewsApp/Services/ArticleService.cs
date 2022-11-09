@@ -1,5 +1,6 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using NewsApp.Data;
@@ -90,7 +91,13 @@ namespace NewsApp.Services
 
             return latestArticles;  
         }
+        public IEnumerable<Article> EditorsChoice()
+        {
+            var editorsArticles = from a in _db.Articles where a.EditorChoice == true select a;
+            
 
+            return editorsArticles;
+        }
         public IEnumerable<Article> GetOneArticleForCategories()
         {
             var categories = _db.Categories.ToList();
