@@ -11,9 +11,8 @@
 <div class="container main-content" style="text-align:justify">
     <div class="row">
         <div class="col-md-10" style="margin:auto">
-
-            <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title" style="width: 100%"/>
-
+            <img src="@Html.DisplayFor(modelItem => Model.ImageLink)" alt="@Model.Title" style="width: 100%; box-shadow:2px 2px 5px 5px #ced9d3"/>
+             <a class="badge text-uppercase" style="background-color:darkred; color:white; text-decoration:none; font-family:'Times New Roman', Times, serif;" asp-controller="Home" asp-action="Index" asp-route-categoryName="@Model.Category.Name">@Model.Category.Name</a>
              @Model.DateStamp.ToLongDateString()
             
             <br /><br />
@@ -29,12 +28,12 @@
 {
 
     <div class="row">
-        <div class="col-md-10" style=" box-shadow:2px 2px 5px 5px #ced9d3 ; text-aling:center;margin:auto">
+        <div class="col-md-10" style=" box-shadow:2px 2px 5px 5px #ced9d3 ; text-align:center;margin:auto">
 
             <div>
                 <div class="opinion-wrapper">
 
-                    <h3 style="text-align:center; color:darkred">What do you think of the news?</h3>
+                    <h2 style="text-align:center; color:darkred">What do you think of the news?</h2>
                     <div class="button-container">
                         @if (Model.Likes.Any(l => l.UserId == userId))
                         {
