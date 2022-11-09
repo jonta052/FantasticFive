@@ -74,7 +74,7 @@ namespace NewsApp.Controllers
                 return View("NotFound");
             }
 
-            return View("Index", selectedArticles);
+            return View(selectedArticles);
         }
 
         // GET: ArticleController/Details/5
