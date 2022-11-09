@@ -11,38 +11,21 @@
                 <td>
                     @if (item.Title.Length > 35)
                     {
-                        <a title="@item.Title" class="text-link" style="text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name">@item.Title.Substring(0, 35)...</a>
+                        <a title="@item.Title" class="text-link" style="text-decoration: none"  asp-controller="Article" asp-action="Details" asp-route-id="@item.Id">@item.Title.Substring(0, 35)...</a>
                     }
                     else
                     {
-                        <a class="text-link" style="text-decoration: none" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name">@item.Title</a>
+                        <a class="text-link" style="text-decoration: none"  asp-controller="Article" asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
                     }
                     <div style="color:gray">@item.DateStamp.ToShortDateString()</div>
                 </td>
 
 
                 <td>
-                    <h6 class="text-uppercase" style="font-family:'Times New Roman', Times, serif; color:white; background-color:darkred; text-align:center">@item.Category.Name</h6>
-
-                    <a class="zoom d-block" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name"><img src="@item.ImageLink" alt="zoom_image" style="width:150px; height:100px" /></a>
+                    <a class="text-uppercase d-block" style="font:bold;text-decoration: none; font-family:'Times New Roman', Times, serif; color:white; padding:5px; border-radius:10px; margin-bottom:0px; background-color:darkred; text-align:center;" asp-controller="Home" asp-action="Index" asp-route-categoryName="@item.Category.Name"><span>@item.Category.Name</span></a>
+                    <a class="zoom d-block" asp-action="Details" asp-controller="Article" asp-route-id="@item.Id"><img src="@item.ImageLink" alt="zoom_image" style="width:150px; height:100px; margin-top:5px" /></a>
                 </td>
-
-                @*  <div class="bg-image hover-overlay hover-zoom hover-shadow ripple">
-            <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/113.webp" class="w-100" />
-            <a href="#!">
-            <div class="mask" style="background-color: rgba(57, 192, 237, 0.2)"></div>
-            </a>
-            </div>*@
-
-                @*<div class="bg-image hover-zoom">
-            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/053.webp" class="w-100" />
-            </div>*@
-
-                @*<div class="geeks">
-            <img src=
-            "https://media.geeksforgeeks.org/wp-content/uploads/20200403151026/adblur_gfg.png"
-            alt="Geeks Image" />
-            </div>*@
+              
             </tr>
         }
 
