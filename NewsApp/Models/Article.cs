@@ -18,6 +18,7 @@ namespace NewsApp.Models
         public string LinkText { get; set; }
 
         [Required]
+        [DisplayName("Content Summary")]
         public string ContentSummary { get; set; }
        
         [Required]

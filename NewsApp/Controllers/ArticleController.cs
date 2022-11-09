@@ -136,7 +136,7 @@ namespace NewsApp.Controllers
             try
             {
                 _articleService.CreateArticle(articleVM.Article);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Editor");
             }
             catch
             {
@@ -233,7 +233,7 @@ namespace NewsApp.Controllers
             try
             {
                 _articleService.DeleteArticle(id);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Editor");
             }
             catch
             {
