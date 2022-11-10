@@ -130,7 +130,7 @@ namespace NewsApp.Areas.Identity.Pages.Account.Manage
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                 StatusMessage = "Confirmation link to change email sent. Please check your email.";
-                return RedirectToPage();
+                return Redirect(callbackUrl);
             }
 
             StatusMessage = "Your email is unchanged.";
