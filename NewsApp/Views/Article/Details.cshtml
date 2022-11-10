@@ -92,13 +92,13 @@
                         <label for="floatingTextarea">Comments</label>
                     </div>
                 </p>
-                <div class="form-group">
+                <div class="form-group" style="text-align:left">
                     <input type="submit" value="Submit your comment" class="btn btn-primary" />
                 </div>
             </form>
 
             <h2 style="color:darkred">@Model.Comments.Count()  Comments </h2>
-            <div class="my-4">
+            <div class="my-4" style="text-align:left">
                 @foreach (var comment in Model.Comments.OrderByDescending(c => c.DateStamp))
                 {
                     <partial name="_CommentPartial" model="comment" />
