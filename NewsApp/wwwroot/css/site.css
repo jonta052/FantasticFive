@@ -169,7 +169,7 @@ a:hover, a:active {
 .zoom {
 
     overflow: hidden;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
 }
 
     .zoom img {
