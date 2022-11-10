@@ -79,7 +79,7 @@ namespace NewsApp.Services
         public IEnumerable<Article> PopularArticles()
         {
             var popularArticles = _db.Articles
-               .OrderByDescending(m => m.Likes.Count);
+               .OrderByDescending(m => m.Views);
 
             return popularArticles;
         }
