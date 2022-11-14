@@ -1,5 +1,4 @@
-﻿using Microsoft.IdentityModel.Protocols;
-using NewsApp.Data;
+﻿using NewsApp.Data;
 using NewsApp.Models;
 using Newtonsoft.Json.Linq;
 

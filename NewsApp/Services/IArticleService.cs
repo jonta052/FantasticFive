@@ -1,7 +1,4 @@
-﻿using Azure.Storage.Blobs;
-using NewsApp.Models;
-
-
+﻿using NewsApp.Models;
 
 namespace NewsApp.Services
 

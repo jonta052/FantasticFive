@@ -1,5 +1,4 @@
 ﻿using NewsApp.Models.Email;
-using System.Drawing;
 
 namespace NewsApp.Services
 {

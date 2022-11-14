@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using NewsApp.Models;
-using Newtonsoft.Json;
-using NuGet.Protocol;
 
 namespace NewsApp.ViewComponents
 {

@@ -8,8 +8,6 @@ using NewsApp.Models;
 using NewsApp.Models.Email;
 using NewsApp.Models.Klarna;
 using NewsApp.Services;
-using NuGet.Protocol;
-using System.Linq;
 using System.Security.Claims;
 
 namespace NewsApp.Controllers

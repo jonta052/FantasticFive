@@ -1,13 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NewsApp.Data;
 using NewsApp.Models;
 using System.Diagnostics;
-using NuGet.Protocol;
 using Newtonsoft.Json.Linq;
-using NewsApp.Models.Email;
 using NewsApp.Services;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace NewsApp.Controllers
 {

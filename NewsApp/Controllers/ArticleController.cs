@@ -6,11 +6,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using NewsApp.Data;
-using NewsApp.Data.Migrations;
 using NewsApp.Models;
 using NewsApp.Services;
 using X.PagedList;
-using System.Drawing.Printing;
 
 namespace NewsApp.Controllers
 {

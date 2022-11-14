@@ -1,13 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewsApp.Data;
-using NewsApp.Services;
-using NuGet.Protocol.Plugins;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Net.NetworkInformation;
-using System.Reflection;
-using System.Security.Cryptography;
-using System.Xml.Linq;
 
 namespace NewsApp.Models
 {

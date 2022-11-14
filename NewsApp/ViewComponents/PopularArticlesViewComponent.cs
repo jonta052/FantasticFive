@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NewsApp.Services;
-using NewsApp.Models;
-using NewsApp.ViewComponents;
-
-
 
 namespace NewsApp.ViewComponents
 {
