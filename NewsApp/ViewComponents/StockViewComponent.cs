@@ -25,7 +25,7 @@ namespace NewsApp.ViewComponents
             {
                 topThree = await result.Content.ReadFromJsonAsync<TopThree>();
             }
-            
+
             return View("Index", topThree); 
               
         }

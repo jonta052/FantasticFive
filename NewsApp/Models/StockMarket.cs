@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Runtime.InteropServices;
+using System.Text.Json.Serialization;
 
 namespace NewsApp.Models
 {
@@ -21,13 +22,24 @@ namespace NewsApp.Models
     {
         [JsonPropertyName("top3")]
         public IEnumerable<StockMarket> Top3 { get; set; }
-        public bool Empty
-        {
-            get
-            {
-                return Top3 == null;
-            }
-        }
+        //public bool Empty
+        //{
+        //    get
+        //    {
+        //        return Top3 == null;
+        //    }
+        //}
+        //public bool Empty([Optional] double? close, [Optional] double? percentChange, string Name)
+        //{
+        //    if (close == null || percentChange == null || Name == null)
+        //    {
+        //        return Top3 == null;
+        //    }
+        //    else
+        //    {
+        //        return Top3 != null;
+        //    }
+        //}
     }
 
     

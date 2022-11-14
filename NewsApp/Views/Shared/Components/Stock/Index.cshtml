@@ -1,6 +1,6 @@
 ﻿@model NewsApp.Models.TopThree
 
-@if (Model.Empty != true)
+@if (Model.Top3 != null)
 {
     <div id="carouselExampleIndicators2" class="carousel slide text-light text-center" data-bs-ride="carousel" style="background-color: darkslategrey;">
         <div class="carousel-inner">
@@ -35,6 +35,6 @@
         </button>
     </div>
 }
-else{<div>Carousel down</div>}
+else{<div style="text-align:center;background-color:green">Stockmarket is down</div>}
 
 
