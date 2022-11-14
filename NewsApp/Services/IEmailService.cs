@@ -1,5 +1,4 @@
 ﻿using NewsApp.Models.Email;
-using NewsApp.Models.Klarna;
 
 namespace NewsApp.Services
 {
