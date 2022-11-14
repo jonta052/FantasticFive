@@ -58,7 +58,11 @@ namespace NewsApp.Controllers
         
         public IActionResult Index(int? page)
         {
-           
+            if (page != null)
+            {
+                TempData["JumpToOpinions"] = "hej";
+            }
+            
             var allArticles = _articleService.GetOneArticleForCategories();
             //If no page number given, show first page
             var pageNumber = page ?? 1;
