@@ -47,7 +47,7 @@ namespace NewsApp.Services
                 dynamic info = JObject.Parse(data);
                 city = info.city;
             }
-            //Set City to Linköping as default
+            //Set City to Linköping as default if ip is local ip
             else
             {
                 city = "Linköping";

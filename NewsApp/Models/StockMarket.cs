@@ -14,10 +14,21 @@ namespace NewsApp.Models
 
         [JsonPropertyName("percentChange")]
         public double PercentChange { get; set; }
+
+        
     }
     public class TopThree
     {
         [JsonPropertyName("top3")]
         public IEnumerable<StockMarket> Top3 { get; set; }
+        public bool Empty
+        {
+            get
+            {
+                return Top3 == null;
+            }
+        }
     }
+
+    
 }
