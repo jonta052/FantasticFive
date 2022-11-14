@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using NewsApp.Models;
+using Newtonsoft.Json;
+using NuGet.Protocol;
 
 namespace NewsApp.ViewComponents
 {
@@ -16,8 +19,14 @@ namespace NewsApp.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var result =_stockMarket.GetAsync("summary").Result;
-            var summary = await result.Content.ReadFromJsonAsync<TopThree>();
-            return View("Index", summary); 
+            TopThree topThree = new TopThree();
+
+            if (result.IsSuccessStatusCode)
+            {
+                topThree = await result.Content.ReadFromJsonAsync<TopThree>();
+            }
+            
+            return View("Index", topThree); 
               
         }
     }

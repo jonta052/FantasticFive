@@ -90,9 +90,10 @@ namespace NewsApp.Controllers
 
         public async Task <IActionResult> WeatherApp(/*string city*/)
         {
+            //Get the users ip-address
             var request = HttpContext.Connection.RemoteIpAddress.ToString();
             //https://ipinfo.io/213.80.110.182?token=bde75ceacf2669
-            
+            //Get users location based on ip-address
             var userInfo = await _userLocationInfo.GetAsync($"{request}?token=bde75ceacf2669");
             var data = await userInfo.Content.ReadAsStringAsync();
             dynamic info = JObject.Parse(data);

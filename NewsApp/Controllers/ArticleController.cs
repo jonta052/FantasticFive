@@ -9,6 +9,8 @@ using NewsApp.Data;
 using NewsApp.Data.Migrations;
 using NewsApp.Models;
 using NewsApp.Services;
+using X.PagedList;
+using System.Drawing.Printing;
 
 namespace NewsApp.Controllers
 {
@@ -28,12 +30,12 @@ namespace NewsApp.Controllers
             _configuration = configuration;
         }
 
-   
+
 
         //[HttpPost(nameof(UploadFile))]
         //public async Task<IActionResult> UploadFile(CreateArticleVM files)
         //{
-            
+
         //    string systemFileName = files.File.FileName;
         //    systemFileName = _db.Articles.FirstOrDefault().Id+ "_"+systemFileName;
 
@@ -55,26 +57,32 @@ namespace NewsApp.Controllers
         //    return View();
         //}
 
-
-        // GET: Article
-        public IActionResult Index()
+        
+        public IActionResult Index(int? page)
         {
-
+           
             var allArticles = _articleService.GetOneArticleForCategories();
+            //If no page number given, show first page
+            var pageNumber = page ?? 1;
+            ViewBag.oneArticlePage = allArticles.ToPagedList(pageNumber, 4);
 
-            return View(allArticles);
+            return View(allArticles.ToPagedList(pageNumber, 4));
         }
 
-        public IActionResult SearchArticles(string search)
+        public IActionResult SearchArticles(string search, int? page)
         {
+            ViewBag.search = search;
             var selectedArticles = (from a in _db.Articles where a.Content.Contains(search) || a.Title.Contains(search) select a).ToList();
+            //If no page number given, show first page
+            var pageNumber = page ?? 1;
+            ViewBag.oneArticlePage = selectedArticles.ToPagedList(pageNumber, 4);
 
             if (selectedArticles.IsNullOrEmpty())
             {
                 return View("NotFound");
             }
 
-            return View(selectedArticles);
+            return View(selectedArticles.ToPagedList(pageNumber, 4));
         }
 
         // GET: ArticleController/Details/5

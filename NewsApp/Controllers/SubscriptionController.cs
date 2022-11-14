@@ -49,7 +49,7 @@ namespace NewsApp.Controllers
                                          Active = s.Active
                                      }
                                      ).GroupBy(x => x.TypeName).Select(x => new
-                                     {  
+                                     {  //Here Active and TypeName could be something else
                                          Active = x.Count(d => d.Active == true),
                                         TypeName = x.FirstOrDefault().TypeName
 

@@ -1,5 +1,7 @@
-﻿@model IEnumerable<NewsApp.Models.Article>
-
+﻿@*@model IEnumerable<NewsApp.Models.Article>*@
+@model X.PagedList.IPagedList<NewsApp.Models.Article>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
 @{
     ViewData["Title"] = "Index";
 }
@@ -111,6 +113,8 @@
             </div>
 
         }
+
+    @Html.PagedListPager((IPagedList)ViewBag.oneArticlePage, page => Url.Action("Index", new { page }),X.PagedList.Web.Common.PagedListRenderOptions.OnlyShowFivePagesAtATime)
 
     </div>
 
