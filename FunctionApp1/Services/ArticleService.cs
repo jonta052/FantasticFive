@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TimerTrigger1.Data;
+﻿using TimerTrigger1.Data;
 
 namespace TimerTrigger1.Services
 {

@@ -4,7 +4,6 @@
     var weatherData = _weatherService.WeatherApp().Result;
 }
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -235,10 +234,14 @@
                 document.getElementById('wicon').src = "/Image/weather/drizzle.webp";
 
             }
+            else if ("@weatherData.Summary" == "light intensity drizzle") {
+
+                document.getElementById('wicon').src = "/Image/weather/drizzle.webp";
+            }
+                    
             else {
 
                 document.getElementById('wicon').src = "/Image/weather/under_construction.png";
-
             }
 
             $('[data-bs-toggle="popover"]').popover({

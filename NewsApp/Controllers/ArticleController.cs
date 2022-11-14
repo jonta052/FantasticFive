@@ -117,8 +117,6 @@ namespace NewsApp.Controllers
         [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
         public async Task<IActionResult> Create(CreateArticleVM articleVM)
         {
-            
-
             var categories = _db.Categories.ToList();
             var selectList = new SelectList(categories, "Id", "Name");
             //DialogResult result = openFileDialog1.ShowDialog();
