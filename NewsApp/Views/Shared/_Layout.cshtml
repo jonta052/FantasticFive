@@ -4,7 +4,6 @@
     var weatherData = _weatherService.WeatherApp().Result;
 }
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +18,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 </head>
+
+
 <body>
 
     <header>
@@ -27,7 +28,7 @@
                 <div>
                     <a style="font-weight: bold; text-shadow: 2px 2px #808080;color: white; font-size:30px" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                         <img height="50" width="50" src="~/image/news 5.jpg" />
-                        <span class="d-none d-sm-inline">NewsApp</span>
+                        <span class="d-none d-sm-inline">News Five</span>
                     </a>
                     <img id="wicon" class="mr-3" alt="Sample Image" style="width:50px;" data-bs-toggle="popover" data-bs-placement="bottom">
                 </div>
@@ -240,27 +241,33 @@
                 document.getElementById('wicon').src = "/Image/weather/drizzle.webp";
             }
 
+            }
             else {
 
                 document.getElementById('wicon').src = "/Image/weather/under_construction.png";
-
             }
-
+            
             $('[data-bs-toggle="popover"]').popover({
+               
+                sanitize: false,
                 trigger: 'hover',
                 html: true,
                 content:
-                    `<div class="flex-container">
-                                                          <div class="flex-child">
-                                                               <p>City:</p>
-                                                               <p>Summary:</p>
-                                                               <p>Temperature:&nbsp&nbsp</p>
-                                                          </div>
-                                                          <div class="flex-child">
-                                                              <p>@weatherData.City</p>
-                                                              <p>@weatherData.Summary</p>
-                                                              <p>@weatherData.TemperatureC &#8451</p>
-                                                          </div>
+                    `<div class="flex-container" style="font-size: 18px;">
+                          <div class="flex-child">
+                                    <p style="margin-bottom:5px;font-size: 18px;">City:</p>
+                            <p style="margin-bottom:5px">Summary:</p>
+                            <p style="margin-bottom:5px">Temperature:&nbsp&nbsp</p>
+                            <p style="margin-bottom:5px">Windspeed:</p>
+                            <p style="margin-bottom:5px">Humidity:</p>
+                          </div>
+                          <div class="flex-child">
+                                    <p style="margin-bottom:5px">@weatherData.City</p>
+                                    <p style="margin-bottom:5px">@weatherData.Summary</p>
+                                    <p style="margin-bottom:5px">@weatherData.TemperatureC &#8451</p>
+                                    <p style="margin-bottom:5px">@weatherData.WindSpeed m/s</p>
+                                    <p style="margin-bottom:5px">@weatherData.Humidity %</p>
+                          </div>
                      </div>`
             });
 

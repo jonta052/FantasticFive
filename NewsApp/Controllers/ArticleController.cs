@@ -6,11 +6,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using NewsApp.Data;
-using NewsApp.Data.Migrations;
 using NewsApp.Models;
 using NewsApp.Services;
 using X.PagedList;
-using System.Drawing.Printing;
 
 namespace NewsApp.Controllers
 {
@@ -60,7 +58,11 @@ namespace NewsApp.Controllers
         
         public IActionResult Index(int? page)
         {
-           
+            if (page != null)
+            {
+                TempData["JumpToOpinions"] = "hej";
+            }
+            
             var allArticles = _articleService.GetOneArticleForCategories();
             //If no page number given, show first page
             var pageNumber = page ?? 1;
@@ -115,8 +117,6 @@ namespace NewsApp.Controllers
         [Authorize(Roles = $"{Roles.Administrator}, {Roles.Editor}")]
         public async Task<IActionResult> Create(CreateArticleVM articleVM)
         {
-            
-
             var categories = _db.Categories.ToList();
             var selectList = new SelectList(categories, "Id", "Name");
             //DialogResult result = openFileDialog1.ShowDialog();

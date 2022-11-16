@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NewsApp.Data;
 using NewsApp.Models;
 using System.Diagnostics;
-using NuGet.Protocol;
 using Newtonsoft.Json.Linq;
-using NewsApp.Models.Email;
 using NewsApp.Services;
 
 namespace NewsApp.Controllers
@@ -35,6 +32,17 @@ namespace NewsApp.Controllers
 
         public IActionResult Index(string CategoryName)
         {
+            //var routeUrl = Url.RouteUrl(RouteData.Values);
+            var qsPath = Request.QueryString.Value;
+            if (string.IsNullOrEmpty(qsPath))
+            {
+                ViewBag.Display = "Frontpage";
+            }
+            else
+            {
+                ViewBag.Display = qsPath;
+            }
+            
             if (string.IsNullOrEmpty(CategoryName))
             {
             var popular = _db.Articles

@@ -1,6 +1,5 @@
 ﻿using NewsApp.Models;
 using Microsoft.AspNetCore.Identity;
-using NewsApp.Services;
 
 namespace NewsApp.Data
 {
