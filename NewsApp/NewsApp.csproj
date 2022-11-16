@@ -15,6 +15,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Image\Article-Images\3500.webp" />
+    <None Include="wwwroot\Image\Article-Images\b70e2866b40d4d715806fdeb2a43e55a4d2433ff-3287x2266.webp" />
+    <None Include="wwwroot\Image\Article-Images\emmy-award.webp" />
+    <None Include="wwwroot\Image\Article-Images\Hacienda_Yaxcopoil_4x3.webp" />
+    <None Include="wwwroot\Image\Article-Images\Halle_Bailey-Julia_Marino.webp" />
+    <None Include="wwwroot\Image\Article-Images\img_1885.webp" />
+    <None Include="wwwroot\Image\Article-Images\iphone_14.webp" />
+    <None Include="wwwroot\Image\Article-Images\lorem-ipsum-dolor.webp" />
+    <None Include="wwwroot\Image\Article-Images\madonna.webp" />
+    <None Include="wwwroot\Image\Article-Images\nickwagner-development-house.webp" />
+    <None Include="wwwroot\Image\Article-Images\party.webp" />
+    <None Include="wwwroot\Image\weather\drizzle.webp" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.14.1" />
     <PackageReference Include="Azure.Storage.Common" Version="12.13.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.10" />
