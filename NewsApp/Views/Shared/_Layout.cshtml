@@ -231,10 +231,15 @@
                 document.getElementById('wicon').src = "/Image/weather/few-clouds.png";
             }
              else if ("@weatherData.Summary" == "drizzle") {
-
                 document.getElementById('wicon').src = "/Image/weather/drizzle.webp";
-
+              }
+            else if ("@weatherData.Summary" == "drizzle") {
+                document.getElementById('wicon').src = "/Image/weather/drizzle.webp";
             }
+            else if ("@weatherData.Summary" == "light intensity drizzle") {
+                document.getElementById('wicon').src = "/Image/weather/drizzle.webp";
+            }
+
             else {
 
                 document.getElementById('wicon').src = "/Image/weather/under_construction.png";
