@@ -30,7 +30,7 @@
                         <img height="50" width="50" src="~/image/news 5.jpg" />
                         <span class="d-none d-sm-inline">News Five</span>
                     </a>
-                    <img id="wicon" class="mr-3" alt="Sample Image" style="width:50px;" data-bs-toggle="popover" data-bs-placement="bottom">
+                    <img id="wicon" class="mr-3" alt="Sample Image" style="margin-top:-15px" data-bs-toggle="popover" data-bs-placement="bottom">
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -201,50 +201,63 @@
     <script>
         $(document).ready(function () {
 
+            if("@weatherData.Date.Hour" > 22)
+            {
+                var day_night = "night";
+            }
+
+            else
+            {
+                var day_night = "day";
+            }
+
             if ("@weatherData.Summary" == "clear sky") {
-            document.getElementById('wicon').src = "/Image/weather/sun.png";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/113.png`;
             }
             else if ("@weatherData.Summary" == "light intensity shower rain") {
-                document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/353.png`;
             }
             else if ("@weatherData.Summary" == "moderate rain") {
-                document.getElementById('wicon').src = "/Image/weather/rainy-day.png";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/299.png`;
             }
             else if ("@weatherData.Summary" == "overcast clouds") {
-                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/122.png`;
             }
             else if ("@weatherData.Summary" == "light rain") {
-                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/296.png`;
             }
             else if ("@weatherData.Summary" == "mist") {
-                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/143.png`;
             }
             else if ("@weatherData.Summary" == "broken clouds") {
-                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/116.png`;
             }
             else if ("@weatherData.Summary" == "scattered clouds") {
-                document.getElementById('wicon').src = "/Image/weather/cloudy.png";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/116.png`;
             }
              else if ("@weatherData.Summary" == "fog") {
-                document.getElementById('wicon').src = "/Image/weather/fog.png";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/248.png`;
             }
              else if ("@weatherData.Summary" == "few clouds") {
-                document.getElementById('wicon').src = "/Image/weather/few-clouds.png";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/116.png`;
             }
             else if ("@weatherData.Summary" == "drizzle") {
-                document.getElementById('wicon').src = "/Image/weather/drizzle.webp";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/263.png`;
             }
             else if ("@weatherData.Summary" == "light intensity drizzle") {
-                document.getElementById('wicon').src = "/Image/weather/drizzle.webp";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/263.png`;
             }
             else if ("@weatherData.Summary" == "snow") {
-                document.getElementById('wicon').src = "/Image/weather/13.svg";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/332.png`;
             }
             else if ("@weatherData.Summary" == "light snow") {
-                document.getElementById('wicon').src = "/Image/weather/13.svg";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/179.png`;
             }
             else if ("@weatherData.Summary" == "heavy snow") {
-                document.getElementById('wicon').src = "/Image/weather/13.svg";
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/338.png`;
+            }
+            else if ("@weatherData.Summary" == "heavy intensity shower rain") {
+                document.getElementById('wicon').src = `/Image/weather/${day_night}/308.png`;
             }
             else {
 
@@ -266,7 +279,7 @@
                             <p style="margin-bottom:5px">Humidity:</p>
                           </div>
                           <div class="flex-child">
-                                    <p style="margin-bottom:5px">@weatherData.City</p>
+                                    <p style="margin-bottom:5px">@weatherData.Date.Hour</p>
                                     <p style="margin-bottom:5px">@weatherData.Summary</p>
                                     <p style="margin-bottom:5px">@weatherData.TemperatureC &#8451</p>
                                     <p style="margin-bottom:5px">@weatherData.WindSpeed m/s</p>
